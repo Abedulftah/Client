@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -94,6 +96,12 @@ public class CatalogController implements Initializable {
     }
 
     @FXML
+    void handleExitCatalog(ActionEvent event) {
+        System.exit(0);
+    }
+
+
+    @FXML
     void textChanged() {
         pressSearch();
     }
@@ -113,14 +121,13 @@ public class CatalogController implements Initializable {
             errorLabel.setTextFill(Color.web("#43bd13"));
             errorLabel.setText("The request was sent successfully");
 
-            chosenItemPrice.setText(App.CURRENCY + price);
+            //chosenItemPrice.setText(App.CURRENCY + price);
 
             for(Catalog c : flowerList){
                 if(c.getName().equals(name)){
                     c.setPrice(price);
                 }
             }
-            loadGridPane();
 
             MsgObject msg = new MsgObject("edit");
             msg.setCatalogList(flowerList);
@@ -180,6 +187,11 @@ public class CatalogController implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    void handleHomeCatalog(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("primary");
     }
 
     private void loadGridPane() {

@@ -12,6 +12,12 @@
     <dependencies>
 
         <dependency>
+            <groupId>io.github.palexdev</groupId>
+            <artifactId>materialfx</artifactId>
+            <version>11.13.5</version>
+        </dependency>
+
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.28</version>
@@ -33,37 +39,37 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
-            <version>18</version>
+            <version>18.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
-            <version>18</version>
+            <version>18.0.1</version>
             <classifier>win</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
-            <version>18</version>
+            <version>18.0.1</version>
             <classifier>linux</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
-            <version>18</version>
+            <version>18.0.1</version>
             <classifier>mac</classifier>
         </dependency>
 
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>18</version>
+            <version>18.0.1</version>
         </dependency>
 
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>18</version>
+            <version>18.0.1</version>
         </dependency>
     </dependencies>
     <build>
@@ -96,7 +102,7 @@
                         <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>org.example.client.Main</mainClass>
+                            <mainClass>il.ac.haifa.cs.sweng.OCSFSimpleChat.Main</mainClass>
                         </configuration>
                     </execution>
                 </executions>
@@ -117,7 +123,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.example.client.Main</mainClass>
+                                    <mainClass>il.ac.haifa.cs.sweng.OCSFSimpleChat.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
@@ -171,7 +177,7 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
-                            <mainClass>org.example.Main</mainClass>
+                            <mainClass>il.ac.haifa.cs.sweng.OCSFSimpleChat.Main</mainClass>
                         </configuration>
                     </execution>
                     <execution>
@@ -180,7 +186,7 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
-                            <mainClass>org.example.client.Main</mainClass>
+                            <mainClass>oil.ac.haifa.cs.sweng.OCSFSimpleChat.Main</mainClass>
                         </configuration>
                     </execution>
                 </executions>
