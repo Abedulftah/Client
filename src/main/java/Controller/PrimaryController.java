@@ -1,7 +1,9 @@
-package il.ac.haifa.cs.sweng.OCSFSimpleChat;
+package Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
