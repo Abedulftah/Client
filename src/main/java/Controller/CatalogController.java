@@ -86,7 +86,7 @@ public class CatalogController implements Initializable {
 
     private void setChosenItem(Catalog catalog) {
         chosenItemName.setText(catalog.getName());
-        chosenItemPrice.setText(App.CURRENCY + catalog.getPrice());
+        chosenItemPrice.setText("Price: " + App.CURRENCY + catalog.getPrice());
         chosenItemDetails.setText(catalog.getItemDetails());
         chosenItemSize.setText(catalog.getSize());
         Image image = new Image(catalog.getImage().getUrl());
@@ -120,8 +120,6 @@ public class CatalogController implements Initializable {
             double price = Double.parseDouble(text);
             errorLabel.setTextFill(Color.web("#43bd13"));
             errorLabel.setText("The request was sent successfully");
-
-            //chosenItemPrice.setText(App.CURRENCY + price);
 
             for(Catalog c : flowerList){
                 if(c.getName().equals(name)){

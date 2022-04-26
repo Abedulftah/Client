@@ -37,8 +37,8 @@ public class PrimaryController {
         private Pane pnlCustomer;
 
         @FXML
-        void SignUpHandle(ActionEvent event) {
-
+        void SignUpHandle(ActionEvent event) throws IOException{
+                getClient().sendToServer(new MsgObject("signUp"));
         }
 
         @FXML
@@ -47,13 +47,13 @@ public class PrimaryController {
         }
 
         @FXML
-        void contactUsHandle(ActionEvent event) {
-
+        void contactUsHandle(ActionEvent event) throws IOException{
+                getClient().sendToServer(new MsgObject("contactUs"));
         }
 
         @FXML
-        void signInHandle(ActionEvent event) {
-
+        void signInHandle(ActionEvent event) throws IOException{
+                getClient().sendToServer(new MsgObject("signIn"));
         }
 
         @FXML
