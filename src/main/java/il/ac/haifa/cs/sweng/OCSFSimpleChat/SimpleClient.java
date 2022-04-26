@@ -20,7 +20,6 @@ public class SimpleClient extends AbstractClient {
 	@Override
 	protected void handleMessageFromServer(Object msg) {
 
-
 		msgObject = (MsgObject) msg;
 
 		if(msgObject.getMsg().startsWith("Catalog")){
@@ -37,6 +36,16 @@ public class SimpleClient extends AbstractClient {
 			Platform.runLater(()->{
 				try {
 					App.setRoot("primary");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+		}
+		else if(msgObject.getMsg().startsWith("contactUs")){
+			Platform.runLater(()->{
+				try {
+					App.setRoot("contactUs");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

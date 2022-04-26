@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -22,7 +23,8 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         client = SimpleClient.getClient();
         client.openConnection();
-        scene = new Scene(loadFXML("primary"), 1280, 720);
+        scene = new Scene(loadFXML("primary"), 1250, 650);
+        //stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         //stage.setFullScreen(true);
         stage.show();
