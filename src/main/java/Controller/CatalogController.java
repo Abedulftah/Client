@@ -89,7 +89,7 @@ public class CatalogController implements Initializable {
         chosenItemPrice.setText("Price: " + App.CURRENCY + catalog.getPrice());
         chosenItemDetails.setText(catalog.getItemDetails());
         chosenItemSize.setText(catalog.getSize());
-        Image image = new Image(catalog.getImage().getUrl());
+        Image image = new Image(catalog.getImgUrl());
         chosenItemImage.setImage(image);
         chosenItem.setStyle("-fx-background-color: #" + catalog.getColor() + ";\n" +
                 "    -fx-background-radius: 30;");

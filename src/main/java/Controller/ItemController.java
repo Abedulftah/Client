@@ -40,7 +40,7 @@ public class ItemController {
         this.myListener = myListener;
         nameLabel.setText(catalog.getName());
         priceLabel.setText(App.CURRENCY + catalog.getPrice());
-        Image image = new Image(catalog.getImage().getUrl());
+        Image image = new Image(catalog.getImgUrl());
         imageLabel.setImage(image);
         anItem.setStyle("-fx-background-color: #" + catalog.getColor() + ";\n" +
                 "    -fx-background-radius: 30;" +
