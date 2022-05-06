@@ -1,33 +1,27 @@
 package Controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
-
-import javafx.event.ActionEvent;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.MyListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.MyListener;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
@@ -36,9 +30,6 @@ public class CatalogController implements Initializable {
 
     @FXML
     private VBox chosenItem;
-
-    @FXML
-    private Button chosenItemChangePriceButton;
 
     @FXML
     private TextField chosenItemChangePriceTB;
@@ -59,19 +50,7 @@ public class CatalogController implements Initializable {
     private Label chosenItemSize;
 
     @FXML
-    private ImageView currentPageIcon;
-
-    @FXML
-    private Label currentPageName;
-
-    @FXML
     private GridPane gridPane;
-
-    @FXML
-    private ScrollPane scrollPane;
-
-    @FXML
-    private Button searchItemButton;
 
     @FXML
     private Label errorLabel;
@@ -93,11 +72,6 @@ public class CatalogController implements Initializable {
         chosenItemImage.setImage(image);
         chosenItem.setStyle("-fx-background-color: #" + catalog.getColor() + ";\n" +
                 "    -fx-background-radius: 30;");
-    }
-
-    @FXML
-    void handleExitCatalog(ActionEvent event) {
-        System.exit(0);
     }
 
 
@@ -145,12 +119,7 @@ public class CatalogController implements Initializable {
             loadGridPane();
             return;
         }
-        myListener = new MyListener() {
-            @Override
-            public void onClickListener(Catalog catalog) {
-                setChosenItem(catalog);
-            }
-        };
+        myListener = this::setChosenItem;
         int column = 0;
         int row = 1;
 
@@ -188,17 +157,12 @@ public class CatalogController implements Initializable {
     }
 
     @FXML
-    void handleHomeCatalog(MouseEvent mouseEvent) throws IOException {
-        App.setRoot("primary");
+    void handleHomeCatalog() throws IOException {
+        App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
     }
 
     private void loadGridPane() {
-        myListener = new MyListener() {
-            @Override
-            public void onClickListener(Catalog catalog) {
-                setChosenItem(catalog);
-            }
-        };
+        myListener = this::setChosenItem;
         int column = 0;
         int row = 1;
 

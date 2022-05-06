@@ -76,13 +76,8 @@ public class ContactUsNotSignedController {
     }
 
     @FXML
-    void handleExitContactUs() {
-        System.exit(0);
-    }
-
-    @FXML
     void handleHomeContactUs() throws IOException {
-        App.setRoot("primary");
+        App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
     }
 
     @FXML
@@ -189,7 +184,7 @@ public class ContactUsNotSignedController {
 
     public static void setTextAreaLimit(TextArea textArea, int length) {
         textArea.setOnKeyTyped(event -> {
-            String string = textArea.getText();
+            String string = textArea.getText().replaceAll("\\n", "");
             if (string.length() > length) {
                 textArea.setText(string.substring(0, length));
                 textArea.positionCaret(string.length());

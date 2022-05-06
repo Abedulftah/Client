@@ -181,23 +181,26 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="93.0" prefWidth="880.0">
                      <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="10.0" layoutY="50.0" styleClass="shadow" stylesheets="@../../../../../../Styles/style.css" text="Language: " textFill="#878787">
+                              <Label styleClass="shadow" stylesheets="@../../../../../../Styles/style.css" text="Language: " textFill="#878787">
                                  <font>
                                     <Font name="Cambria Bold" size="18.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                               </Label>
-                              <Label layoutX="100.0" layoutY="50.0" styleClass="shadow" stylesheets="@../../../../../../Styles/style.css" text="English" textFill="#878787" underline="true">
+                              <Label styleClass="shadow" stylesheets="@../../../../../../Styles/style.css" text="English" textFill="#878787" underline="true">
                                  <font>
                                     <Font name="Cambria Bold" size="18.0" />
                                  </font>
                               </Label>
                            </children>
-                        </Pane>
+                        </HBox>
                         <Pane prefHeight="93.0" prefWidth="349.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <ImageView fx:id="homeCatalog" fitHeight="40.0" fitWidth="40.0" layoutX="187.0" layoutY="39.0" onMouseClicked="#handleHomeCatalog" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="homeCatalog" fitHeight="40.0" fitWidth="40.0" layoutX="187.0" layoutY="27.0" onMouseClicked="#handleHomeCatalog" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Image/home-icon-silhouette.png" />
                                  </image>
@@ -206,28 +209,26 @@
                                  </cursor>
                               </ImageView>
                            </children></Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label fx:id="currentPageName" layoutX="85.0" layoutY="50.0" styleClass="shadow" stylesheets="@../../../../../../Styles/style.css" text="Catalog" textFill="#878787">
+                              <Label fx:id="currentPageName" prefHeight="22.0" styleClass="shadow" stylesheets="@../../../../../../Styles/style.css" text="Catalogue" textFill="#878787">
                                  <font>
                                     <Font name="Cambria Bold" size="18.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
                               </Label>
-                              <ImageView fx:id="currentPageIcon" fitHeight="30.0" fitWidth="30.0" layoutX="155.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="currentPageIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Image/Catalog_Icon.png" />
                                  </image>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
                               </ImageView>
-                              <JFXButton fx:id="exitCatalog" layoutX="155.0" onAction="#handleExitCatalog" text="X" textFill="#b3abab">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </JFXButton>
                            </children>
-                        </Pane>
+                        </HBox>
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">

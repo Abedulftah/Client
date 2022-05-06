@@ -2,37 +2,42 @@ package il.ac.haifa.cs.sweng.OCSFSimpleChat;
 
 import javafx.application.Application;
 
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class App extends Application {
     public static final String CURRENCY = "$";
     private static Scene scene;
     private static SimpleClient client;
+    private static Stage mainStage;
 
     @Override
     public void start(Stage stage) throws Exception {
         client = SimpleClient.getClient();
         client.openConnection();
-        scene = new Scene(loadFXML("primary"), 1250, 650);
-        //stage.initStyle(StageStyle.UNDECORATED);
+        scene = new Scene(loadFXML("SignUpAccountType"));
         stage.setScene(scene);
-        //stage.setFullScreen(true);
-        stage.show();
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Image/mainPageIcon.png"))));
+        stage.setTitle("Lilac");
+        //stage.setResizable(false);
+        mainStage = stage;
+        mainStage.show();
     }
 
-    public static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml, String image, String title) throws IOException {
         scene.setRoot(loadFXML(fxml));
+        mainStage.getIcons().clear();
+        mainStage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream(image))));
+        mainStage.setTitle(title);
+        mainStage.show();
     }
+
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();

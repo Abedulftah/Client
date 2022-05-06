@@ -1,25 +1,15 @@
 package Controller;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.stage.StageStyle;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
+
+import java.io.IOException;
 
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
 public class PrimaryController {
-
-        @FXML
-        private ResourceBundle resources;
-
-        @FXML
-        private URL location;
 
         @FXML
         private Button buttonCatalog;
@@ -37,22 +27,22 @@ public class PrimaryController {
         private Pane pnlCustomer;
 
         @FXML
-        void SignUpHandle(ActionEvent event) throws IOException{
+        void SignUpHandle() throws IOException{
                 getClient().sendToServer(new MsgObject("signUp"));
         }
 
         @FXML
-        void catalogHandle(ActionEvent event) throws IOException {
+        void catalogHandle() throws IOException {
             getClient().sendToServer(new MsgObject("Catalog"));
         }
 
         @FXML
-        void contactUsHandle(ActionEvent event) throws IOException{
+        void contactUsHandle() throws IOException{
                 getClient().sendToServer(new MsgObject("contactUs"));
         }
 
         @FXML
-        void signInHandle(ActionEvent event) throws IOException{
+        void signInHandle() throws IOException{
                 getClient().sendToServer(new MsgObject("signIn"));
         }
 
