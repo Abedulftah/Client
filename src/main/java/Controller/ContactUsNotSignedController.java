@@ -147,7 +147,7 @@ public class ContactUsNotSignedController {
         handleEmailTBKeyPressed();
         handlePhoneTBKeyPressed();
 
-        if (flag1 && flag2 && flag3 && !(messageTB.getText().length() < 30)) {
+        if (flag1 && flag2 && flag3 && !(messageTB.getText().replaceAll("\\n", "").length() < 30)) {
             nameTB.setEditable(false);
             emailTB.setEditable(false);
             phoneTB.setEditable(false);
@@ -166,7 +166,7 @@ public class ContactUsNotSignedController {
             PauseTransition pause = new PauseTransition(Duration.seconds(3));
             pause.setOnFinished(e -> messageErrorLabel.setText(null));
             pause.play();
-        } else if (messageTB.getText().length() < 30) {
+        } else if (messageTB.getText().replaceAll("\\n", "").length() < 30) {
             messageErrorLabel.setVisible(true);
             messageTB.setStyle("-fx-border-color: red");
         }

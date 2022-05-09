@@ -148,7 +148,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor></MFXComboBox>
             <MFXTextField fx:id="CVVTB" floatingText="CVV" layoutX="50.0" layoutY="365.0" onKeyReleased="#handleCVVTB" prefHeight="50.0" prefWidth="120.0" promptText="656" textLimit="3" />
-            <JFXButton fx:id="SignUpButton" layoutX="50.0" layoutY="430.0" onAction="#handleSignUpButton" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #E45652; -fx-background-radius: 100;" text="Sign Up" textFill="#dad6d6">
+            <JFXButton fx:id="SignUpButton" layoutX="50.0" layoutY="430.0" onAction="#handleSignUpButton" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #D63333; -fx-background-radius: 100;" text="Sign Up" textFill="#dad6d6">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

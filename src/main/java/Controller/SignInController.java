@@ -1,6 +1,8 @@
 package Controller;
 
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
@@ -13,17 +15,20 @@ import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
 public class SignInController {
 
+    public static String userName;
+
     @FXML
     private Label errorMessageLabel;
 
     @FXML
-    void handleContactUs() throws IOException {
-        getClient().sendToServer(new MsgObject("contactUs"));
-    }
+    private MFXPasswordField passwordTB;
 
     @FXML
-    void handleExitSignIn() {
-        System.exit(0);
+    private MFXTextField userNameTB;
+
+    @FXML
+    void handleContactUs() throws IOException {
+        getClient().sendToServer(new MsgObject("contactUs"));
     }
 
     @FXML
@@ -32,7 +37,10 @@ public class SignInController {
     }
 
     @FXML
-    void handleSignInButton() {
+    void handleSignInButton() throws IOException {
+
+        userName = userNameTB.getText();
+        getClient().sendToServer(new MsgObject("primaryUser"));
 
         // if the user name is found in the data base and the password is matching with it then
         // App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
@@ -42,7 +50,7 @@ public class SignInController {
 
     @FXML
     void handleSignUpButton() throws IOException {
-        App.setRoot("SignUp", "/Image/signUpIcon.png", "Sign Up");
+        getClient().sendToServer(new MsgObject("signUpAccountType"));
     }
 
     @FXML

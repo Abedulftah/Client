@@ -2,17 +2,18 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.MotionBlur?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="650.0" prefWidth="1300.0" style="-fx-background-color: #20120F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUpAccountTypeController">
@@ -47,44 +48,71 @@
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutY="200.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Pane layoutX="330.0" layoutY="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <ImageView fx:id="basicMemberShip" fitHeight="180.0" fitWidth="180.0" onMouseClicked="#handleBasicMemberShip" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../Image/basicPlan.png" />
-               </image>
-               <HBox.margin>
-                  <Insets right="50.0" />
-               </HBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="goldMemberShip" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#handleGoldMemberShip" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../Image/goldPlan.png" />
-               </image>
-               <HBox.margin>
-                  <Insets left="50.0" right="50.0" />
-               </HBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="eliteMemberShip" fitHeight="160.0" fitWidth="160.0" onMouseClicked="#handleEliteMemberShip" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../Image/elitePlan.png" />
-               </image>
-               <HBox.margin>
-                  <Insets left="50.0" />
-               </HBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
+            <VBox fx:id="basicVB" alignment="CENTER" layoutX="305.0" style="-fx-background-color: #FFD700; -fx-background-radius: 70;">
+               <children>
+                  <ImageView fitHeight="180.0" fitWidth="180.0" onMouseClicked="#handleBasicMemberShip" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Image/basicPlan.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox fx:id="goldVB" alignment="CENTER" layoutX="565.0" prefHeight="180.0" prefWidth="180.0" style="-fx-background-color: #FFD700; -fx-background-radius: 70;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" onMouseClicked="#handleGoldMemberShip" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Image/goldPlan.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox fx:id="eliteVB" alignment="CENTER" layoutX="825.0" prefHeight="180.0" prefWidth="180.0" style="-fx-background-color: #FFD700; -fx-background-radius: 70;">
+               <children>
+                  <ImageView fitHeight="160.0" fitWidth="160.0" onMouseClicked="#handleEliteMemberShip" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Image/elitePlan.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" layoutX="37.5" layoutY="79.0">
+               <children>
+                  <Label fx:id="errorLabel1" alignment="CENTER" contentDisplay="CENTER" prefWidth="230.0" text="Please choose account type" textAlignment="CENTER" textFill="RED">
+                     <font>
+                        <Font name="Cambria Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <Reflection />
+                     </effect>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="1037.5" layoutY="79.0">
+               <children>
+                  <Label fx:id="errorLabel2" alignment="CENTER" contentDisplay="CENTER" prefWidth="230.0" text="Please choose account type" textAlignment="CENTER" textFill="RED">
+                     <font>
+                        <Font name="Cambria Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <Reflection />
+                     </effect>
+                  </Label>
+               </children>
+            </HBox>
          </children>
-      </HBox>
-      <Pane layoutY="380.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      </Pane>
+      <Pane layoutY="400.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label layoutX="60.0" layoutY="5.0" text="Price" textFill="#847979">
                <font>
@@ -120,7 +148,7 @@
                   <Bloom />
                </effect>
             </Label>
-            <Label layoutX="365.0" layoutY="5.0" text="0.00₪" textFill="#847979">
+            <Label fx:id="basicPrice" layoutX="365.0" layoutY="5.0" text="0.00₪" textFill="#847979">
                <font>
                   <Font name="Cambria" size="24.0" />
                </font>
@@ -128,7 +156,7 @@
                   <Bloom />
                </effect>
             </Label>
-            <Label layoutX="630.0" layoutY="5.0" text="0.00₪" textFill="#847979">
+            <Label fx:id="goldPrice" layoutX="630.0" layoutY="5.0" text="0.00₪" textFill="#847979">
                <font>
                   <Font name="Cambria" size="24.0" />
                </font>
@@ -136,7 +164,7 @@
                   <Bloom />
                </effect>
             </Label>
-            <Label layoutX="840.0" layoutY="5.0" text="100.00₪ / Year" textFill="#847979">
+            <Label fx:id="elitePrice" layoutX="840.0" layoutY="5.0" text="100.00₪ / Year" textFill="#847979">
                <font>
                   <Font name="Cambria" size="24.0" />
                </font>
@@ -164,7 +192,7 @@
                   <Image url="@../../../../../../Image/xIcon.png" />
                </image>
             </ImageView>
-            <Label layoutX="767.0" layoutY="105.0" text="10% for orders above 50.00₪" textFill="#847979">
+            <Label fx:id="eliteDiscount" layoutX="767.0" layoutY="105.0" text="10% for orders above 50.00₪" textFill="#847979">
                <font>
                   <Font name="Cambria" size="24.0" />
                </font>
@@ -184,9 +212,9 @@
             </MFXComboBox>
          </children>
       </Pane>
-      <HBox alignment="CENTER" layoutY="530.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutY="550.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <JFXButton onAction="#handleNextPage" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #E45652; -fx-background-radius: 100;" text="NEXT PAGE" textFill="#dad6d6">
+            <JFXButton onAction="#handleNextPage" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #D63333; -fx-background-radius: 100;" text="NEXT PAGE" textFill="#dad6d6">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

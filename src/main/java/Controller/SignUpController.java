@@ -18,6 +18,8 @@ import java.util.regex.Pattern;
 // In handleEmailTB check if the email exists in the database
 // In handlePhoneTB check if the phone number exists in the database
 // If the credit card number entered already found in the database we'll check later what to do
+// In handleSignUpButton you can get account type and shop chosen (if there is) by using the commands
+// (SignUpAccountTypeController.accountType) and (SignUpAccountTypeController.shop)
 
 public class SignUpController {
 

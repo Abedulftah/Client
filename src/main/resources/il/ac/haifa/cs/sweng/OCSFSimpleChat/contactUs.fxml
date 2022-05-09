@@ -35,7 +35,7 @@
                       <Cursor fx:constant="HAND" />
                   </cursor>
               </ImageView>
-              <JFXButton fx:id="sendMessageButton" layoutX="550.0" layoutY="570.0" onAction="#handleSendMessageButton" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #D63333; -fx-background-radius: 4; -fx-border-radius: 4;" text="SEND MESSAGE" textFill="WHITE">
+              <JFXButton fx:id="sendMessageButton" layoutX="550.0" layoutY="570.0" onAction="#handleSendMessageButton" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #D63333; -fx-background-radius: 100;" text="SEND MESSAGE" textFill="WHITE">
                   <font>
                       <Font name="Cambria Bold" size="18.0" />
                   </font>
