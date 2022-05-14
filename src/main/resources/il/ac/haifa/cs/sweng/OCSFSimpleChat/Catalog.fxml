@@ -255,16 +255,21 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #02030A;" VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane fx:id="scrollPane" prefWidth="754.0" style="-fx-background-color: #02030A; -fx-background-insets: 0;" styleClass="scroll-pane" stylesheets="@../../../../../../Styles/newStyles.css">
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefWidth="754.0" style="-fx-background-color: #02030A; -fx-background-insets: 0;" styleClass="scroll-pane" stylesheets="@../../../../../../Styles/newStyles.css">
                            <HBox.margin>
                               <Insets top="10.0" />
                            </HBox.margin>
                            <content>
-                              <GridPane fx:id="gridPane" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #02030A;">
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                 </rowConstraints>
-                              </GridPane>
+                              <VBox style="-fx-background-color: #02030A;">
+                                 <children>
+                                    <GridPane fx:id="gridPane" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #02030A;">
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
                            </content>
                         </ScrollPane>
                      </children>
