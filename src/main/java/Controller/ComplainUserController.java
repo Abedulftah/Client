@@ -13,6 +13,9 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
+// See what's written at the very beginning of void initialize()
+// See what's written at the end of handleSendMessageButton
+
 public class ComplainUserController {
 
     private String style;
@@ -72,9 +75,15 @@ public class ComplainUserController {
             messageErrorLabel.setText("MESSAGE WAS SENT SUCCESSFULLY");
             messageErrorLabel.setVisible(true);
             PauseTransition pause = new PauseTransition(Duration.seconds(3));
-            pause.setOnFinished(e -> messageErrorLabel.setText(null));
+            pause.setOnFinished(e -> messageErrorLabel.setVisible(false));
             pause.play();
         }
+
+        // Save this data in the complaint database
+        /* nameTB.getText();
+        emailTB.getText();
+        phoneTB.getText();
+        messageTB.getText(); */
     }
 
     public static void setTextAreaLimit(TextArea textArea, int length) {
@@ -94,8 +103,8 @@ public class ComplainUserController {
         messageErrorLabel.setVisible(false);
 
         nameTB.setText(SignInController.userName);
-        emailTB.setText("mhmd.shahin@outlook.com");
-        phoneTB.setText("0547404179");
+        emailTB.setText("mhmd.shahin@outlook.com"); // Initialize to user's email
+        phoneTB.setText("0547404179"); // Initialize to user's phone
 
         nameTB.setStyle("-fx-text-fill: #9b9d9e");
         emailTB.setStyle("-fx-text-fill: #9b9d9e");

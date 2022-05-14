@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -177,6 +178,14 @@
                         <Font name="Cambria" size="14.0" />
                      </font>
                   </TextArea>
+                  <Label fx:id="messageErrorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="794.0" layoutY="134.0" prefHeight="50.0" text="MAXIMUM 4 ITEMS" textAlignment="CENTER" textFill="RED" visible="false">
+                     <font>
+                        <Font name="Cambria Bold" size="36.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Label>
                </children>
             </Pane>
             <Pane layoutY="300.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to right, #59c173, #a17fe0, #5d26c1);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -212,6 +221,22 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
+            <Label fx:id="messageErrorLabel1" alignment="CENTER" contentDisplay="CENTER" layoutX="800.0" layoutY="550.0" prefHeight="50.0" text="PLEASE FILL ALL FIELDS" textAlignment="CENTER" textFill="RED" visible="false">
+               <font>
+                  <Font name="Cambria Bold" size="36.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+            <Label fx:id="messageErrorLabel2" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="550.0" prefHeight="50.0" text="PLEASE FILL ALL FIELDS" textAlignment="CENTER" textFill="RED" visible="false">
+               <font>
+                  <Font name="Cambria Bold" size="36.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
          </children>
       </AnchorPane>
    </center>

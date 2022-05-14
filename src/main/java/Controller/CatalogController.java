@@ -2,11 +2,9 @@ package Controller;
 
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MyListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,23 +14,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
-import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
-public class CatalogController implements Initializable {
+public class CatalogController {
 
     @FXML
     private VBox chosenItem;
-
-    @FXML
-    private TextField chosenItemChangePriceTB;
 
     @FXML
     private Label chosenItemDetails;
@@ -53,9 +44,6 @@ public class CatalogController implements Initializable {
     private GridPane gridPane;
 
     @FXML
-    private Label errorLabel;
-
-    @FXML
     private TextField searchItemTB;
 
     private final List<Catalog> flowerList = msgObject.getCatalogList();
@@ -74,45 +62,9 @@ public class CatalogController implements Initializable {
                 "    -fx-background-radius: 30;");
     }
 
-
     @FXML
-    void textChanged() {
-        pressSearch();
-    }
+    void searchItemTBKeyPressed() {
 
-    @FXML
-    void priceTB() {
-        sendRequestButton();
-    }
-
-    @FXML
-    void sendRequestButton() {
-
-        String name = chosenItemName.getText();
-        String text = chosenItemChangePriceTB.getText();
-        try {
-            double price = Double.parseDouble(text);
-            errorLabel.setTextFill(Color.web("#43bd13"));
-            errorLabel.setText("The request was sent successfully");
-
-            for(Catalog c : flowerList){
-                if(c.getName().equals(name)){
-                    c.setPrice(price);
-                }
-            }
-
-            MsgObject msg = new MsgObject("edit");
-            msg.setCatalogList(flowerList);
-            getClient().sendToServer(msg);
-        } catch (Exception e) {
-            errorLabel.setTextFill(Color.web("#ff0000"));
-            errorLabel.setText("The price must be numeric, Try again");
-            //e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void pressSearch() {
         gridPane.getChildren().clear();
         String text = searchItemTB.getText();
         if (text.equals("")) {
@@ -157,6 +109,12 @@ public class CatalogController implements Initializable {
     }
 
     @FXML
+    void searchItemTBKeyReleased() {
+
+        searchItemTBKeyPressed();
+    }
+
+    @FXML
     void handleHomeCatalog() throws IOException {
         App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
     }
@@ -198,10 +156,9 @@ public class CatalogController implements Initializable {
         }
     }
 
+    @FXML
+    void initialize() {
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        errorLabel.setText("");
         if (flowerList.size() > 0) setChosenItem(flowerList.get(0));
         loadGridPane();
     }

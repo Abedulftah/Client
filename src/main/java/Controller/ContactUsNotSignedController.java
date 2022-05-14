@@ -164,7 +164,7 @@ public class ContactUsNotSignedController {
             messageErrorLabel.setText("MESSAGE WAS SENT SUCCESSFULLY");
             messageErrorLabel.setVisible(true);
             PauseTransition pause = new PauseTransition(Duration.seconds(3));
-            pause.setOnFinished(e -> messageErrorLabel.setText(null));
+            pause.setOnFinished(e -> messageErrorLabel.setVisible(false));
             pause.play();
         } else if (messageTB.getText().replaceAll("\\n", "").length() < 30) {
             messageErrorLabel.setVisible(true);
