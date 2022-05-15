@@ -103,10 +103,10 @@ public class SimpleClient extends AbstractClient {
                     e.printStackTrace();
                 }
             });
-        } else if (msgObject.getMsg().equals("myOrderUser")) {
+        } else if (msgObject.getMsg().equals("myOrdersUser")) {
             Platform.runLater(() -> {
                 try {
-                    App.setRoot("myOrderUser", "/Image/myOrdersIcon.png", "My Order");
+                    App.setRoot("myOrdersUser", "/Image/myOrdersIcon.png", "My Orders");
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

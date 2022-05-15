@@ -15,18 +15,8 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ContactUsNotSignedController">
    <center>
-      <AnchorPane prefHeight="650.0" prefWidth="1300.0" style="-fx-background-color: #20120F;">
+      <AnchorPane prefHeight="650.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(to right, #1c92d2, #f2fcfe);">
           <children>
-              <ImageView fitHeight="650.0" fitWidth="650.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                      <Image url="@../../../../../../Image/TG_Background.png" />
-                  </image>
-              </ImageView>
-              <ImageView fitHeight="650.0" fitWidth="650.0" layoutX="650.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                      <Image url="@../../../../../../Image/TG_Background.png" />
-                  </image>
-              </ImageView>
               <ImageView fx:id="homeContactUs" fitHeight="40.0" fitWidth="40.0" layoutX="630.0" layoutY="20.0" onDragDetected="#handleHomeContactUs" onMouseClicked="#handleHomeContactUs" pickOnBounds="true" preserveRatio="true">
                   <image>
                       <Image url="@../../../../../../Image/home-icon-silhouette.png" />
