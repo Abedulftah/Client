@@ -76,13 +76,8 @@ public class ContactUsNotSignedController {
     }
 
     @FXML
-    void handleExitContactUs() {
-        System.exit(0);
-    }
-
-    @FXML
     void handleHomeContactUs() throws IOException {
-        App.setRoot("primary");
+        App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
     }
 
     @FXML
@@ -152,7 +147,7 @@ public class ContactUsNotSignedController {
         handleEmailTBKeyPressed();
         handlePhoneTBKeyPressed();
 
-        if (flag1 && flag2 && flag3 && !(messageTB.getText().length() < 30)) {
+        if (flag1 && flag2 && flag3 && !(messageTB.getText().replaceAll("\\n", "").length() < 30)) {
             nameTB.setEditable(false);
             emailTB.setEditable(false);
             phoneTB.setEditable(false);
@@ -169,9 +164,9 @@ public class ContactUsNotSignedController {
             messageErrorLabel.setText("MESSAGE WAS SENT SUCCESSFULLY");
             messageErrorLabel.setVisible(true);
             PauseTransition pause = new PauseTransition(Duration.seconds(3));
-            pause.setOnFinished(e -> messageErrorLabel.setText(null));
+            pause.setOnFinished(e -> messageErrorLabel.setVisible(false));
             pause.play();
-        } else if (messageTB.getText().length() < 30) {
+        } else if (messageTB.getText().replaceAll("\\n", "").length() < 30) {
             messageErrorLabel.setVisible(true);
             messageTB.setStyle("-fx-border-color: red");
         }
@@ -189,7 +184,7 @@ public class ContactUsNotSignedController {
 
     public static void setTextAreaLimit(TextArea textArea, int length) {
         textArea.setOnKeyTyped(event -> {
-            String string = textArea.getText();
+            String string = textArea.getText().replaceAll("\\n", "");
             if (string.length() > length) {
                 textArea.setText(string.substring(0, length));
                 textArea.positionCaret(string.length());
