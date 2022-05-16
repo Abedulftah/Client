@@ -130,6 +130,15 @@ public class SimpleClient extends AbstractClient {
                     e.printStackTrace();
                 }
             });
+        } else if (msgObject.getMsg().equals("notificationsUser")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("notificationsUser", "/Image/notificationIcon.png", "Notifications");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
         }
     }
 

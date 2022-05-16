@@ -40,6 +40,11 @@ public class PrimaryUserController {
     }
 
     @FXML
+    void handleNotificationsButton() throws IOException {
+        getClient().sendToServer(new MsgObject("notificationsUser"));
+    }
+
+    @FXML
     void handleSpecialOrderButton() throws IOException {
         getClient().sendToServer(new MsgObject("specialOrderUser"));
     }
