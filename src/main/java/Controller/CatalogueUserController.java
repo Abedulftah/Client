@@ -2,8 +2,9 @@ package Controller;
 
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MyListener;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -11,17 +12,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
-public class CatalogController {
+// Check what's written in handleAddToCart
+
+public class CatalogueUserController {
+
+    private boolean flag = false;
 
     @FXML
     private VBox chosenItem;
@@ -47,9 +52,69 @@ public class CatalogController {
     @FXML
     private TextField searchItemTB;
 
+    @FXML
+    private ImageView quantityImage;
+
+    @FXML
+    private Label quantityLabel;
+
+    @FXML
+    private MFXTextField quantityTB;
+
     private final List<Catalog> flowerList = msgObject.getCatalogList();
 
     private MyListener myListener;
+
+    @FXML
+    void handleAddToCart() {
+
+        handleQuantityTBKeyPressed();
+        if (!flag) return;
+        chosenItemName.getText();
+        chosenItemPrice.getText();
+        chosenItemSize.getText();
+        chosenItemDetails.getText();
+        quantityTB.getText();
+
+        // Add these items to cart database along with the quantity
+    }
+
+    @FXML
+    void handleQuantityQuestionMarkEnter() {
+        quantityLabel.setVisible(true);
+    }
+
+    @FXML
+    void handleQuantityQuestionMarkExit() {
+        quantityLabel.setVisible(false);
+    }
+
+    @FXML
+    void handleQuantityTBKeyPressed() {
+
+        String text = quantityTB.getText();
+        String regularExpressionPattern = "^(0|[1-9][0-9]*)$";
+        Pattern pattern = Pattern.compile(regularExpressionPattern);
+        Matcher matcher = pattern.matcher(text);
+        if (!matcher.matches() || text.equals("0")) {
+            flag = false;
+            quantityImage.setImage(new Image(getClass().getResourceAsStream("/Image/remove.png")));
+        } else {
+            flag = true;
+            quantityImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        }
+        quantityImage.setVisible(true);
+    }
+
+    @FXML
+    void handleQuantityTBKeyReleased() {
+        handleQuantityTBKeyPressed();
+    }
+
+    @FXML
+    void handleVisitCart() throws IOException {
+        getClient().sendToServer(new MsgObject("cartUser"));
+    }
 
     private void setChosenItem(Catalog catalog) {
         chosenItemName.setText(catalog.getName());
@@ -116,7 +181,7 @@ public class CatalogController {
 
     @FXML
     void handleHomeCatalog() throws IOException {
-        App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
+        App.setRoot("primaryUser", "/Image/mainPageIcon.png", "Lilac");
     }
 
     private void loadGridPane() {

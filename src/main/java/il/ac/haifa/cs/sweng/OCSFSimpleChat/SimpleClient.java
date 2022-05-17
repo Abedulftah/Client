@@ -103,10 +103,10 @@ public class SimpleClient extends AbstractClient {
                     e.printStackTrace();
                 }
             });
-        } else if (msgObject.getMsg().equals("myOrderUser")) {
+        } else if (msgObject.getMsg().equals("myOrdersUser")) {
             Platform.runLater(() -> {
                 try {
-                    App.setRoot("myOrderUser", "/Image/myOrdersIcon.png", "My Order");
+                    App.setRoot("myOrdersUser", "/Image/myOrdersIcon.png", "My Orders");
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -125,6 +125,15 @@ public class SimpleClient extends AbstractClient {
             Platform.runLater(() -> {
                 try {
                     App.setRoot("primaryUser", "/Image/mainPageIcon.png", "Lilac");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
+        } else if (msgObject.getMsg().equals("notificationsUser")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("notificationsUser", "/Image/notificationIcon.png", "Notifications");
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

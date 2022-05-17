@@ -35,6 +35,9 @@ public class ItemController {
         myListener.onClickListener(catalog);
     }
 
+    public ItemController() {
+    }
+
     public void setData(Catalog catalog, MyListener myListener) {
         this.catalog = catalog;
         this.myListener = myListener;
