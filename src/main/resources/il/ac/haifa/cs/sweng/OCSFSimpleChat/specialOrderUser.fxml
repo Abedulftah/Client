@@ -19,7 +19,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SpecialOrderUserController">
    <center>
-      <AnchorPane prefHeight="650.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(to right, #0f0c29, #302b63, #24243e);">
+      <AnchorPane prefHeight="650.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);">
          <children>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="630.0" layoutY="20.0" onMouseClicked="#handleHome" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -207,13 +207,13 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXComboBox>
-                  <ColorPicker fx:id="colorPicker" layoutX="800.0" layoutY="130.0" prefWidth="200.0">
+                  <ColorPicker fx:id="colorPicker" layoutX="800.0" layoutY="130.0" onAction="#handleColorPicker" prefWidth="200.0" style="-fx-background-color: linear-gradient(to right, #f4c4f3, #fc67fa);">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ColorPicker>
                </children>
             </Pane>
-            <JFXButton layoutX="525.0" layoutY="545.0" onAction="#handlePlaceOrderButton" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #D63333; -fx-background-radius: 100;" text="PLACE ORDER REQUEST" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton layoutX="525.0" layoutY="545.0" onAction="#handlePlaceOrderButton" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: linear-gradient(to right, #cb2d3e, #ef473a); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="PLACE ORDER REQUEST" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Cambria Bold" size="18.0" />
                </font>

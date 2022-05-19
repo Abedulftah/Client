@@ -21,11 +21,11 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         client = SimpleClient.getClient();
         client.openConnection();
-        scene = new Scene(loadFXML("primary"));
+        scene = new Scene(loadFXML("primaryCustomerService"));
         stage.setScene(scene);
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Image/mainPageIcon.png"))));
         stage.setTitle("Lilac");
-        //stage.setResizable(false);
+        stage.setResizable(false);
         mainStage = stage;
         mainStage.show();
     }

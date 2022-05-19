@@ -86,6 +86,11 @@ public class SpecialOrderUserController {
     private JFXComboBox<String> teddyBear;
 
     @FXML
+    void handleColorPicker() {
+        colorPicker.setStyle("-fx-background-color: #" + String.valueOf(colorPicker.getValue()).substring(2, 8));
+    }
+
+    @FXML
     void handleHome() throws IOException {
         App.setRoot("primaryUser", "/Image/mainPageIcon.png", "Lilac");
     }

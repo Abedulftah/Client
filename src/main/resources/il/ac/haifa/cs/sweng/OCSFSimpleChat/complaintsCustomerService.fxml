@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" style="-fx-background-color: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MyOrdersUserController">
+<VBox alignment="CENTER" style="-fx-background-color: linear-gradient(to right, #e65c00, #f9d423);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ComplaintsCustomerServiceController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0">
          <children>
@@ -39,63 +39,40 @@
                   </Label>
                </children>
             </HBox>
+            <HBox layoutY="160.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label style="-fx-text-fill: linear-gradient(to right, #000428, #004e92);" text="Name">
+                           <font>
+                              <Font name="Cambria Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <Bloom />
+                           </effect>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="884.0">
+                     <children>
+                        <Label style="-fx-text-fill: linear-gradient(to right, #000428, #004e92);" text="Complaint Content">
+                           <font>
+                              <Font name="Cambria Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <Bloom />
+                           </effect>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+               </children>
+            </HBox>
             <MFXScrollPane hbarPolicy="NEVER" layoutY="250.0" prefHeight="400.0" prefWidth="1300.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
                <content>
                   <VBox fx:id="vbox" />
                </content>
             </MFXScrollPane>
-            <HBox layoutY="160.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
-                     <children>
-                        <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Name">
-                           <font>
-                              <Font name="Cambria Bold" size="24.0" />
-                           </font>
-                           <effect>
-                              <Bloom />
-                           </effect>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
-                     <children>
-                        <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Price">
-                           <font>
-                              <Font name="Cambria Bold" size="24.0" />
-                           </font>
-                           <effect>
-                              <Bloom />
-                           </effect>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
-                     <children>
-                        <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Size">
-                           <font>
-                              <Font name="Cambria Bold" size="24.0" />
-                           </font>
-                           <effect>
-                              <Bloom />
-                           </effect>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
-                     <children>
-                        <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Description">
-                           <font>
-                              <Font name="Cambria Bold" size="24.0" />
-                           </font>
-                           <effect>
-                              <Bloom />
-                           </effect>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children>
-            </HBox>
          </children>
       </AnchorPane>
    </children>

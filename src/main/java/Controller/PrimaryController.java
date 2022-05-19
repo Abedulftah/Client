@@ -49,11 +49,6 @@ public class PrimaryController {
 
     @FXML
     void initialize() {
-        assert buttonCatalog != null : "fx:id=\"buttonCatalog\" was not injected: check your FXML file 'MainPage.fxml'.";
-        assert buttonContactUs != null : "fx:id=\"buttonContactUs\" was not injected: check your FXML file 'MainPage.fxml'.";
-        assert buttonSignIn != null : "fx:id=\"buttonSignIn\" was not injected: check your FXML file 'MainPage.fxml'.";
-        assert buttonSignUp != null : "fx:id=\"buttonSignUp\" was not injected: check your FXML file 'MainPage.fxml'.";
-        assert pnlCustomer != null : "fx:id=\"pnlCustomer\" was not injected: check your FXML file 'MainPage.fxml'.";
 
     }
 }

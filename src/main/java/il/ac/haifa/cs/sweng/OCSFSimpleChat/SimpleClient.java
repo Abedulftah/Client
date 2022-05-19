@@ -139,6 +139,33 @@ public class SimpleClient extends AbstractClient {
                     e.printStackTrace();
                 }
             });
+        } else if (msgObject.getMsg().equals("primarySystemWorker")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("primarySystemWorker", "/Image/mainPageIcon.png", "Lilac");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
+        } else if (msgObject.getMsg().equals("catalogueSystemWorker")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("catalogueSystemWorker", "/Image/catalogIcon.png", "Catalogue");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
+        } else if (msgObject.getMsg().equals("complaintsCustomerService")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("complaintsCustomerService", "/Image/complaintIcon.png", "Complaints");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
         }
     }
 

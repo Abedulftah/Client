@@ -15,19 +15,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1300.0" style="-fx-background-color: #20120F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUpController">
+<AnchorPane prefHeight="650.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(to right, #00c6ff, #0072ff);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUpController">
    <children>
-      <ImageView fitHeight="650.0" fitWidth="650.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Image/TG_Background.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="650.0" fitWidth="650.0" layoutX="650.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Image/TG_Background.jpg" />
-         </image>
-      </ImageView>
-      <AnchorPane layoutX="75.0" layoutY="85.0" prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #9C2B27;">
+      <AnchorPane layoutX="75.0" layoutY="85.0" prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: linear-gradient(to right, #8a2387, #e94057, #f27121); -fx-background-radius: 50;">
          <children>
             <MFXTextField fx:id="UsernameTB" floatingText="Username" layoutX="50.0" layoutY="170.0" onKeyReleased="#handleUserNameTB" prefHeight="50.0" prefWidth="250.0" promptText="violaovary" textLimit="24" />
             <MFXTextField fx:id="EmailTB" floatingText="E-mail" layoutX="50.0" layoutY="235.0" onKeyReleased="#handleEmailTB" prefHeight="50.0" prefWidth="250.0" promptText="example@hotmail.com" textLimit="64" />
@@ -94,7 +84,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="475.0" layoutY="85.0" prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #9C2B27;">
+      <AnchorPane layoutX="475.0" layoutY="85.0" prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: linear-gradient(to right, #8a2387, #e94057, #f27121); -fx-background-radius: 50;">
          <children>
             <MFXTextField fx:id="CityTB" floatingText="City" layoutX="50.0" layoutY="170.0" onKeyReleased="#handleCityTB" prefHeight="50.0" prefWidth="250.0" promptText="Tel-Aviv" textLimit="25" />
             <MFXTextField fx:id="StreetTB" floatingText="Street" layoutX="50.0" layoutY="236.0" onKeyReleased="#handleStreetTB" prefHeight="50.0" prefWidth="250.0" promptText="P.O.Box 23075 Il" textLimit="40" />
@@ -135,7 +125,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="875.0" layoutY="85.0" prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #9C2B27;">
+      <AnchorPane layoutX="875.0" layoutY="85.0" prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: linear-gradient(to right, #8a2387, #e94057, #f27121); -fx-background-radius: 50;">
          <children>
             <MFXTextField fx:id="CreditCardNumberTB" cache="true" floatingText="Credit Card Number" layoutX="50.0" layoutY="170.0" onKeyReleased="#handleCreditCardNumberTB" prefHeight="50.0" prefWidth="250.0" promptText="4864 5820 9110 1315" textLimit="16" />
             <MFXTextField fx:id="CreditCardHolderTB" floatingText="Credit Card Holder" layoutX="50.0" layoutY="235.0" onKeyReleased="#handleCreditCardHolderTB" prefHeight="50.0" prefWidth="250.0" promptText="Chloe Coffey" textLimit="30" />
@@ -148,7 +138,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor></MFXComboBox>
             <MFXTextField fx:id="CVVTB" floatingText="CVV" layoutX="50.0" layoutY="365.0" onKeyReleased="#handleCVVTB" prefHeight="50.0" prefWidth="120.0" promptText="656" textLimit="3" />
-            <JFXButton fx:id="SignUpButton" layoutX="50.0" layoutY="430.0" onAction="#handleSignUpButton" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #D63333; -fx-background-radius: 100;" text="Sign Up" textFill="#dad6d6">
+            <JFXButton fx:id="SignUpButton" layoutX="50.0" layoutY="430.0" onAction="#handleSignUpButton" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: linear-gradient(to right, #cb2d3e, #ef473a); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="Sign Up" textFill="#dad6d6">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -202,7 +192,7 @@
       </AnchorPane>
       <HBox fx:id="successHbox" alignment="CENTER" layoutY="606.0" prefHeight="30.0" prefWidth="1300.0">
          <children>
-            <Label fx:id="successLabel1" text="You have been registered successfully!" textFill="GREEN">
+            <Label fx:id="successLabel1" style="-fx-text-fill: linear-gradient(to right, #000428, #004e92);" text="You have been registered successfully!" textFill="GREEN" visible="false">
                <font>
                   <Font name="Cambria Bold" size="18.0" />
                </font>
@@ -210,7 +200,7 @@
                   <Bloom threshold="0.0" />
                </effect>
             </Label>
-            <Label fx:id="successLabel2" onMouseClicked="#handleSuccessLabel2" text="Click Here" textFill="#006fff" underline="true">
+            <Label fx:id="successLabel2" onMouseClicked="#handleSuccessLabel2" style="-fx-text-fill: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);" text="Click Here" textFill="#006fff" underline="true" visible="false">
                <HBox.margin>
                   <Insets left="3.0" />
                </HBox.margin>
@@ -224,7 +214,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="successLabel3" text="To be Redirected to the Login Page." textFill="GREEN">
+            <Label fx:id="successLabel3" style="-fx-text-fill: linear-gradient(to right, #000428, #004e92);" text="To be Redirected to the Login Page" textFill="GREEN" visible="false">
                <HBox.margin>
                   <Insets left="3.0" />
                </HBox.margin>
@@ -237,7 +227,7 @@
             </Label>
          </children>
       </HBox>
-      <Label fx:id="showLabelUserName" layoutX="255.0" layoutY="205.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="● 8 - 24 letters.&#10;● letters, numbers, dots and _ only.&#10;● no consecutive _ and dots.">
+      <Label fx:id="showLabelUserName" layoutX="255.0" layoutY="205.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="● 8 - 24 letters.&#10;● letters, numbers, dots and _ only.&#10;● no consecutive _ and dots." visible="false">
          <font>
             <Font name="Cambria Bold" size="12.0" />
          </font>
@@ -245,7 +235,7 @@
             <InnerShadow />
          </effect>
       </Label>
-      <Label fx:id="showLabelPassword" layoutX="245.0" layoutY="367.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="● 8 - 24 letters.&#10;● at least one small letter.&#10;● at least one capital letter.&#10;● at least one special symbol.&#10;● at least one number.">
+      <Label fx:id="showLabelPassword" layoutX="245.0" layoutY="367.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="● 8 - 24 letters.&#10;● at least one small letter.&#10;● at least one capital letter.&#10;● at least one special symbol.&#10;● at least one number." visible="false">
          <font>
             <Font name="Cambria Bold" size="12.0" />
          </font>
@@ -253,7 +243,7 @@
             <InnerShadow />
          </effect>
       </Label>
-      <Label fx:id="showLabelCVV" layoutX="930.0" layoutY="430.0" style="-fx-background-color: white; -fx-background-radius: 3;" text="3 numbers on the back of the card.">
+      <Label fx:id="showLabelCVV" layoutX="930.0" layoutY="430.0" style="-fx-background-color: white; -fx-background-radius: 3;" text="3 numbers on the back of the card." visible="false">
          <font>
             <Font name="Cambria Bold" size="12.0" />
          </font>

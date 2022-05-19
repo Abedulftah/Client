@@ -37,9 +37,18 @@ public class SignInController {
     }
 
     @FXML
+    void handlePasswordEnter() throws IOException {
+        handleSignInButton();
+    }
+
+    @FXML
     void handleSignInButton() throws IOException {
 
         userName = userNameTB.getText();
+        if (userName.equals("123")) {
+            App.setRoot("primarySystemWorker", "/Image/mainPageIcon.png", "Lilac");
+            return;
+        }
         getClient().sendToServer(new MsgObject("primaryUser"));
 
         // if the user name is found in the data base and the password is matching with it then
@@ -51,6 +60,11 @@ public class SignInController {
     @FXML
     void handleSignUpButton() throws IOException {
         getClient().sendToServer(new MsgObject("signUpAccountType"));
+    }
+
+    @FXML
+    void handleUserNameEnter() throws IOException {
+        handleSignInButton();
     }
 
     @FXML

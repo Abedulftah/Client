@@ -4,17 +4,17 @@
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.NotificationsUserController">
-   <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(to right, #f12711, #f5af19);">
+<VBox alignment="CENTER" style="-fx-background-color: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.NotificationsUserController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0">
          <children>
             <HBox alignment="CENTER" layoutY="20.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
@@ -30,10 +30,13 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="60.0" prefHeight="100.0">
                <children>
-                  <Label fx:id="totalOrdersLabel" style="-fx-text-fill: linear-gradient(to right, #ffefba, #ffffff);" text="Total Orders: 0">
+                  <Label fx:id="totalOrdersLabel" style="-fx-text-fill: linear-gradient(to right, #e0eafc, #cfdef3);" text="Total Orders: 0">
                      <font>
                         <Font name="Cambria Bold" size="24.0" />
                      </font>
+                     <effect>
+                        <Bloom />
+                     </effect>
                   </Label>
                </children>
             </HBox>
@@ -41,28 +44,37 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
                      <children>
-                        <Label style="-fx-text-fill: linear-gradient(to right, #2193b0, #6dd5ed);" text="Notification">
+                        <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Notification">
                            <font>
                               <Font name="Cambria Bold" size="24.0" />
                            </font>
+                           <effect>
+                              <Bloom />
+                           </effect>
                         </Label>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
                      <children>
-                        <Label style="-fx-text-fill: linear-gradient(to right, #2193b0, #6dd5ed);" text="Response">
+                        <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Response">
                            <font>
                               <Font name="Cambria Bold" size="24.0" />
                            </font>
+                           <effect>
+                              <Bloom />
+                           </effect>
                         </Label>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
                      <children>
-                        <Label style="-fx-text-fill: linear-gradient(to right, #2193b0, #6dd5ed);" text="Date">
+                        <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Date">
                            <font>
                               <Font name="Cambria Bold" size="24.0" />
                            </font>
+                           <effect>
+                              <Bloom />
+                           </effect>
                         </Label>
                      </children>
                   </HBox>
@@ -80,12 +92,12 @@
                   </HBox>
                </children>
             </HBox>
-            <MFXScrollPane hbarPolicy="NEVER" layoutY="250.0" prefHeight="400.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(to right, #f12711, #f5af19);" vbarPolicy="ALWAYS">
+            <MFXScrollPane hbarPolicy="NEVER" layoutY="250.0" prefHeight="400.0" prefWidth="1300.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
                <content>
                   <VBox fx:id="vbox" />
                </content>
             </MFXScrollPane>
          </children>
       </AnchorPane>
-   </center>
-</BorderPane>
+   </children>
+</VBox>

@@ -9,13 +9,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ContactUsNotSignedController">
-   <center>
-      <AnchorPane prefHeight="650.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(to right, #1c92d2, #f2fcfe);">
+<VBox alignment="CENTER" style="-fx-background-color: linear-gradient(to right, #00c6ff, #0072ff);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ContactUsNotSignedController">
+   <children>
+      <AnchorPane prefHeight="650.0" prefWidth="1300.0">
           <children>
               <ImageView fx:id="homeContactUs" fitHeight="40.0" fitWidth="40.0" layoutX="630.0" layoutY="20.0" onDragDetected="#handleHomeContactUs" onMouseClicked="#handleHomeContactUs" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -25,7 +25,7 @@
                       <Cursor fx:constant="HAND" />
                   </cursor>
               </ImageView>
-              <JFXButton fx:id="sendMessageButton" layoutX="550.0" layoutY="570.0" onAction="#handleSendMessageButton" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #D63333; -fx-background-radius: 100;" text="SEND MESSAGE" textFill="WHITE">
+              <JFXButton fx:id="sendMessageButton" layoutX="550.0" layoutY="570.0" onAction="#handleSendMessageButton" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to right, #cb2d3e, #ef473a); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="SEND MESSAGE" textFill="WHITE">
                   <font>
                       <Font name="Cambria Bold" size="18.0" />
                   </font>
@@ -91,5 +91,5 @@
               </HBox>
           </children>
       </AnchorPane>
-   </center>
-</BorderPane>
+   </children>
+</VBox>
