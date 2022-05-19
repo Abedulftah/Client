@@ -39,7 +39,7 @@
                   </Label>
                </children>
             </HBox>
-            <MFXScrollPane hbarPolicy="NEVER" layoutY="250.0" prefHeight="400.0" prefWidth="1300.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
+            <MFXScrollPane hbarPolicy="NEVER" layoutY="250.0" prefHeight="400.0" prefWidth="1300.0" style="-fx-background-color: transparent;">
                <content>
                   <VBox fx:id="vbox" />
                </content>

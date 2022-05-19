@@ -42,7 +42,19 @@
             </HBox>
             <HBox layoutY="160.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="256.8">
+                     <children>
+                        <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Email">
+                           <font>
+                              <Font name="Cambria Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <Bloom />
+                           </effect>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="256.8">
                      <children>
                         <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Notification">
                            <font>
@@ -54,7 +66,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="256.8">
                      <children>
                         <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Response">
                            <font>
@@ -66,7 +78,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="256.8">
                      <children>
                         <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Date">
                            <font>
@@ -78,7 +90,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="256.8">
                      <children>
                         <JFXButton onAction="#handleDeleteAllButton" style="-fx-background-color: linear-gradient(to right, #cb2d3e, #ef473a); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="REMOVE ALL">
                            <cursor>
@@ -92,7 +104,7 @@
                   </HBox>
                </children>
             </HBox>
-            <MFXScrollPane hbarPolicy="NEVER" layoutY="250.0" prefHeight="400.0" prefWidth="1300.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
+            <MFXScrollPane hbarPolicy="NEVER" layoutY="250.0" prefHeight="400.0" prefWidth="1300.0" style="-fx-background-color: transparent;">
                <content>
                   <VBox fx:id="vbox" />
                </content>

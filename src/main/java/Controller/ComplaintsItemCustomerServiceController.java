@@ -27,4 +27,8 @@ public class ComplaintsItemCustomerServiceController {
 
     }
 
+    public void setData(String name) {
+
+    }
+
 }
