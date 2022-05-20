@@ -9,8 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 // See what's written in initialize
@@ -23,7 +25,7 @@ public class MyOrdersUserController {
     @FXML
     private VBox vbox;
 
-    private final List<Catalog> catalogList = msgObject.getCatalogList();
+    private List<Catalog> catalogList = new ArrayList<>();
 
     @FXML
     void handleHome() throws IOException {
@@ -47,16 +49,22 @@ public class MyOrdersUserController {
         // You must replace what appears down below with the real orders from the orders database
         // You've created
 
-        for (Catalog catalog : catalogList) {
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(App.class.getResource("orderItemUser.fxml"));
-            Node node = fxmlLoader.load();
-            OrderItemUserController orderItemUserController = fxmlLoader.getController();
-            orderItemUserController.setData(catalog);
-            vbox.getChildren().add(node);
+        for(Catalog catalog : msgObject.getCatalogList()){
+            if(catalog.getPrivilege() == 2 && catalog.getUser().getEmail().equals(user.getEmail())){
+                catalogList.add(catalog);
+            }
         }
 
-        totalOrdersLabel.setText("Total Orders: " + catalogList.size());
+        if(!catalogList.isEmpty()) {
+            for (Catalog catalog : catalogList) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(App.class.getResource("orderItemUser.fxml"));
+                Node node = fxmlLoader.load();
+                OrderItemUserController orderItemUserController = fxmlLoader.getController();
+                orderItemUserController.setData(catalog);
+                vbox.getChildren().add(node);
+            }
+            totalOrdersLabel.setText("Total Orders: " + catalogList.size());
+        }
     }
 }

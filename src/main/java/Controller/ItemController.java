@@ -39,14 +39,16 @@ public class ItemController {
     }
 
     public void setData(Catalog catalog, MyListener myListener) {
-        this.catalog = catalog;
-        this.myListener = myListener;
-        nameLabel.setText(catalog.getName());
-        priceLabel.setText(App.CURRENCY + catalog.getPrice());
-        Image image = new Image(catalog.getImgUrl());
-        imageLabel.setImage(image);
-        anItem.setStyle("-fx-background-color: #" + catalog.getColor() + ";\n" +
-                "    -fx-background-radius: 30;" +
-                "-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);");
+        if(catalog.getPrivilege() == 0) {
+            this.catalog = catalog;
+            this.myListener = myListener;
+            nameLabel.setText(catalog.getName());
+            priceLabel.setText(App.CURRENCY + catalog.getPrice());
+            Image image = new Image(catalog.getImgUrl());
+            imageLabel.setImage(image);
+            anItem.setStyle("-fx-background-color: #" + catalog.getColor() + ";\n" +
+                    "    -fx-background-radius: 30;" +
+                    "-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);");
+        }
     }
 }

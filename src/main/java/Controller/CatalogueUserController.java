@@ -1,9 +1,7 @@
 package Controller;
 
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.MyListener;
+import com.mysql.cj.LicenseConfiguration;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.*;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,10 +13,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
@@ -70,13 +70,40 @@ public class CatalogueUserController {
 
         handleQuantityTBKeyPressed();
         if (!flag) return;
-        chosenItemName.getText();
-        chosenItemPrice.getText();
-        chosenItemSize.getText();
-        chosenItemDetails.getText();
-        quantityTB.getText();
 
-        // Add these items to cart database along with the quantity
+
+        for(Catalog catalog : msgObject.getCatalogList()){
+            System.out.println("das");
+            if(catalog.getPrivilege() == 1 && catalog.getUser() != null && catalog.getName().equals(chosenItemName.getText()) && catalog.getUser().getEmail().equals(user.getEmail())){
+                double a = Double.parseDouble(chosenItemPrice.getText().substring(8)) * Double.parseDouble(quantityTB.getText());
+                catalog.setPrice("" + (a + Double.parseDouble(catalog.getPrice())));
+
+                catalog.setLeft(Integer.parseInt(quantityTB.getText()) + catalog.getLeft());
+                try {
+                    getClient().sendToServer(new MsgObject("updateCart", catalog));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                return;
+            }
+        }
+
+        Catalog catalog = new Catalog();
+        catalog.setLeft(Integer.parseInt(quantityTB.getText()));
+        catalog.setName(chosenItemName.getText());
+        catalog.setSize(chosenItemSize.getText());
+        double a = Double.parseDouble(chosenItemPrice.getText().substring(8)) * Double.parseDouble(quantityTB.getText());
+        catalog.setPrice("" + a);
+        catalog.setItemDetails(chosenItemDetails.getText());
+        catalog.setPrivilege(1);
+        catalog.setUser(user);
+
+        try {
+            getClient().sendToServer(new MsgObject("addToCart", catalog));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        //Add these items to cart database along with the quantity
     }
 
     @FXML
@@ -117,14 +144,16 @@ public class CatalogueUserController {
     }
 
     private void setChosenItem(Catalog catalog) {
-        chosenItemName.setText(catalog.getName());
-        chosenItemPrice.setText("Price: " + App.CURRENCY + catalog.getPrice());
-        chosenItemDetails.setText(catalog.getItemDetails());
-        chosenItemSize.setText(catalog.getSize());
-        Image image = new Image(catalog.getImgUrl());
-        chosenItemImage.setImage(image);
-        chosenItem.setStyle("-fx-background-color: #" + catalog.getColor() + ";\n" +
-                "    -fx-background-radius: 30;");
+        if(catalog.getPrivilege() == 0) {
+            chosenItemName.setText(catalog.getName());
+            chosenItemPrice.setText("Price: " + App.CURRENCY + catalog.getPrice());
+            chosenItemDetails.setText(catalog.getItemDetails());
+            chosenItemSize.setText(catalog.getSize());
+            Image image = new Image(catalog.getImgUrl());
+            chosenItemImage.setImage(image);
+            chosenItem.setStyle("-fx-background-color: #" + catalog.getColor() + ";\n" +
+                    "    -fx-background-radius: 30;");
+        }
     }
 
     @FXML
@@ -142,7 +171,7 @@ public class CatalogueUserController {
 
         for (Catalog value : flowerList) {
             try {
-                if (value.getName().toUpperCase().contains(text.toUpperCase())) {
+                if (value.getName().toUpperCase().contains(text.toUpperCase()) && value.getPrivilege() == 0) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/il/ac/haifa/cs/sweng/OCSFSimpleChat/Item.fxml"));
 
@@ -190,33 +219,35 @@ public class CatalogueUserController {
         int row = 1;
 
         for (Catalog value : flowerList) {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/il/ac/haifa/cs/sweng/OCSFSimpleChat/Item.fxml"));
+            if(value.getPrivilege() == 0) {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/il/ac/haifa/cs/sweng/OCSFSimpleChat/Item.fxml"));
 
-                AnchorPane anchorPane = fxmlLoader.load();
+                    AnchorPane anchorPane = fxmlLoader.load();
 
-                ItemController itemController = fxmlLoader.getController();
-                itemController.setData(value, myListener);
+                    ItemController itemController = fxmlLoader.getController();
+                    itemController.setData(value, myListener);
 
-                if (column == 3) {
-                    column = 0;
-                    row++;
+                    if (column == 3) {
+                        column = 0;
+                        row++;
+                    }
+
+                    gridPane.add(anchorPane, column++, row);
+                    gridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
+                    gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    gridPane.setMaxWidth(Region.USE_PREF_SIZE);
+
+                    gridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
+                    gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                    gridPane.setMaxHeight(Region.USE_PREF_SIZE);
+
+                    GridPane.setMargin(anchorPane, new Insets(10));
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
-                gridPane.add(anchorPane, column++, row);
-                gridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-                gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                gridPane.setMaxWidth(Region.USE_PREF_SIZE);
-
-                gridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-                gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                gridPane.setMaxHeight(Region.USE_PREF_SIZE);
-
-                GridPane.setMargin(anchorPane, new Insets(10));
-
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }

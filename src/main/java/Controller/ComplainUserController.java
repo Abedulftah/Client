@@ -1,6 +1,8 @@
 package Controller;
 
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.Complain;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,6 +14,9 @@ import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 
 import java.io.IOException;
+
+import static Controller.SignInController.user;
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
 // See what's written at the very beginning of void initialize()
 // See what's written at the end of handleSendMessageButton
@@ -77,6 +82,13 @@ public class ComplainUserController {
             PauseTransition pause = new PauseTransition(Duration.seconds(3));
             pause.setOnFinished(e -> messageErrorLabel.setVisible(false));
             pause.play();
+
+            Complain complain = new Complain(user.getUsername(), user.getEmail(), user.getPhone(), messageTB.getText());
+            try {
+                getClient().sendToServer(new MsgObject("complainList", complain));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         // Save this data in the complaint database
@@ -102,9 +114,9 @@ public class ComplainUserController {
         style = messageTB.getStyle();
         messageErrorLabel.setVisible(false);
 
-        nameTB.setText(SignInController.userName);
-        emailTB.setText("mhmd.shahin@outlook.com"); // Initialize to user's email
-        phoneTB.setText("0547404179"); // Initialize to user's phone
+        nameTB.setText(user.getUsername());
+        emailTB.setText(user.getEmail()); // Initialize to user's email
+        phoneTB.setText(user.getPhone()); // Initialize to user's phone
 
         nameTB.setStyle("-fx-text-fill: #9b9d9e");
         emailTB.setStyle("-fx-text-fill: #9b9d9e");

@@ -52,14 +52,16 @@ public class CatalogController {
     private MyListener myListener;
 
     private void setChosenItem(Catalog catalog) {
-        chosenItemName.setText(catalog.getName());
-        chosenItemPrice.setText("Price: " + App.CURRENCY + catalog.getPrice());
-        chosenItemDetails.setText(catalog.getItemDetails());
-        chosenItemSize.setText(catalog.getSize());
-        Image image = new Image(catalog.getImgUrl());
-        chosenItemImage.setImage(image);
-        chosenItem.setStyle("-fx-background-color: #" + catalog.getColor() + ";\n" +
-                "    -fx-background-radius: 30;");
+        if(catalog.getPrivilege() == 0) {
+            chosenItemName.setText(catalog.getName());
+            chosenItemPrice.setText("Price: " + App.CURRENCY + catalog.getPrice());
+            chosenItemDetails.setText(catalog.getItemDetails());
+            chosenItemSize.setText(catalog.getSize());
+            Image image = new Image(catalog.getImgUrl());
+            chosenItemImage.setImage(image);
+            chosenItem.setStyle("-fx-background-color: #" + catalog.getColor() + ";\n" +
+                    "    -fx-background-radius: 30;");
+        }
     }
 
     @FXML
@@ -77,7 +79,7 @@ public class CatalogController {
 
         for (Catalog value : flowerList) {
             try {
-                if (value.getName().toUpperCase().contains(text.toUpperCase())) {
+                if (value.getName().toUpperCase().contains(text.toUpperCase()) && value.getPrivilege() == 0) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/il/ac/haifa/cs/sweng/OCSFSimpleChat/Item.fxml"));
 
@@ -123,42 +125,42 @@ public class CatalogController {
         myListener = this::setChosenItem;
         int column = 0;
         int row = 1;
-
         for (Catalog value : flowerList) {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/il/ac/haifa/cs/sweng/OCSFSimpleChat/Item.fxml"));
+            if (value.getPrivilege() == 0) {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/il/ac/haifa/cs/sweng/OCSFSimpleChat/Item.fxml"));
 
-                AnchorPane anchorPane = fxmlLoader.load();
+                    AnchorPane anchorPane = fxmlLoader.load();
 
-                ItemController itemController = fxmlLoader.getController();
-                itemController.setData(value, myListener);
+                    ItemController itemController = fxmlLoader.getController();
+                    itemController.setData(value, myListener);
 
-                if (column == 3) {
-                    column = 0;
-                    row++;
+                    if (column == 3) {
+                        column = 0;
+                        row++;
+                    }
+
+                    gridPane.add(anchorPane, column++, row);
+                    gridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
+                    gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    gridPane.setMaxWidth(Region.USE_PREF_SIZE);
+
+                    gridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
+                    gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                    gridPane.setMaxHeight(Region.USE_PREF_SIZE);
+
+                    GridPane.setMargin(anchorPane, new Insets(10));
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
-                gridPane.add(anchorPane, column++, row);
-                gridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-                gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                gridPane.setMaxWidth(Region.USE_PREF_SIZE);
-
-                gridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-                gridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                gridPane.setMaxHeight(Region.USE_PREF_SIZE);
-
-                GridPane.setMargin(anchorPane, new Insets(10));
-
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
 
     @FXML
     void initialize() {
-
         if (flowerList.size() > 0) setChosenItem(flowerList.get(0));
         loadGridPane();
     }

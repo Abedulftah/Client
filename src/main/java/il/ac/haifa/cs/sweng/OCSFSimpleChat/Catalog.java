@@ -20,17 +20,23 @@ public class Catalog implements Serializable {
     @Column(name = "item_details")
     private String itemDetails;
     @Column(name = "price")
-    private double price;
+    private String price;
     @Column(name = "size")
     private String size;
-    //    @Column(name = "Quantity")
-//    private int left;
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private MyImage image;
+
+    @Column(name = "Quantity")
+    private int left;
     @Column(name = "imgUrl")
     private String imgUrl;
 
-    public Catalog(String imgUrl, String name, double price, String details, String size, String color){
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private SignUp user;
+
+    private int privilege = 0;
+
+    public Catalog(String imgUrl, String name, String price, String details, String size, String color){
         this.imgUrl = imgUrl;
         this.name = name;
         this.price = price;
@@ -39,7 +45,22 @@ public class Catalog implements Serializable {
         this.size = size;
     }
 
-    public Catalog(){}
+    public Catalog(){
+        this.imgUrl = "";
+        this.name = "";
+        this.price = "";
+        this.itemDetails = "";
+        this.color = "";
+        this.size = "";
+    }
+
+    public SignUp getUser() {
+        return user;
+    }
+
+    public void setUser(SignUp user) {
+        this.user = user;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -57,23 +78,17 @@ public class Catalog implements Serializable {
         return id;
     }
 
-    public double getItemValue() {
+    public String getItemValue() {
         return price;
     }
 
-//    public MyImage getImage() {
-//        return image;
-//    }
 
     public String getItemDetails() {
         return itemDetails;
     }
 
-//    public void setImage(MyImage image) {
-//        this.image = image;
-//    }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
@@ -93,20 +108,19 @@ public class Catalog implements Serializable {
         this.color = color;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
     public void setSize(String size) {
         this.size = size;
     }
-    //    public int getLeft() {
-//        return left;
-//    }
-
-    //public void setLeft(int left) {
-    //   this.left = left;
-    //}
+    public int getLeft() {
+        return left;
+    }
+    public void setLeft(int left) {
+        this.left = left;
+    }
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
@@ -116,4 +130,11 @@ public class Catalog implements Serializable {
         return imgUrl;
     }
 
+    public int getPrivilege() {
+        return privilege;
+    }
+
+    public void setPrivilege(int privilege) {
+        this.privilege = privilege;
+    }
 }

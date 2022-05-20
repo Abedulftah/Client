@@ -3,6 +3,9 @@ package Controller;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.SpecialItem;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
@@ -11,6 +14,9 @@ import javafx.scene.control.TextArea;
 import javafx.util.Duration;
 
 import java.io.IOException;
+
+import static Controller.SignInController.user;
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
 // Go to the end of handlePlaceOrderButton and see what's written there
 
@@ -97,6 +103,8 @@ public class SpecialOrderUserController {
         counter = getSelectedItems(counter, rosesCB, longStemmedRosesCB, lavenderCB, carnationsCB, monteCasinoCB, lisianthusCB);
         counter = getSelectedItems(counter, gerberaCB, seasonalFlowersCB, greenFoliageCB, daisiesCB, alstroemeriaCB, liliesCB);
 
+        String s;
+
         if (chooseContainer.getValue() == null || numberOfFlowers.getValue() == null ||
                 boxOfChocolate.getValue() == null || teddyBear.getValue() == null ||
                 blessingMessage.getValue() == null || desiredPrice.getValue() == null) {
@@ -108,6 +116,7 @@ public class SpecialOrderUserController {
                 messageErrorLabel2.setVisible(false);
             });
             pause.play();
+
             return;
         }
 
@@ -122,6 +131,15 @@ public class SpecialOrderUserController {
         String chosenTypes = "";
         chosenTypes = getChosenTypes(chosenTypes, rosesCB, longStemmedRosesCB, lavenderCB, carnationsCB, monteCasinoCB, lisianthusCB);
         chosenTypes = getChosenTypes(chosenTypes, gerberaCB, seasonalFlowersCB, greenFoliageCB, daisiesCB, alstroemeriaCB, liliesCB);
+
+        SpecialItem specialItem = new SpecialItem(chooseContainer.getValue(), numberOfFlowers.getValue(), boxOfChocolate.getValue().equals("Yes")
+                , teddyBear.getValue().equals("Yes"), blessingMessage.getValue().equals("Yes"), chosenTypes, anotherFlowerTA.getText(), desiredPrice.getValue(), String.valueOf(colorPicker.getValue()), user);
+        try {
+            getClient().sendToServer(new MsgObject("specialItem",specialItem));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         String order = "Arrangement of " + chosenTypes;
         order = order.substring(0, order.length() - 2);
         for (int i = order.length() - 1; i >= 0; i--) {
@@ -152,7 +170,7 @@ public class SpecialOrderUserController {
         String suggestedPrice = desiredPrice.getValue();
         String dominantColor = String.valueOf(colorPicker.getValue());
         dominantColor = "#" + dominantColor.substring(2, dominantColor.length() - 2);
-        anotherFlowerTA.setText(order);
+        anotherFlowerTA.setText(dominantColor);
 
 
         // Save order, flowersNumber, anotherSuggestedFlowers, suggestedPrice and dominantColor to

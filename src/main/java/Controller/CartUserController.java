@@ -2,6 +2,7 @@ package Controller;
 
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,8 +10,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import static Controller.SignInController.user;
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 // See what's written in handleBuyAllButton and initialize
@@ -23,12 +27,50 @@ public class CartUserController {
     @FXML
     private VBox vbox;
 
-    private final List<Catalog> catalogList = msgObject.getCatalogList();
+    private List<Catalog> catalogList = new ArrayList<>();
 
     @FXML
     void handleBuyAllButton() {
         // User will be redirected to a page to confirm his details, when he pays move all items
         // From the Cart database to orders database of the current user
+        //we need to check if there is the same item in the order, so we can just update the price/quantity
+
+        List<Catalog> catalogs = new ArrayList<>();
+
+        for(Catalog catalog : msgObject.getCatalogList()){
+            for(Catalog catalog1 : msgObject.getCatalogList()){
+                if(catalog.getPrivilege() == 1 && catalog1.getPrivilege() == 2
+                && catalog.getName().equals(catalog1.getName())
+                && catalog.getUser() != null && catalog1.getUser() != null
+                && catalog.getUser().getEmail().equals(catalog1.getUser().getEmail())){
+                    double a = Double.parseDouble(catalog.getPrice()) + Double.parseDouble(catalog.getPrice());
+                    catalog1.setPrice("" + a);
+                    catalogList.add(catalog1);
+                    catalogs.add(catalog);
+                }
+            }
+        }
+
+        for(Catalog catalog : catalogs){
+            msgObject.getCatalogList().remove(catalog);
+        }
+
+        if(!msgObject.getCatalogList().isEmpty()) {
+            for (Catalog catalog : msgObject.getCatalogList()) {
+                if (catalog.getPrivilege() == 1 && catalog.getUser() != null && catalog.getUser().getEmail().equals(user.getEmail())) {
+                    catalog.setPrivilege(2);
+                    catalogList.add(catalog);
+                }
+            }
+        }
+        try {
+            MsgObject msgObject1 = new MsgObject("cartToOrder");
+            msgObject1.setCatalogList(catalogList);
+            msgObject1.setObject(catalogs);
+            getClient().sendToServer(msgObject1);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -41,16 +83,27 @@ public class CartUserController {
 
         // Add items in the Cart database you already created
 
-        for (Catalog catalog : catalogList) {
+        List<Catalog> catalogList1 = new ArrayList<>();
 
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(App.class.getResource("cartItemUser.fxml"));
-            Node node = fxmlLoader.load();
-            CartItemUserController cartItemUserController = fxmlLoader.getController();
-            cartItemUserController.setData(catalog);
-            vbox.getChildren().add(node);
+        for(Catalog catalog : msgObject.getCatalogList()){
+            if(catalog.getPrivilege() == 1 && catalog.getUser().getEmail().equals(user.getEmail())){
+                catalogList1.add(catalog);
+            }
         }
 
-        totalOrdersLabel.setText("Total Orders: " + catalogList.size());
+        if (!catalogList1.isEmpty()) {
+            for (Catalog catalog : catalogList1) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(App.class.getResource("cartItemUser.fxml"));
+                Node node = fxmlLoader.load();
+                CartItemUserController cartItemUserController = fxmlLoader.getController();
+                cartItemUserController.setData(catalog);
+                vbox.getChildren().add(node);
+
+            }
+        }
+        //catalogList = catalogList1;
+        totalOrdersLabel.setText("Total Orders: " + catalogList1.size());
     }
 }

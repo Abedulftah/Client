@@ -132,8 +132,11 @@ public class SignUpAccountTypeController {
         } else {
             if (basicVB.getStyle().equals(style)) {
                 shop = chooseShopCB.getSelectedItem();
+                getClient().sendToServer(new MsgObject("signUp",accountType + shop)); //we need to change an item in the msg object that means I need an object not a list of a specific type
             }
-            getClient().sendToServer(new MsgObject("signUp"));
+            else{
+                getClient().sendToServer(new MsgObject("signUp", accountType));
+            }
         }
     }
 

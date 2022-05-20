@@ -1,6 +1,7 @@
 package Controller;
 
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.SignUp;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
@@ -8,14 +9,18 @@ import javafx.scene.control.Label;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 
 import java.io.IOException;
+import java.util.List;
 
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 // In handleSignInButton check what's written
 
 public class SignInController {
 
     public static String userName;
+
+    public static SignUp user;
 
     @FXML
     private Label errorMessageLabel;
@@ -40,12 +45,26 @@ public class SignInController {
     void handleSignInButton() throws IOException {
 
         userName = userNameTB.getText();
-        getClient().sendToServer(new MsgObject("primaryUser"));
+        boolean find = false;
+
+        List<SignUp> signup = (List<SignUp>) msgObject.getObject();
+
+        if(!signup.isEmpty()) {
+            for (SignUp usr : signup) {
+                if (usr.getEmail().equals(userName) && usr.getPassword().equals(passwordTB.getText())) {
+                    user = usr;
+                    find = true;
+                }
+            }
+        }
+        //getClient().sendToServer(new MsgObject("CheckValidUser", str));
 
         // if the user name is found in the data base and the password is matching with it then
         // App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
-        // else
-        // errorMessage.setVisible(true);
+        if(!find)
+            errorMessageLabel.setVisible(true);
+        else
+            getClient().sendToServer(new MsgObject("primaryUser"));
     }
 
     @FXML

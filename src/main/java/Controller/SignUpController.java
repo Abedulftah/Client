@@ -1,5 +1,7 @@
 package Controller;
 
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.SignUp;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -11,8 +13,12 @@ import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 // In handleUserNameTB check if the username exists in the database
 // In handleEmailTB check if the email exists in the database
@@ -310,7 +316,7 @@ public class SignUpController {
 
         if (ExpDateMonthCB.getSelectedItem() == null) {
             flag12 = false;
-            ExpDateImage.setImage(new Image(getClass().getResourceAsStream("/Image/remove.png")));
+            ExpDateImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Image/remove.png"))));
         } else {
             flag12 = true;
             ExpDateImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
@@ -437,6 +443,17 @@ public class SignUpController {
             ExpDateMonthCB.setDisable(true);
             ExpDateYearCB.setDisable(true);
             CVVTB.setDisable(true);
+
+            SignUp signup = new SignUp(msgObject.getObject().toString(), UsernameTB.getText(), EmailTB.getText(), PhoneTB.getText()
+                    , PasswordTB.getText(), CityTB.getText() + " " + StreetTB.getText() + " " + ZIPCTB.getText() + " " + POBoxTB.getText(),
+                    CreditCardHolderTB.getText(), CreditCardHolderTB.getText(), ExpDateYearCB.getText() + "/" + ExpDateMonthCB.getText(),
+                    Integer.parseInt(CVVTB.getText()));
+
+            try {
+                getClient().sendToServer(new MsgObject("addUser", signup));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
