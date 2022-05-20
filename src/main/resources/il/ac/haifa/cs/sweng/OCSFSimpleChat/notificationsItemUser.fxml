@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -10,38 +11,59 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.NotificationsItemUserController">
    <center>
-      <AnchorPane prefHeight="100.0" prefWidth="1284.0" style="-fx-background-color: linear-gradient(to right, #f12711, #f5af19);">
+      <AnchorPane prefHeight="100.0" prefWidth="1284.0" style="-fx-background-color: transparent;">
          <children>
             <HBox>
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="256.8">
                      <children>
-                        <Label fx:id="notificationLabel" style="-fx-text-fill: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);" text="Pop Israel Flowers" wrapText="true">
+                        <Label fx:id="emailLabel" style="-fx-text-fill: linear-gradient(to right, #d3cce3, #e9e4f0);" text="mhmd.shahin@outlook.com" wrapText="true">
                            <font>
-                              <Font name="Cambria Bold" size="18.0" />
+                              <Font name="Cambria Bold" size="16.0" />
                            </font>
+                           <effect>
+                              <Bloom />
+                           </effect>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="256.8">
                      <children>
-                        <Label fx:id="responseLabel" style="-fx-text-fill: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);" text="\$130.99" wrapText="true">
+                        <Label fx:id="notificationLabel" style="-fx-text-fill: linear-gradient(to right, #d3cce3, #e9e4f0);" text="Pop Israel Flowers" wrapText="true">
                            <font>
                               <Font name="Cambria Bold" size="18.0" />
                            </font>
+                           <effect>
+                              <Bloom />
+                           </effect>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="256.8">
                      <children>
-                        <Label fx:id="dateLabel" style="-fx-text-fill: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);" text="Approximately 10.5&quot; W x 11&quot; H" wrapText="true">
+                        <Label fx:id="responseLabel" style="-fx-text-fill: linear-gradient(to right, #d3cce3, #e9e4f0);" text="\$130.99" wrapText="true">
                            <font>
                               <Font name="Cambria Bold" size="18.0" />
                            </font>
+                           <effect>
+                              <Bloom />
+                           </effect>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="256.8">
+                     <children>
+                        <Label fx:id="dateLabel" style="-fx-text-fill: linear-gradient(to right, #d3cce3, #e9e4f0);" text="Approximately 10.5&quot; W x 11&quot; H" wrapText="true">
+                           <font>
+                              <Font name="Cambria Bold" size="18.0" />
+                           </font>
+                           <effect>
+                              <Bloom />
+                           </effect>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="256.8">
                      <children>
                         <JFXButton onAction="#handleRemoveButton" prefHeight="28.0" prefWidth="71.0" style="-fx-background-color: linear-gradient(to right, #cb2d3e, #ef473a); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="Remove">
                            <cursor>

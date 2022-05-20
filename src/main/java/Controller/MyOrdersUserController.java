@@ -25,7 +25,7 @@ public class MyOrdersUserController {
     @FXML
     private VBox vbox;
 
-    private List<Catalog> catalogList = new ArrayList<>();
+    private List<Catalog> catalogList = msgObject.getCatalogList();
 
     @FXML
     void handleHome() throws IOException {

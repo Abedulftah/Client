@@ -16,18 +16,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1300.0" style="-fx-background-color: #20120F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUpAccountTypeController">
+<AnchorPane prefHeight="650.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(to right, #00c6ff, #0072ff);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUpAccountTypeController">
    <children>
-      <ImageView fitHeight="650.0" fitWidth="650.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Image/TG_Background.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="650.0" fitWidth="650.0" layoutX="650.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Image/TG_Background.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="630.0" layoutY="20.0" onMouseClicked="#handleHomeButton" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Image/home-icon-silhouette.png" />
@@ -38,7 +28,7 @@
       </ImageView>
       <HBox alignment="CENTER" layoutY="100.0" prefHeight="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label text="We are glad you have decided to register and become part of our family&#10;Please choose the account type you like in order to continue" textAlignment="CENTER" textFill="WHITE">
+            <Label style="-fx-text-fill: linear-gradient(to right, #f12711, #f5af19);" text="We are glad you have decided to register and become part of our family&#10;Please choose the account type you like in order to continue" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Cambria Bold" size="36.0" />
                </font>
@@ -88,7 +78,7 @@
             </VBox>
             <HBox alignment="CENTER" layoutX="37.5" layoutY="79.0">
                <children>
-                  <Label fx:id="errorLabel1" alignment="CENTER" contentDisplay="CENTER" prefWidth="230.0" text="Please choose account type" textAlignment="CENTER" textFill="RED">
+                  <Label fx:id="errorLabel1" alignment="CENTER" contentDisplay="CENTER" prefWidth="230.0" style="-fx-text-fill: linear-gradient(to right, #ed213a, #93291e);" text="Please choose account type" textAlignment="CENTER" textFill="RED" visible="false">
                      <font>
                         <Font name="Cambria Bold" size="18.0" />
                      </font>
@@ -100,7 +90,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="1037.5" layoutY="79.0">
                <children>
-                  <Label fx:id="errorLabel2" alignment="CENTER" contentDisplay="CENTER" prefWidth="230.0" text="Please choose account type" textAlignment="CENTER" textFill="RED">
+                  <Label fx:id="errorLabel2" alignment="CENTER" contentDisplay="CENTER" prefWidth="230.0" style="-fx-text-fill: linear-gradient(to right, #ed213a, #93291e);" text="Please choose account type" textAlignment="CENTER" textFill="RED" visible="false">
                      <font>
                         <Font name="Cambria Bold" size="18.0" />
                      </font>
@@ -114,9 +104,9 @@
       </Pane>
       <Pane layoutY="400.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label layoutX="60.0" layoutY="5.0" text="Price" textFill="#847979">
+            <Label layoutX="60.0" layoutY="5.0" style="-fx-text-fill: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);" text="Price" textFill="#847979">
                <font>
-                  <Font name="Cambria" size="24.0" />
+                  <Font name="Cambria Bold" size="24.0" />
                </font>
                <effect>
                   <Bloom />
@@ -127,9 +117,9 @@
                   <MotionBlur />
                </effect>
             </Separator>
-            <Label layoutX="39.0" layoutY="55.0" text="All Shops" textFill="#847979">
+            <Label layoutX="39.0" layoutY="55.0" style="-fx-text-fill: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);" text="All Shops" textFill="#847979">
                <font>
-                  <Font name="Cambria" size="24.0" />
+                  <Font name="Cambria Bold" size="24.0" />
                </font>
                <effect>
                   <Bloom />
@@ -140,9 +130,9 @@
                   <MotionBlur />
                </effect>
             </Separator>
-            <Label layoutX="41.0" layoutY="105.0" text="Discount" textFill="#847979">
+            <Label layoutX="41.0" layoutY="105.0" style="-fx-text-fill: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);" text="Discount" textFill="#847979">
                <font>
-                  <Font name="Cambria" size="24.0" />
+                  <Font name="Cambria Bold" size="24.0" />
                </font>
                <effect>
                   <Bloom />
@@ -214,7 +204,7 @@
       </Pane>
       <HBox alignment="CENTER" layoutY="550.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <JFXButton onAction="#handleNextPage" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #D63333; -fx-background-radius: 100;" text="NEXT PAGE" textFill="#dad6d6">
+            <JFXButton onAction="#handleNextPage" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: linear-gradient(to right, #cb2d3e, #ef473a); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="NEXT PAGE" textFill="#dad6d6">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

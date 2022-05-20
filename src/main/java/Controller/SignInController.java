@@ -4,6 +4,7 @@ import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.SignUp;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
@@ -70,6 +71,16 @@ public class SignInController {
     @FXML
     void handleSignUpButton() throws IOException {
         getClient().sendToServer(new MsgObject("signUpAccountType"));
+    }
+
+    @FXML
+    void handleUserNameEnter() throws IOException {
+        handleSignInButton();
+    }
+
+    @FXML
+    void handlePasswordEnter() throws IOException {
+        handleSignInButton();
     }
 
     @FXML

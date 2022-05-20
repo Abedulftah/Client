@@ -7,6 +7,7 @@ import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.SpecialItem;
 import javafx.animation.PauseTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
@@ -197,6 +198,10 @@ public class SpecialOrderUserController {
         if (monteCasinoCB.isSelected()) counter++;
         if (lisianthusCB.isSelected()) counter++;
         return counter;
+    }
+
+    @FXML
+    void handleColorPicker() {
     }
 
     @FXML

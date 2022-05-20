@@ -11,6 +11,9 @@ public class OrderItemUserController extends Node {
     private Catalog catalog;
 
     @FXML
+    private Label dateLabel;
+
+    @FXML
     private Label descriptionLabel;
 
     @FXML
@@ -21,6 +24,11 @@ public class OrderItemUserController extends Node {
 
     @FXML
     private Label sizeLabel;
+
+    @FXML
+    void handleCancelOrderButton() {
+
+    }
 
     public void setData(Catalog catalog) {
         this.catalog = catalog;
