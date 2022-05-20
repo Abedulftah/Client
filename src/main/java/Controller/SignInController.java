@@ -23,6 +23,8 @@ public class SignInController {
 
     public static SignUp user;
 
+    public static String rank;
+
     @FXML
     private Label errorMessageLabel;
 
@@ -50,11 +52,15 @@ public class SignInController {
 
         List<SignUp> signup = (List<SignUp>) msgObject.getObject();
 
-        if(!signup.isEmpty()) {
+        if (!signup.isEmpty()) {
             for (SignUp usr : signup) {
-                if (usr.getEmail().equals(userName) && usr.getPassword().equals(passwordTB.getText())) {
+                if ((usr.getEmail().equals(userName) && usr.getPassword().equals(passwordTB.getText())) ||
+                usr.getUsername().equals(userName) && usr.getPassword().equals(passwordTB.getText())) {
                     user = usr;
                     find = true;
+                    userName = usr.getUsername();
+                    rank = usr.getAccountType();
+                    break;
                 }
             }
         }
@@ -64,8 +70,31 @@ public class SignInController {
         // App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
         if(!find)
             errorMessageLabel.setVisible(true);
-        else
-            getClient().sendToServer(new MsgObject("primaryUser"));
+        else {
+
+            switch (user.getAccountType()) {
+
+                case "system worker":
+                    App.setRoot("primarySystemWorker", "/Image/mainPageIcon.png", "Lilac");
+                    break;
+
+                case "customer service":
+                    App.setRoot("primaryCustomerService", "/Image/mainPageIcon.png", "Lilac");
+                    break;
+
+                case "system manager":
+                    /////
+                    break;
+
+                case "shop manager":
+                    ////
+                    break;
+
+                default:
+                    getClient().sendToServer(new MsgObject("primaryUser"));
+
+            }
+        }
     }
 
     @FXML

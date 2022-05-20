@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" style="-fx-background-color: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.NotificationsUserController">
+<VBox alignment="CENTER" style="-fx-background-color: linear-gradient(to right, #e65c00, #f9d423);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ComplaintsCustomerServiceController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0">
          <children>
@@ -42,9 +41,9 @@
             </HBox>
             <HBox layoutY="160.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="310.0">
                      <children>
-                        <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Notification">
+                        <Label style="-fx-text-fill: linear-gradient(to right, #000428, #004e92);" text="Email">
                            <font>
                               <Font name="Cambria Bold" size="24.0" />
                            </font>
@@ -54,9 +53,9 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="664.0">
                      <children>
-                        <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Response">
+                        <Label style="-fx-text-fill: linear-gradient(to right, #000428, #004e92);" text="Complaint Content">
                            <font>
                               <Font name="Cambria Bold" size="24.0" />
                            </font>
@@ -66,33 +65,10 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
-                     <children>
-                        <Label style="-fx-text-fill: linear-gradient(to right, #fceabb, #f8b500);" text="Date">
-                           <font>
-                              <Font name="Cambria Bold" size="24.0" />
-                           </font>
-                           <effect>
-                              <Bloom />
-                           </effect>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="321.0">
-                     <children>
-                        <JFXButton onAction="#handleDeleteAllButton" style="-fx-background-color: linear-gradient(to right, #cb2d3e, #ef473a); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="REMOVE ALL">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="Cambria Bold" size="18.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
-                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="310.0" />
                </children>
             </HBox>
-            <MFXScrollPane hbarPolicy="NEVER" layoutY="250.0" prefHeight="400.0" prefWidth="1300.0" style="-fx-background-color: transparent;">
+            <MFXScrollPane hbarPolicy="NEVER" layoutY="250.0" prefHeight="400.0" prefWidth="1300.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
                <content>
                   <VBox fx:id="vbox" />
                </content>

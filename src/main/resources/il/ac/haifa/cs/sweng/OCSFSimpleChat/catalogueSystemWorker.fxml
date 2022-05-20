@@ -20,11 +20,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1250.0" style="-fx-background-color: linear-gradient(to right, #00c6ff, #0072ff);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CatalogController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1250.0" style="-fx-background-color: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CatalogueSystemWorkerController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox prefHeight="200.0" prefWidth="435.0" style="-fx-background-color: linear-gradient(to right, #ed213a, #93291e);" styleClass="right-bar" stylesheets="@../../../../../../Styles/style.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="200.0" prefWidth="435.0" style="-fx-background-color: linear-gradient(to right, #fceabb, #f8b500);" styleClass="right-bar" stylesheets="@../../../../../../Styles/style.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
                      <children>
@@ -139,6 +140,32 @@
                               </Label>
                            </children>
                         </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton onAction="#handleEditButton" style="-fx-background-radius: 100; -fx-background-color: linear-gradient(to right, #f7971e, #ffd200); -fx-text-fill: linear-gradient(to right, #0f2027, #203a43, #2c5364);" text="EDIT">
+                                 <font>
+                                    <Font name="Cambria Bold" size="18.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <HBox.margin>
+                                    <Insets right="50.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton onAction="#handleDeleteButton" style="-fx-background-radius: 100; -fx-background-color: linear-gradient(to right, #ed213a, #93291e); -fx-text-fill: linear-gradient(to right, #f7971e, #ffd200);" text="DELETE">
+                                 <font>
+                                    <Font name="Cambria Bold" size="18.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <HBox.margin>
+                                    <Insets left="50.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                        </HBox>
                      </children>
                      <styleClass>
                         <String fx:value="chosen-fruit-card" />
@@ -149,7 +176,7 @@
             </VBox>
          </left>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="93.0" prefWidth="880.0">
                      <children>
@@ -227,7 +254,18 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <JFXButton layoutX="18.0" layoutY="33.0" onAction="#handleAddItemButton" style="-fx-background-radius: 100; -fx-background-color: linear-gradient(to right, #00bf8f, #001510); -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="ADD ITEM">
+                                 <font>
+                                    <Font name="Cambria Bold" size="18.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                           </children>
+                        </Pane>
                         <VBox prefHeight="105.0" prefWidth="370.0">
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="270.0" style="-fx-background-color: linear-gradient(to right, #000046, #1cb5e0);" styleClass="shopping-online-card" stylesheets="@../../../../../../Styles/style.css">

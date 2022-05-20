@@ -4,6 +4,8 @@ import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
@@ -13,6 +15,9 @@ public class PrimaryUserController {
 
     @FXML
     private Label nameLabel;
+
+    @FXML
+    private ImageView userImage;
 
     @FXML
     void handleCartButton() throws IOException {
@@ -52,5 +57,19 @@ public class PrimaryUserController {
     @FXML
     void initialize() {
         nameLabel.setText(SignInController.userName);
+        switch (SignInController.rank) {
+
+            case "elite":
+                userImage.setImage(new Image(getClass().getResourceAsStream("/Image/elitePlan.png")));
+                break;
+
+            case "gold":
+                userImage.setImage(new Image(getClass().getResourceAsStream("/Image/goldPlan.png")));
+                break;
+
+            case "basic":
+                userImage.setImage(new Image(getClass().getResourceAsStream("/Image/basicPlan.png")));
+                break;
+        }
     }
 }
