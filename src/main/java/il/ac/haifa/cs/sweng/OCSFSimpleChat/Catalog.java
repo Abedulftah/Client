@@ -29,6 +29,8 @@ public class Catalog implements Serializable {
     @Column(name = "imgUrl")
     private String imgUrl;
 
+    @Column(name = "date")
+    private String date;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
@@ -52,6 +54,14 @@ public class Catalog implements Serializable {
         this.itemDetails = "";
         this.color = "";
         this.size = "";
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public SignUp getUser() {

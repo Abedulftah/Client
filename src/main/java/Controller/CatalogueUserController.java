@@ -73,7 +73,6 @@ public class CatalogueUserController {
 
 
         for(Catalog catalog : msgObject.getCatalogList()){
-            System.out.println("das");
             if(catalog.getPrivilege() == 1 && catalog.getUser() != null && catalog.getName().equals(chosenItemName.getText()) && catalog.getUser().getEmail().equals(user.getEmail())){
                 double a = Double.parseDouble(chosenItemPrice.getText().substring(8)) * Double.parseDouble(quantityTB.getText());
                 catalog.setPrice("" + (a + Double.parseDouble(catalog.getPrice())));

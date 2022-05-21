@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
@@ -35,6 +36,8 @@ public class CartUserController {
         // From the Cart database to orders database of the current user
         //we need to check if there is the same item in the order, so we can just update the price/quantity
 
+        Random random = new Random();
+
         List<Catalog> catalogs = new ArrayList<>();
 
         for(Catalog catalog : msgObject.getCatalogList()){
@@ -44,6 +47,7 @@ public class CartUserController {
                 && catalog.getUser() != null && catalog1.getUser() != null
                 && catalog.getUser().getEmail().equals(catalog1.getUser().getEmail())){
                     double a = Double.parseDouble(catalog.getPrice()) + Double.parseDouble(catalog.getPrice());
+                    catalog1.setDate(String.valueOf(java.time.LocalDate.of(2022,5,21 + random.nextInt(7))));
                     catalog1.setPrice("" + a);
                     catalogList.add(catalog1);
                     catalogs.add(catalog);
@@ -59,6 +63,7 @@ public class CartUserController {
             for (Catalog catalog : msgObject.getCatalogList()) {
                 if (catalog.getPrivilege() == 1 && catalog.getUser() != null && catalog.getUser().getEmail().equals(user.getEmail())) {
                     catalog.setPrivilege(2);
+                    catalog.setDate(String.valueOf(java.time.LocalDate.of(2022,5,21 + random.nextInt(7))));
                     catalogList.add(catalog);
                 }
             }
