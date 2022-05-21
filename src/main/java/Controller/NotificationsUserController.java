@@ -1,7 +1,7 @@
 package Controller;
 
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.ComplainRespond;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.CustomerWorkerRespond;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static Controller.SignInController.user;
@@ -43,10 +41,10 @@ public class NotificationsUserController {
     @FXML
     void initialize() throws IOException {
 
-        List<ComplainRespond> complainResponds = (List<ComplainRespond>) msgObject.getObject();
+        List<CustomerWorkerRespond> complainResponds = (List<CustomerWorkerRespond>) msgObject.getObject();
 
         int counter = 0;
-        for (ComplainRespond complainRespond : complainResponds) {
+        for (CustomerWorkerRespond complainRespond : complainResponds) {
             if(complainRespond.getEmail().equals(user.getEmail())) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(App.class.getResource("notificationsItemUser.fxml"));

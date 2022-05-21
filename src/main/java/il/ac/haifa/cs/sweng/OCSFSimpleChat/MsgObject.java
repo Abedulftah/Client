@@ -8,6 +8,7 @@ public class MsgObject implements Serializable {
     private static final long serialVersionUID = -8224097662914849956L;
     String msg;
     Object object;
+
     List<Catalog> catalogList = new ArrayList<>();
     public MsgObject() {
     }
@@ -21,6 +22,7 @@ public class MsgObject implements Serializable {
         this.msg = msg;
         this.object = null;
     }
+
 
     public String getMsg() {
         return this.msg;

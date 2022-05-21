@@ -26,9 +26,7 @@ public class Complain implements Serializable{
     @Column(name = "message")
     private String message;
 
-    @JoinColumn(name = "userID")
-    @ManyToOne(cascade = CascadeType.ALL)
-    private SignUp user;
+
 
     public Complain(){}
     public Complain(String name, String email, String phone, String message){

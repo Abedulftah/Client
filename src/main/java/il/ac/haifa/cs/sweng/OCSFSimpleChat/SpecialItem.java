@@ -64,6 +64,10 @@ public class SpecialItem implements Serializable{
         return user;
     }
 
+    public void setUser(SignUp user) {
+        this.user = user;
+    }
+
     public Boolean getChocolates() {
         return chocolates;
     }

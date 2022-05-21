@@ -1,19 +1,17 @@
 package Controller;
 
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.Complain;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.ComplainRespond;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.CustomerWorkerRespond;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
 
-import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
 public class NotificationsItemUserController {
 
-    private ComplainRespond complainRespond;
+    private CustomerWorkerRespond complainRespond;
     @FXML
     private Label dateLabel;
 
@@ -32,7 +30,7 @@ public class NotificationsItemUserController {
         }
     }
 
-    public void setData(ComplainRespond complainRespond, String notification, String response, String date) {
+    public void setData(CustomerWorkerRespond complainRespond, String notification, String response, String date) {
         this.complainRespond = complainRespond;
         this.notificationLabel.setText(notification);
         this.responseLabel.setText(response);

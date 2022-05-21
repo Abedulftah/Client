@@ -3,6 +3,7 @@ package Controller;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Complain;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.SignUp;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.SpecialItem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,7 +23,8 @@ public class ComplaintsCustomerServiceController {
     @FXML
     private VBox vbox;
 
-    private List<Complain> complainList = (List<Complain>) msgObject.getObject();
+    private final List<Complain> complainList = (List<Complain>) msgObject.getObject();
+
 
     @FXML
     void handleHome() throws IOException {
@@ -31,6 +33,8 @@ public class ComplaintsCustomerServiceController {
 
     @FXML
     void initialize() throws IOException {
+
+        int size = complainList.size();
 
         for (Complain complain : complainList) {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -41,6 +45,6 @@ public class ComplaintsCustomerServiceController {
             vbox.getChildren().add(node);
         }
 
-        totalOrdersLabel.setText("Total Complaints: " + complainList.size());
+        totalOrdersLabel.setText("Total Complaints: " + size);
     }
 }

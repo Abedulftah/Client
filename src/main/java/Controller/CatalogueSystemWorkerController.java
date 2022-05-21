@@ -2,6 +2,7 @@ package Controller;
 
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MyListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.List;
 
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 // Check if you need to add anything in handleAddItemButton and handleEditButton
@@ -169,7 +171,6 @@ public class CatalogueSystemWorkerController {
 
     @FXML
     void handleAddItemButton() throws IOException {
-
         addFlag = true;
         editFlag = false;
         App.setRoot("editAddItemSystemWorker", "/Image/mainPageIcon.png", "Lilac");
@@ -187,6 +188,15 @@ public class CatalogueSystemWorkerController {
 
         alert.showAndWait().ifPresent(type -> {
             if (type == confirmButton) {
+                for(Catalog catalog : flowerList){
+                    if(catalog.getName().equals(chosenItemName.getText())){
+                        try {
+                            getClient().sendToServer(new MsgObject("deleteItem", catalog));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
                 // Type here what you need. Delete the item from the database.
             }
         });

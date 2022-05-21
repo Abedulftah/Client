@@ -8,7 +8,7 @@ import java.util.Date;
 @Table(
         name = "complainlistrespond"
 )
-public class ComplainRespond implements Serializable{
+public class CustomerWorkerRespond implements Serializable{
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
@@ -34,8 +34,8 @@ public class ComplainRespond implements Serializable{
     @Column(name = "date")
     private String date;
 
-    public ComplainRespond(){}
-    public ComplainRespond(String nameWorker, String name, String email, String phone, String message, String respondMessage){
+    public CustomerWorkerRespond(){}
+    public CustomerWorkerRespond(String nameWorker, String name, String email, String phone, String message, String respondMessage){
         this.nameWorker = nameWorker;
         this.name = name;
         this.email = email;

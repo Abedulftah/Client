@@ -1,6 +1,7 @@
 package Controller;
 
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
@@ -13,10 +14,12 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 // Check handleDoneButton
 
@@ -95,26 +98,39 @@ public class EditAddItemSystemWorkerController {
         if (!nameFlag || !priceFlag || !discountFlag || !sizeFlag || !descriptionFlag || !imageFlag) {
             return;
         }
+        double a = Double.parseDouble(productPriceTB.getText()) + Double.parseDouble(productDiscountTB.getText()) * (Double.parseDouble(productPriceTB.getText())/100);
         if (CatalogueSystemWorkerController.editFlag) {
             // Edit existing item
             // new attributes:
-            productNameTB.getText();
-            productPriceTB.getText();
+            System.out.println(productImage.getImage().getUrl());
+            for(Catalog catalog : msgObject.getCatalogList()){
+                if(catalog.getName().equals(productNameTB.getText())){
+                    catalog.setItemDetails(productDescriptionTB.getText());
+                    catalog.setSize(productSizeTB.getText());
+                    catalog.setImgUrl(productImage.getImage().getUrl());
+                    catalog.setPrice("" + a);
+                    catalog.setColor(String.valueOf(productColor.getValue()).substring(2, 8));
+                }
+            }
+            MsgObject msgObject1 = new MsgObject("edit");
+            msgObject1.setCatalogList(msgObject.getCatalogList());
+            try {
+                getClient().sendToServer(msgObject1);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             productDiscountTB.getText();
-            productSizeTB.getText();
-            productDescriptionTB.getText();
             // productImage.getImage(); Can't be use for now
-            String.valueOf(productColor.getValue()).substring(2, 8);
+
         } else {
             // Add new item
             // attributes:
-            productNameTB.getText();
-            productPriceTB.getText();
-            productDiscountTB.getText();
-            productSizeTB.getText();
-            productDescriptionTB.getText();
-            // productImage.getImage(); Can't be use for now
-            String.valueOf(productColor.getValue()).substring(2, 8);
+            Catalog catalog = new Catalog(productImage.getImage().getUrl(), productNameTB.getText(), "" + a, productDescriptionTB.getText(), productSizeTB.getText(), String.valueOf(productColor.getValue()).substring(2, 8));
+            try {
+                getClient().sendToServer(new MsgObject("addItem", catalog));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

@@ -1,7 +1,8 @@
 package Controller;
 
 import com.jfoenix.controls.JFXButton;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.CustomerWorkerRespond;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -13,6 +14,12 @@ import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 
 import java.io.IOException;
+
+
+import static Controller.ComplaintsItemCustomerServiceController.*;
+import static Controller.SignInController.user;
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
+
 
 // Type in handleSendRespondButton()
 
@@ -43,9 +50,10 @@ public class RespondToComplaintCustomerServiceController {
 
     @FXML
     void handleCancelButton() throws IOException {
-        App.setRoot("complaintsCustomerService", "/Image/complaintIcon.png", "Complaints");
-    }
 
+        getClient().sendToServer(new MsgObject("complaintsCustomerService"));
+
+    }
     @FXML
     void handleHome() throws IOException {
         handleCancelButton();
@@ -63,7 +71,6 @@ public class RespondToComplaintCustomerServiceController {
         }
         charactersLeftLabel.setText("Characters Left: " + (850 - respondTB.getText().replaceAll("\\n", "").length()));
     }
-
     @FXML
     void handleRespondTBKeyReleased() {
         handleRespondTBKeyPressed();
@@ -88,7 +95,12 @@ public class RespondToComplaintCustomerServiceController {
             sendButton.setDisable(true);
             cancelButton.setDisable(true);
 
-
+            CustomerWorkerRespond customerWorkerRespond = new CustomerWorkerRespond(user.getUsername(), name, email, phone, notification, respondTB.getText());
+            try {
+                getClient().sendToServer(new MsgObject("messageRespond",customerWorkerRespond));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             // Type here
             // Don't forget to delete the complaint when sent and also edit handleHome to have updated database
         }
@@ -100,8 +112,11 @@ public class RespondToComplaintCustomerServiceController {
         style = respondTB.getStyle();
         messageErrorLabel.setVisible(false);
 
-        emailTB.setText(ComplaintsItemCustomerServiceController.email);
-        notificationTB.setText(ComplaintsItemCustomerServiceController.notification);
+        emailTB.setText(email);
+
+        emailTB.setText(email);
+
+        notificationTB.setText(notification);
 
         emailTB.setStyle("-fx-text-fill: #9b9d9e");
         notificationTB.setStyle("-fx-text-fill: #9b9d9e");
@@ -110,4 +125,6 @@ public class RespondToComplaintCustomerServiceController {
 
         ComplainUserController.setTextAreaLimit(respondTB, 850);
     }
+
 }
+
