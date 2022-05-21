@@ -1,5 +1,6 @@
 package Controller;
 
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Complain;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.ComplainRespond;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
@@ -21,6 +22,10 @@ public class ComplaintsItemCustomerServiceController {
 
     private Complain complain;
 
+    public static String email;
+
+    public static String notification;
+
     @FXML
     void handleRefuseButton() {
         ComplainRespond complainRespond = new ComplainRespond(user.getUsername(), complain.getName(), complain.getEmail(), complain.getPhone(), complain.getMessage(), "Sorry, that we did not fill your demands, we will do our best to make it better.\n We did not see that you deserve refund.");
@@ -32,8 +37,10 @@ public class ComplaintsItemCustomerServiceController {
     }
 
     @FXML
-    void handleRespondButton() {
-
+    void handleRespondButton() throws IOException {
+        email = emailLabel.getText();
+        notification = contentLabel.getText();
+        App.setRoot("respondToComplaintCustomerService", "/Image/complaintIcon.png", "Complaints");
     }
 
     public void setData(Complain complain) {
