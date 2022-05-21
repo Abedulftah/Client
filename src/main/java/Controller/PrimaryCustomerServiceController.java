@@ -20,4 +20,10 @@ public class PrimaryCustomerServiceController {
         getClient().sendToServer(new MsgObject("complaintsCustomerService"));
     }
 
+    @FXML
+    void handleSpecialOrders() throws IOException {
+        App.setRoot("specialOrdersCustomerService", "/Image/specialOrderIcon.png", "Special Order");
+        //getClient().sendToServer(new MsgObject("specialOrdersCustomerService"));
+    }
+
 }

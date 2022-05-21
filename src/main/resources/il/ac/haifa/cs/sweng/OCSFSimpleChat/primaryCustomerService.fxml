@@ -30,7 +30,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label style="-fx-text-fill: linear-gradient(to right, #e52d27, #b31217);" text="If you wish to see the complaints please click on the below button">
+                  <Label style="-fx-text-fill: linear-gradient(to right, #e52d27, #b31217);" text="Please pick one of the options down below">
                      <font>
                         <Font name="Cambria Bold" size="36.0" />
                      </font>
@@ -52,6 +52,20 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" onAction="#handleSpecialOrders" style="-fx-background-color: linear-gradient(to right, #bc4e9c, #f80759); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="SHOW SPECIAL ORDERS">
+                     <font>
+                        <Font name="Cambria Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
                   </JFXButton>
                </children>
                <VBox.margin>
