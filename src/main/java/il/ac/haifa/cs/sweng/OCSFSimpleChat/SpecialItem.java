@@ -40,6 +40,8 @@ public class SpecialItem implements Serializable{
     @Column(name = "price")
     private String price;
 
+    @Column(length = 2000)
+    private String data = "";
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
     private SignUp user;
@@ -57,7 +59,16 @@ public class SpecialItem implements Serializable{
         this.price = price;
         this.color = color;
         this.user = user;
-
+        this.data ="Special order:\n " +
+                "container: " + container + "\n" +
+                "number of flowers: " + numOfFlowers + "\n" +
+                "contains a box of chocolates: " + chocolates + "\n" +
+                "contains a Teddy Beer: " + teddyBeer + "\n" +
+                "blessing message: " + thereIsMessage + "\n" +
+                "flower type: " + flowerType+ "\n" +
+                "flowers that we should know about: " + flowersIsNotIn + "\n" +
+                "color: " + color + "\n" +
+                "price: " + price + "\n";
     }
 
     public SignUp getUser() {
@@ -66,6 +77,48 @@ public class SpecialItem implements Serializable{
 
     public void setUser(SignUp user) {
         this.user = user;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setChocolates(Boolean chocolates) {
+        this.chocolates = chocolates;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+
+    public void setContainer(String container) {
+        this.container = container;
+    }
+
+    public void setFlowersIsNotIn(String flowersIsNotIn) {
+        this.flowersIsNotIn = flowersIsNotIn;
+    }
+
+    public void setFlowerTypes(String flowerTypes) {
+        this.flowerTypes = flowerTypes;
+    }
+
+    public void setNumOfFlowers(int numOfFlowers) {
+        this.numOfFlowers = numOfFlowers;
+    }
+
+    public void setTeddyBeer(Boolean teddyBeer) {
+        this.teddyBeer = teddyBeer;
     }
 
     public Boolean getChocolates() {

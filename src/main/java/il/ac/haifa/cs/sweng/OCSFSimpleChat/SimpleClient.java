@@ -49,6 +49,15 @@ public class SimpleClient extends AbstractClient {
                     e.printStackTrace();
                 }
             });
+        } else if (msgObject.getMsg().equals("specialOrdersCustomerService")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("specialOrdersCustomerService", "/Image/specialOrderIcon.png", "Special Order");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
         } else if (msgObject.getMsg().equals("signIn")) {
             Platform.runLater(() -> {
                 try {

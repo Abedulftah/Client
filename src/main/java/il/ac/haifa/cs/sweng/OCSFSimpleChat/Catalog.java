@@ -17,7 +17,7 @@ public class Catalog implements Serializable {
     private String name;
     @Column(name = "color")
     private String color;
-    @Column(name = "item_details")
+    @Column(name = "item_details", length = 2000)
     private String itemDetails;
     @Column(name = "price")
     private String price;

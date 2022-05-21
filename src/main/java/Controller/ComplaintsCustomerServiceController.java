@@ -34,15 +34,18 @@ public class ComplaintsCustomerServiceController {
     @FXML
     void initialize() throws IOException {
 
-        int size = complainList.size();
+        int size = 0;
 
-        for (Complain complain : complainList) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(App.class.getResource("complaintsItemCustomerService.fxml"));
-            Node node = fxmlLoader.load();
-            ComplaintsItemCustomerServiceController complaintsItemCustomerServiceController = fxmlLoader.getController();
-            complaintsItemCustomerServiceController.setData(complain);
-            vbox.getChildren().add(node);
+        if(complainList != null) {
+            for (Complain complain : complainList) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(App.class.getResource("complaintsItemCustomerService.fxml"));
+                Node node = fxmlLoader.load();
+                ComplaintsItemCustomerServiceController complaintsItemCustomerServiceController = fxmlLoader.getController();
+                complaintsItemCustomerServiceController.setData(complain);
+                vbox.getChildren().add(node);
+            }
+            size = complainList.size();
         }
 
         totalOrdersLabel.setText("Total Complaints: " + size);

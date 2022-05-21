@@ -50,9 +50,10 @@ public class NotificationsUserController {
                 fxmlLoader.setLocation(App.class.getResource("notificationsItemUser.fxml"));
                 Node node = fxmlLoader.load();
                 NotificationsItemUserController notificationsItemUserController = fxmlLoader.getController();
-                notificationsItemUserController.setData(complainRespond, "New Notification " + counter, complainRespond.getRespondMessage(), complainRespond.getDate());
+                notificationsItemUserController.setData(complainRespond, "New Notification " + counter++, complainRespond.getRespondMessage(), complainRespond.getDate());
                 vbox.getChildren().add(node);
             }
         }
+        totalOrdersLabel.setText("Total orders: " + counter);
     }
 }

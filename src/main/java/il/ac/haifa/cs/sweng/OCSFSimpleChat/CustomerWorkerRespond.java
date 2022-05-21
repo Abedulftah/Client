@@ -26,7 +26,7 @@ public class CustomerWorkerRespond implements Serializable{
     @Column(name = "client_phone")
     private String phone;
 
-    @Column(name = "client_message")
+    @Column(length = 2000)
     private String message;
     @Column(name = "respond_message")
     private String respondMessage;

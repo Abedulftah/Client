@@ -22,8 +22,7 @@ public class PrimaryCustomerServiceController {
 
     @FXML
     void handleSpecialOrders() throws IOException {
-        App.setRoot("specialOrdersCustomerService", "/Image/specialOrderIcon.png", "Special Order");
-        //getClient().sendToServer(new MsgObject("specialOrdersCustomerService"));
+        getClient().sendToServer(new MsgObject("specialOrdersCustomerService"));
     }
 
 }
