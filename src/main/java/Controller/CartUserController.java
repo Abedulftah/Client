@@ -109,6 +109,6 @@ public class CartUserController {
             }
         }
         //catalogList = catalogList1;
-        totalOrdersLabel.setText("Total Orders: " + catalogList1.size());
+        totalOrdersLabel.setText("Total products: " + catalogList1.size());
     }
 }

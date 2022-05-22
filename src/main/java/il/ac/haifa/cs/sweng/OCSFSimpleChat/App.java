@@ -25,7 +25,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Image/mainPageIcon.png"))));
         stage.setTitle("Lilac");
-        //stage.setResizable(false);
+        stage.setResizable(false);
         mainStage = stage;
         mainStage.show();
     }

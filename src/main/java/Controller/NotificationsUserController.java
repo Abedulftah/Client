@@ -6,6 +6,9 @@ import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -26,11 +29,26 @@ public class NotificationsUserController {
 
     @FXML
     void handleDeleteAllButton() {
-        try {
-            getClient().sendToServer(new MsgObject("removeAllNotification",user));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Confirmation");
+        alert.setHeaderText("Remove notifications?");
+        alert.setContentText("Deleting the notifications means you'll never be able to see them again");
+        ButtonType confirmButton = new ButtonType("Confirm", ButtonBar.ButtonData.YES);
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(confirmButton, cancelButton);
+
+        alert.showAndWait().ifPresent(type -> {
+            if (type == confirmButton) {
+                try {
+                    getClient().sendToServer(new MsgObject("removeAllNotification",user));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+
     }
 
     @FXML
@@ -54,6 +72,6 @@ public class NotificationsUserController {
                 vbox.getChildren().add(node);
             }
         }
-        totalOrdersLabel.setText("Total orders: " + counter);
+        totalOrdersLabel.setText("Total notifications: " + counter);
     }
 }
