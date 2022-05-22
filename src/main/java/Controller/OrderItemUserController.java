@@ -32,6 +32,7 @@ public class OrderItemUserController extends Node {
 
     @FXML
     void handleCancelOrderButton() {
+        //we should send a notification to the client about the refund that he deserve
         MsgObject msgObject =  new MsgObject("removeFromOrder");
         msgObject.getCatalogList().add(catalog);
         msgObject.setObject("");

@@ -45,6 +45,9 @@ public class SignUp implements Serializable{
     @Column(name = "cvv")
     private int cvv;
 
+    @Column(name = "signedIn")
+    private boolean signedIn = false;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "specialitem_id")
     private List<SpecialItem> specialItems;
@@ -65,6 +68,14 @@ public class SignUp implements Serializable{
         this.holderOfCard = holderOfCard;
         this.date = date;
         this.cvv = cvv;
+    }
+
+    public void setSignedIn(boolean signedIn) {
+        this.signedIn = signedIn;
+    }
+
+    public boolean isSignedIn() {
+        return signedIn;
     }
 
     public SignUp(){}

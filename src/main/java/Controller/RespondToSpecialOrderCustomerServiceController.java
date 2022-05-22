@@ -50,7 +50,7 @@ public class RespondToSpecialOrderCustomerServiceController {
     @FXML
     void handleCancelButton() throws IOException {
 
-        getClient().sendToServer(new MsgObject("specialOrdersCustomerService"));
+        getClient().sendToServer(new MsgObject("specialOrdersCustomerService", user));
 
     }
     @FXML

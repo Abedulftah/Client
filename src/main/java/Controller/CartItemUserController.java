@@ -47,7 +47,7 @@ public class CartItemUserController {
             && catalog1.getUser().getEmail().equals(catalog.getUser().getEmail())){
                 double a = Double.parseDouble(catalog1.getPrice()) + Double.parseDouble(catalog.getPrice());
                 catalog1.setPrice("" + a);
-                catalog1.setDate(String.valueOf(java.time.LocalDate.of(2022,5,21 + random.nextInt(7))));
+                catalog1.setDate(String.valueOf(java.time.LocalDate.of(2022,5,22 + random.nextInt(7))));
                 List<Catalog> catalogList2 = new ArrayList<>();
                 catalogList2.add(catalog);
 

@@ -58,11 +58,3 @@ public class SpecialOrderItemCustomerServiceController {
         this.contentLabel.setText(specialItem.getData());
     }
 }
-//"Special order:\n " +
-//        "container: " + specialItem.getContainer() + "\n" +
-//        "number of flowers: " + specialItem.getNumOfFlowers() + "\n" +
-//        "contains a box of chocolates: " + specialItem.getChocolates() + "\n" +
-//        "contains a Teddy Beer: " + specialItem.getTeddyBeer() + "\n" +
-//        "blessing message: " + specialItem.getThereIsMessage() + "\n" +
-//        "flower type: " + specialItem.getFlowerTypes() + "\n" +
-//        "flowers that we should know about: " + specialItem.getFlowersIsNotIn()

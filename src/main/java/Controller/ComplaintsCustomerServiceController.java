@@ -1,9 +1,6 @@
 package Controller;
 
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.Complain;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.SignUp;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.SpecialItem;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,6 +10,8 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.List;
 
+import static Controller.SignInController.user;
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 public class ComplaintsCustomerServiceController {
@@ -28,14 +27,15 @@ public class ComplaintsCustomerServiceController {
 
     @FXML
     void handleHome() throws IOException {
-        App.setRoot("primaryCustomerService", "/Image/mainPageIcon.png", "Lilac");
+        getClient().sendToServer(new MsgObject("primaryCustomerService", user));
+        //App.setRoot("primaryCustomerService", "/Image/mainPageIcon.png", "Lilac");
     }
 
     @FXML
     void initialize() throws IOException {
 
         int size = 0;
-
+// we should check if the customer worker answered before 24 hours if no we need to send an automatic message about a refund
         if(complainList != null) {
             for (Complain complain : complainList) {
                 FXMLLoader fxmlLoader = new FXMLLoader();

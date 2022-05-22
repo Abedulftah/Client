@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
+import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
 public class PrimaryUserController {
@@ -36,7 +37,9 @@ public class PrimaryUserController {
 
     @FXML
     void handleLogoutButton() throws IOException {
-        App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
+        user.setSignedIn(false);
+        getClient().sendToServer(new MsgObject("Home", user));
+        //App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
     }
 
     @FXML
@@ -67,7 +70,7 @@ public class PrimaryUserController {
                 userImage.setImage(new Image(getClass().getResourceAsStream("/Image/goldPlan.png")));
                 break;
 
-            case "basic":
+            default:
                 userImage.setImage(new Image(getClass().getResourceAsStream("/Image/basicPlan.png")));
                 break;
         }

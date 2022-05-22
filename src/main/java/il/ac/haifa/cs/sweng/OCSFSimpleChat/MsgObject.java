@@ -7,6 +7,8 @@ import java.util.List;
 public class MsgObject implements Serializable {
     private static final long serialVersionUID = -8224097662914849956L;
     String msg;
+
+    int isIn = 0;
     Object object;
 
     List<Catalog> catalogList = new ArrayList<>();
@@ -23,6 +25,14 @@ public class MsgObject implements Serializable {
         this.object = null;
     }
 
+
+    public void setIn(int in) {
+        isIn = in;
+    }
+
+    public int isIn() {
+        return isIn;
+    }
 
     public String getMsg() {
         return this.msg;

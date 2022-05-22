@@ -1,18 +1,23 @@
 package Controller;
 
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
+
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
+
 import javafx.fxml.FXML;
 
 import java.io.IOException;
 
+import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
+
 
 public class PrimaryCustomerServiceController {
 
     @FXML
     void handleLogoutButton() throws IOException {
-        App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
+        user.setSignedIn(false);
+        getClient().sendToServer(new MsgObject("Home", user));
+        //App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
     }
 
     @FXML

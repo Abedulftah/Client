@@ -2,6 +2,7 @@ package il.ac.haifa.cs.sweng.OCSFSimpleChat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.*;
 
 @Entity
 @Table(
@@ -24,6 +25,7 @@ public class Catalog implements Serializable {
     @Column(name = "size")
     private String size;
 
+
     @Column(name = "Quantity")
     private int left;
     @Column(name = "imgUrl")
@@ -36,6 +38,8 @@ public class Catalog implements Serializable {
     @JoinColumn(name = "user_id")
     private SignUp user;
 
+    @Lob
+    Blob image;
     private int privilege = 0;
 
     public Catalog(String imgUrl, String name, String price, String details, String size, String color){

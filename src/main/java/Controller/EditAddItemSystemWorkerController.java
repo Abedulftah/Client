@@ -14,10 +14,12 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Blob;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
@@ -76,7 +78,7 @@ public class EditAddItemSystemWorkerController {
 
     @FXML
     void handleCancelButton() throws IOException {
-        getClient().sendToServer(new MsgObject("catalogueSystemWorker"));
+        getClient().sendToServer(new MsgObject("catalogueSystemWorker", user));
     }
 
     @FXML

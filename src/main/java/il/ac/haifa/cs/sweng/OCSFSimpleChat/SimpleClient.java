@@ -139,7 +139,25 @@ public class SimpleClient extends AbstractClient {
                     e.printStackTrace();
                 }
             });
-        } else if (msgObject.getMsg().equals("notificationsUser")) {
+        } else if (msgObject.getMsg().equals("primarySystemWorker")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("primarySystemWorker", "/Image/mainPageIcon.png", "Lilac");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
+        }else if (msgObject.getMsg().equals("primaryCustomerService")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("primaryCustomerService", "/Image/mainPageIcon.png", "Lilac");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
+        }else if (msgObject.getMsg().equals("notificationsUser")) {
             Platform.runLater(() -> {
                 try {
                     App.setRoot("notificationsUser", "/Image/notificationIcon.png", "Notifications");

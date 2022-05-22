@@ -16,7 +16,7 @@ import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 // In handleSignInButton check what's written
-
+// we need to check if the user trying to connect to the server from two computers or from two clients
 public class SignInController {
 
     public static String userName;
@@ -46,55 +46,62 @@ public class SignInController {
 
     @FXML
     void handleSignInButton() throws IOException {
-
+        // I do believe we need to send the details to the server and the server should check if the user is on the line or not
+        //because here we can just in both client click at the same the then we have all the users are not in so we can sign in
+        //in two clients with the same email
+        //if we send to the server, we will send it when we click on sign in and in the server we will check if this user are in
+        //and will check if the user is in the database then the server will redirect him to the correct page
         userName = userNameTB.getText();
-        boolean find = false;
-
         List<SignUp> signup = (List<SignUp>) msgObject.getObject();
 
         if (!signup.isEmpty()) {
             for (SignUp usr : signup) {
-                if ((usr.getEmail().equals(userName) && usr.getPassword().equals(passwordTB.getText())) ||
-                usr.getUsername().equals(userName) && usr.getPassword().equals(passwordTB.getText())) {
+                if (((usr.getEmail().equals(userName) && usr.getPassword().equals(passwordTB.getText())) ||
+                usr.getUsername().equals(userName) && usr.getPassword().equals(passwordTB.getText())) && !usr.isSignedIn()) {
                     user = usr;
-                    find = true;
+                    user.setSignedIn(true);
                     userName = usr.getUsername();
                     rank = usr.getAccountType();
                     break;
                 }
             }
         }
+        getClient().sendToServer(new MsgObject("signInButton", userName + passwordTB.getText()));
+
+
         //getClient().sendToServer(new MsgObject("CheckValidUser", str));
 
         // if the user name is found in the data base and the password is matching with it then
         // App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
-        if(!find)
-            errorMessageLabel.setVisible(true);
-        else {
-
-            switch (user.getAccountType()) {
-
-                case "system worker":
-                    App.setRoot("primarySystemWorker", "/Image/mainPageIcon.png", "Lilac");
-                    break;
-
-                case "customer service":
-                    App.setRoot("primaryCustomerService", "/Image/mainPageIcon.png", "Lilac");
-                    break;
-
-                case "system manager":
-                    /////
-                    break;
-
-                case "shop manager":
-                    ////
-                    break;
-
-                default:
-                    getClient().sendToServer(new MsgObject("primaryUser"));
-
-            }
-        }
+//        if(!find)
+//            errorMessageLabel.setVisible(true);
+//        else {
+//
+//            switch (user.getAccountType()) {
+//
+//                case "system worker":
+//                    getClient().sendToServer(new MsgObject("primarySystemWorker", user));
+//                    //App.setRoot("primarySystemWorker", "/Image/mainPageIcon.png", "Lilac");
+//                    break;
+//
+//                case "customer service":
+//                    getClient().sendToServer(new MsgObject("primaryCustomerService", user));
+//                    //App.setRoot("primaryCustomerService", "/Image/mainPageIcon.png", "Lilac");
+//                    break;
+//
+//                case "system manager":
+//                    /////
+//                    break;
+//
+//                case "shop manager":
+//                    ////
+//                    break;
+//
+//                default:
+//                    getClient().sendToServer(new MsgObject("primaryUser", user));
+//
+//            }
+//        }
     }
 
     @FXML
@@ -114,7 +121,14 @@ public class SignInController {
 
     @FXML
     void initialize() {
-
         errorMessageLabel.setVisible(false);
+        if(msgObject.isIn() == 2) {
+            errorMessageLabel.setText("Your email is signed in, please make sure to logout from other clients.");
+            errorMessageLabel.setVisible(true);
+        }
+        else if(msgObject.isIn() == 1){
+            errorMessageLabel.setText("The username / password is wrong, please try again.");
+            errorMessageLabel.setVisible(true);
+        }
     }
 }

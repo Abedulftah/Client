@@ -51,7 +51,7 @@ public class RespondToComplaintCustomerServiceController {
     @FXML
     void handleCancelButton() throws IOException {
 
-        getClient().sendToServer(new MsgObject("complaintsCustomerService"));
+        getClient().sendToServer(new MsgObject("complaintsCustomerService", user));
 
     }
     @FXML
