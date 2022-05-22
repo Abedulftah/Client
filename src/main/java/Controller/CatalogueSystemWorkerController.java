@@ -182,6 +182,16 @@ public class CatalogueSystemWorkerController {
 
     @FXML
     void handleDeleteButton() {
+
+        if (flowerList.size() == 1) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Progress failed");
+            alert.setContentText("Catalog must contain at least 1 product");
+            alert.show();
+            return;
+        }
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Confirmation");
         alert.setHeaderText("Are you sure you want to delete this product?");
@@ -192,8 +202,8 @@ public class CatalogueSystemWorkerController {
 
         alert.showAndWait().ifPresent(type -> {
             if (type == confirmButton) {
-                for(Catalog catalog : flowerList){
-                    if(catalog.getName().equals(chosenItemName.getText())){
+                for (Catalog catalog : flowerList) {
+                    if (catalog.getName().equals(chosenItemName.getText())) {
                         try {
                             getClient().sendToServer(new MsgObject("deleteItem", catalog));
                         } catch (IOException e) {

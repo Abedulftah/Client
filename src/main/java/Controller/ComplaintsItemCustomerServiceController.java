@@ -31,7 +31,7 @@ public class ComplaintsItemCustomerServiceController {
     @FXML
     void handleRefuseButton() {
 
-            CustomerWorkerRespond customerWorkerRespond = new CustomerWorkerRespond(user.getUsername(), complain.getName(), complain.getEmail(), complain.getPhone(), complain.getMessage(), "Sorry, that we did not fill your demands, we will do our best to make it better.\n We did not see that you deserve refund.");
+            CustomerWorkerRespond customerWorkerRespond = new CustomerWorkerRespond(user.getUsername(), complain.getName(), complain.getEmail(), complain.getPhone(), complain.getMessage(), "Sorry, that we did not fill your demands, we will do our best to make it better.\nWe did not see that you deserve refund.");
             try {
                 getClient().sendToServer(new MsgObject("messageRefused", customerWorkerRespond));
             } catch (IOException e) {

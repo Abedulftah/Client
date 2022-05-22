@@ -171,7 +171,6 @@ public class SpecialOrderUserController {
         String suggestedPrice = desiredPrice.getValue();
         String dominantColor = String.valueOf(colorPicker.getValue());
         dominantColor = "#" + dominantColor.substring(2, dominantColor.length() - 2);
-        anotherFlowerTA.setText(dominantColor);
 
 
         // Save order, flowersNumber, anotherSuggestedFlowers, suggestedPrice and dominantColor to

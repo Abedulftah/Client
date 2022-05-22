@@ -53,6 +53,7 @@ public class RespondToSpecialOrderCustomerServiceController {
         getClient().sendToServer(new MsgObject("specialOrdersCustomerService", user));
 
     }
+
     @FXML
     void handleHome() throws IOException {
         handleCancelButton();
@@ -70,6 +71,7 @@ public class RespondToSpecialOrderCustomerServiceController {
         }
         charactersLeftLabel.setText("Characters Left: " + (850 - respondTB.getText().replaceAll("\\n", "").length()));
     }
+
     @FXML
     void handleRespondTBKeyReleased() {
         handleRespondTBKeyPressed();

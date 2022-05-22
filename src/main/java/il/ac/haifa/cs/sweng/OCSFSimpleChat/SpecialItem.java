@@ -59,7 +59,7 @@ public class SpecialItem implements Serializable{
         this.price = price;
         this.color = color;
         this.user = user;
-        this.data ="Special order:\n " +
+        this.data ="Special order:\n" +
                 "container: " + container + "\n" +
                 "number of flowers: " + numOfFlowers + "\n" +
                 "contains a box of chocolates: " + chocolates + "\n" +
