@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+import static Controller.SignInController.user;
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
+
 public class App extends Application {
     public static final String CURRENCY = "$";
     private static Scene scene;
@@ -28,6 +31,12 @@ public class App extends Application {
         stage.setResizable(false);
         mainStage = stage;
         mainStage.show();
+    }
+
+    @Override
+    public void stop() throws IOException {
+        user.setSignedIn(false);
+        getClient().sendToServer(new MsgObject("Home", user));
     }
 
     public static void setRoot(String fxml, String image, String title) throws IOException {
