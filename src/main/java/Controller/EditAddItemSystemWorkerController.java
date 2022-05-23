@@ -1,5 +1,6 @@
 package Controller;
 
+import com.jfoenix.controls.JFXButton;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
@@ -34,11 +35,19 @@ public class EditAddItemSystemWorkerController {
     private boolean descriptionFlag;
     private boolean imageFlag = false;
 
+    private String mainProductName;
+
+    @FXML
+    private JFXButton cancelButton;
+
     @FXML
     private ImageView descriptionImage;
 
     @FXML
     private ImageView discountImage;
+
+    @FXML
+    private JFXButton doneButton;
 
     @FXML
     private ImageView imageImage;
@@ -82,7 +91,7 @@ public class EditAddItemSystemWorkerController {
     }
 
     @FXML
-    void handleDoneButton() {
+    void handleDoneButton() throws IOException {
 
         handleProductNameKeyPressed();
         handleProductPriceKeyPressed();
@@ -92,21 +101,21 @@ public class EditAddItemSystemWorkerController {
         if (CatalogueSystemWorkerController.editFlag) imageFlag = true;
         if (!imageFlag) {
             imageImage.setImage(new Image(getClass().getResourceAsStream("/Image/remove.png")));
-            imageImage.setVisible(true);
         } else {
             imageImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
-            imageImage.setVisible(true);
         }
+        imageImage.setVisible(true);
         if (!nameFlag || !priceFlag || !discountFlag || !sizeFlag || !descriptionFlag || !imageFlag) {
             return;
         }
-        double a = Double.parseDouble(productPriceTB.getText()) + Double.parseDouble(productDiscountTB.getText()) * (Double.parseDouble(productPriceTB.getText())/100);
+        double a = Double.parseDouble(productPriceTB.getText()) + Double.parseDouble(productDiscountTB.getText()) * (Double.parseDouble(productPriceTB.getText()) / 100);
         if (CatalogueSystemWorkerController.editFlag) {
             // Edit existing item
             // new attributes:
-            System.out.println(productImage.getImage().getUrl());
-            for(Catalog catalog : msgObject.getCatalogList()){
-                if(catalog.getName().equals(productNameTB.getText())){
+            for (Catalog catalog : msgObject.getCatalogList()) {
+                if (catalog.getName().equals(mainProductName)) {
+
+                    catalog.setName(productNameTB.getText());
                     catalog.setItemDetails(productDescriptionTB.getText());
                     catalog.setSize(productSizeTB.getText());
                     catalog.setImgUrl(productImage.getImage().getUrl());
@@ -134,6 +143,10 @@ public class EditAddItemSystemWorkerController {
                 throw new RuntimeException(e);
             }
         }
+
+        cancelButton.setDisable(true);
+        doneButton.setDisable(true);
+        getClient().sendToServer(new MsgObject("catalogueSystemWorker"));
     }
 
     @FXML
@@ -280,9 +293,10 @@ public class EditAddItemSystemWorkerController {
             productPriceTB.setText(String.valueOf(CatalogueSystemWorkerController.itemPrice));
             productSizeTB.setText(CatalogueSystemWorkerController.itemSize);
             productDescriptionTB.setText(CatalogueSystemWorkerController.itemDescription);
-            productImage.setImage(new Image(App.class.getResourceAsStream(CatalogueSystemWorkerController.itemImage)));
+            productImage.setImage(new Image(CatalogueSystemWorkerController.itemImage));
             productColor.setValue(Color.web(CatalogueSystemWorkerController.itemColor));
             productColor.setStyle("-fx-background-color: #" + CatalogueSystemWorkerController.itemColor);
+            mainProductName = productNameTB.getText();
 
         } else {
             titleLabel.setText("ADD NEW PRODUCT");

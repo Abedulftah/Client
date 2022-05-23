@@ -111,7 +111,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <JFXButton buttonType="RAISED" layoutX="1020.0" layoutY="52.0" onAction="#handleCancelButton" style="-fx-background-color: linear-gradient(to right, #ed213a, #93291e); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="CANCEL">
+                        <JFXButton fx:id="cancelButton" buttonType="RAISED" layoutX="1020.0" layoutY="52.0" onAction="#handleCancelButton" style="-fx-background-color: linear-gradient(to right, #ed213a, #93291e); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="CANCEL">
                            <font>
                               <Font name="Cambria Bold" size="24.0" />
                            </font>
@@ -119,7 +119,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="1154.0" layoutY="52.0" onAction="#handleDoneButton" style="-fx-background-color: linear-gradient(to right, #11998e, #38ef7d); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="DONE">
+                        <JFXButton fx:id="doneButton" buttonType="RAISED" layoutX="1154.0" layoutY="52.0" onAction="#handleDoneButton" style="-fx-background-color: linear-gradient(to right, #11998e, #38ef7d); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="DONE">
                            <font>
                               <Font name="Cambria Bold" size="24.0" />
                            </font>
