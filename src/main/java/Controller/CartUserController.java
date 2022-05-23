@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -37,6 +38,7 @@ public class CartUserController {
         //we need to check if there is the same item in the order, so we can just update the price/quantity
 
         Random random = new Random();
+        Date date = new Date();
 
         List<Catalog> catalogs = new ArrayList<>();
 
@@ -47,7 +49,7 @@ public class CartUserController {
                 && catalog.getUser() != null && catalog1.getUser() != null
                 && catalog.getUser().getEmail().equals(catalog1.getUser().getEmail())){
                     double a = Double.parseDouble(catalog.getPrice()) + Double.parseDouble(catalog.getPrice());
-                    catalog1.setDate(String.valueOf(java.time.LocalDate.of(2022,5,21 + random.nextInt(7))));
+                    catalog1.setDate(String.valueOf(java.time.LocalDate.of(2022,5,23 + random.nextInt(7))) + " " + (date.getHours() + random.nextInt(3)) + ":00");
                     catalog1.setPrice("" + a);
                     catalogList.add(catalog1);
                     catalogs.add(catalog);

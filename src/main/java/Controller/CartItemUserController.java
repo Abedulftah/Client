@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -38,8 +39,7 @@ public class CartItemUserController {
         // User will be redirected to pay for this specific item, when he pays move the item from
         // cart database to orders database for the current user
         Random random = new Random();
-
-        System.out.println(msgObject.getCatalogList().isEmpty());
+        Date date = new Date();
 
         for(Catalog catalog1 : msgObject.getCatalogList()){
             if(catalog1.getPrivilege() == 2 &&  catalog.getPrivilege() == 1
@@ -47,7 +47,8 @@ public class CartItemUserController {
             && catalog1.getUser().getEmail().equals(catalog.getUser().getEmail())){
                 double a = Double.parseDouble(catalog1.getPrice()) + Double.parseDouble(catalog.getPrice());
                 catalog1.setPrice("" + a);
-                catalog1.setDate(String.valueOf(java.time.LocalDate.of(2022,5,22 + random.nextInt(7))));
+                catalog1.setDate(String.valueOf(java.time.LocalDate.of(2022,5,23 + random.nextInt(7))) + " " + (date.getHours() + random.nextInt(3)) + ":00");
+                System.out.println(catalog1.getDate());
                 List<Catalog> catalogList2 = new ArrayList<>();
                 catalogList2.add(catalog);
 
@@ -66,7 +67,7 @@ public class CartItemUserController {
         }
 
         catalog.setPrivilege(2);
-        catalog.setDate(String.valueOf(java.time.LocalDate.of(2022,5,21 + random.nextInt(7))));
+        catalog.setDate(String.valueOf(java.time.LocalDate.of(2022,5,23 + random.nextInt(7))) + " " + (date.getHours() + random.nextInt(3)) + ":00");
         MsgObject msgObject =  new MsgObject("cartToOrder");
         msgObject.getCatalogList().add(catalog);
 

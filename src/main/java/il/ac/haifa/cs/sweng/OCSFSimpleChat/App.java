@@ -35,8 +35,15 @@ public class App extends Application {
 
     @Override
     public void stop() throws IOException {
-        user.setSignedIn(false);
-        getClient().sendToServer(new MsgObject("Home", user));
+        if(user != null) {
+            user.setSignedIn(false);
+            getClient().sendToServer(new MsgObject("exit", user));
+        }
+        try {
+            super.stop();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void setRoot(String fxml, String image, String title) throws IOException {
