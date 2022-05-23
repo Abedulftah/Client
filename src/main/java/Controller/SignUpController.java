@@ -448,6 +448,14 @@ public class SignUpController {
                     , PasswordTB.getText(), CityTB.getText() + " " + StreetTB.getText() + " " + ZIPCTB.getText() + " " + POBoxTB.getText(),
                     CreditCardHolderTB.getText(), CreditCardHolderTB.getText(), ExpDateYearCB.getText() + "/" + ExpDateMonthCB.getText(),
                     Integer.parseInt(CVVTB.getText()));
+            signup.setCity(CityTB.getText());
+            signup.setStreet(StreetTB.getText());
+            signup.setZip(ZIPCTB.getText());
+            if (POBoxTB.getText().equals("")) {
+                signup.setPob("not added");
+            } else {
+                signup.setPob(POBoxTB.getText());
+            }
 
             try {
                 getClient().sendToServer(new MsgObject("addUser", signup));

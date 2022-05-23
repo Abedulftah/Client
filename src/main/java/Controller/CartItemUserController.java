@@ -4,6 +4,9 @@ import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
@@ -82,14 +85,27 @@ public class CartItemUserController {
 
     @FXML
     void handleRemoveButton() {
-        // Remove the current item from the cart database
-        MsgObject msgObject =  new MsgObject("removeFromCart");
-        msgObject.getCatalogList().add(catalog);
-        try {
-            getClient().sendToServer(msgObject);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Confirmation");
+        alert.setHeaderText("Confirm that you are willing to remove this product from cart");
+        ButtonType confirmButton = new ButtonType("Confirm", ButtonBar.ButtonData.YES);
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(confirmButton, cancelButton);
+
+        alert.showAndWait().ifPresent(type -> {
+            if (type == confirmButton) {
+                MsgObject msgObject =  new MsgObject("removeFromCart");
+                msgObject.getCatalogList().add(catalog);
+                try {
+                    getClient().sendToServer(msgObject);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+
     }
 
     public void setData(Catalog catalog) {

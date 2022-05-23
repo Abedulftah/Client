@@ -29,8 +29,7 @@ public class NotificationsItemUserController {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Confirmation");
-        alert.setHeaderText("Remove notification?");
-        alert.setContentText("Deleting the notification means you'll never be able to see it again");
+        alert.setHeaderText("Confirm that you are willing to remove the notification");
         ButtonType confirmButton = new ButtonType("Confirm", ButtonBar.ButtonData.YES);
         ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(confirmButton, cancelButton);
