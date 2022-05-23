@@ -11,13 +11,23 @@ import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 public class PrimarySingleShopManagerController {
 
     @FXML
+    void handleComplaintHistogram() {
+
+    }
+
+    @FXML
     void handleLogoutButton() throws IOException {
         user.setSignedIn(false);
         getClient().sendToServer(new MsgObject("Home", user));
     }
 
     @FXML
-    void handleShowHistogram() {
+    void handleOrdersHistogram() {
+
+    }
+
+    @FXML
+    void handleProfitHistogram() {
 
     }
 
