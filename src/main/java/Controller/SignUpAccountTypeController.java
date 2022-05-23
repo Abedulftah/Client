@@ -3,6 +3,7 @@ package Controller;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -10,6 +11,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
@@ -143,7 +147,9 @@ public class SignUpAccountTypeController {
     @FXML
     void initialize() {
 
-        chooseShopCB.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> shopList = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) shopList.add(i);
+        chooseShopCB.getItems().addAll(shopList);
         chooseShopCB.setVisible(false);
         style = basicVB.getStyle();
         basicVB.setStyle("");
