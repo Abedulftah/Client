@@ -39,6 +39,7 @@ public class CartUserController {
         //we need to make a list of new instances of shop to take care of all orders
 
         // User will be redirected to a page to confirm his details, when he pays move all items
+        // will pop an alert to say if he confirmation the detials of the account if pop another alert to say to change his details in the main page
         // From the Cart database to orders database of the current user
         //we need to check if there is the same item in the order, so we can just update the price/quantity
 

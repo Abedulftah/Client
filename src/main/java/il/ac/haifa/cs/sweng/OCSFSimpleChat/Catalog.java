@@ -25,12 +25,12 @@ public class Catalog implements Serializable {
     @Column(name = "size")
     private String size;
 
-
     @Column(name = "Quantity")
     private int left;
     @Column(name = "imgUrl")
     private String imgUrl;
 
+    //we do not need it anymore because of order
     @Column(name = "date")
     private String date;
 
@@ -38,8 +38,6 @@ public class Catalog implements Serializable {
     @JoinColumn(name = "user_id")
     private SignUp user;
 
-    @Lob
-    Blob image;
     private int privilege = 0;
 
     public Catalog(String imgUrl, String name, String price, String details, String size, String color){

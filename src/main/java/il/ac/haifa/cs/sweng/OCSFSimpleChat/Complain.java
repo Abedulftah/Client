@@ -2,7 +2,7 @@ package il.ac.haifa.cs.sweng.OCSFSimpleChat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
+//we need to check if the complaint date is less then 24 hour from the date of now
 @Entity
 @Table(
         name = "complainlist"

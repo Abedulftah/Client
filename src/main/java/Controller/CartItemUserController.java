@@ -50,6 +50,7 @@ public class CartItemUserController {
         //we need to make a new instance of shop that will count the order and the value of it0
 
         // User will be redirected to pay for this specific item, when he pays move the item from
+        // will pop an alert to say to confirmable the detials of the account if not then will pop another alert to say to change his details in the main page
         // cart database to orders database for the current user
         Random random = new Random();
         Date date = new Date();
@@ -66,6 +67,7 @@ public class CartItemUserController {
                 catalogList2.add(catalog);
 
                 msgObject.getCatalogList().remove(catalog);
+                msgObject.getCatalogList().add(catalog1);
 
                 MsgObject msgObject1 = new MsgObject("cartToOrder", catalogList2);
                 msgObject1.setCatalogList(msgObject.getCatalogList());
