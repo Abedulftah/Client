@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
@@ -32,6 +33,21 @@ public class OrderItemUserController extends Node {
 
     @FXML
     private Label sizeLabel;
+
+    public static int numberOfItems = 0; //////////////////////////// Remove the initialization
+
+    @FXML
+    void handleBoxClicked() {
+
+        // sizeLabel and descriptionLabel named as this to refrain from having errors
+        // sizeLabel represents 'Number of items in this order'
+        // descriptionLabel represents 'Location'
+
+        // Leave this as it is, it has a use in the page where you show the order details
+        // numberOfItems = Integer.parseInt(sizeLabel.getText());
+
+        // App.setRoot("detailedOrderUser", "/Image/myOrdersIcon.png", "Orders");
+    }
 
     @FXML
     void handleCancelOrderButton() {
