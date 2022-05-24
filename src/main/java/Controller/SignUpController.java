@@ -1,5 +1,6 @@
 package Controller;
 
+import com.jfoenix.controls.JFXButton;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.SignUp;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -13,10 +14,12 @@ import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static Controller.SignUpAccountTypeController.globalAccountType;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
@@ -113,6 +116,9 @@ public class SignUpController {
     private MFXTextField PhoneTB;
 
     @FXML
+    private JFXButton SignUpButton;
+
+    @FXML
     private ImageView StreetImage;
 
     @FXML
@@ -150,6 +156,9 @@ public class SignUpController {
 
     @FXML
     private Label successLabel3;
+
+    @FXML
+    private Label userDetailsErrorLabel;
 
     @FXML
     void CVVQuestionMarkEnter() {
@@ -270,6 +279,7 @@ public class SignUpController {
     @FXML
     void handleEmailTB() {
 
+        userDetailsErrorLabel.setVisible(false);
         String text = EmailTB.getText();
         String regularExpressionPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
@@ -282,11 +292,6 @@ public class SignUpController {
             flag2 = true;
             EmailImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
         }
-    }
-
-    @FXML
-    void handleExitSignUp() {
-        System.exit(0);
     }
 
     @FXML
@@ -404,7 +409,7 @@ public class SignUpController {
     }
 
     @FXML
-    void handleSignUpButton() {
+    void handleSignUpButton() throws IOException {
 
         handleUserNameTB();
         handleEmailTB();
@@ -422,11 +427,35 @@ public class SignUpController {
         handleExpDateYearCBSelected();
         handleCVVTB();
 
+        List<SignUp> signUpList = (List<SignUp>) msgObject.getObject();
+        if (!signUpList.isEmpty()) {
+            for (SignUp signUp : signUpList) {
+                if (signUp.getUsername().equals(UsernameTB.getText())) {
+                    userDetailsErrorLabel.setText("This username is already taken");
+                    userDetailsErrorLabel.setVisible(true);
+                    flag1 = false;
+                    UserNameImage.setImage(new Image(getClass().getResourceAsStream("/Image/remove.png")));
+                    return;
+                }
+                if (signUp.getEmail().equals(EmailTB.getText())) {
+                    userDetailsErrorLabel.setText("This email is already taken");
+                    userDetailsErrorLabel.setVisible(true);
+                    flag2 = false;
+                    EmailImage.setImage(new Image(getClass().getResourceAsStream("/Image/remove.png")));
+                    return;
+                }
+            }
+        }
+
         if (flag1 && flag2 && flag3 && flag4 && flag5 && flag6 && flag7 && flag8 && flag9 &&
                 flag10 && flag11 && flag12 && flag13) {
             successLabel1.setText(firstLabel);
             successLabel2.setText(secondLabel);
             successLabel3.setText(thirdLabel);
+
+            successLabel1.setVisible(true);
+            successLabel2.setVisible(true);
+            successLabel3.setVisible(true);
 
             UsernameTB.setDisable(true);
             EmailTB.setDisable(true);
@@ -444,7 +473,7 @@ public class SignUpController {
             ExpDateYearCB.setDisable(true);
             CVVTB.setDisable(true);
 
-            SignUp signup = new SignUp(msgObject.getObject().toString(), UsernameTB.getText(), EmailTB.getText(), PhoneTB.getText()
+            SignUp signup = new SignUp(globalAccountType, UsernameTB.getText(), EmailTB.getText(), PhoneTB.getText()
                     , PasswordTB.getText(), CityTB.getText() + " " + StreetTB.getText() + " " + ZIPCTB.getText() + " " + POBoxTB.getText(),
                     CreditCardHolderTB.getText(), CreditCardHolderTB.getText(), ExpDateYearCB.getText() + "/" + ExpDateMonthCB.getText(),
                     Integer.parseInt(CVVTB.getText()));
@@ -462,6 +491,7 @@ public class SignUpController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            SignUpButton.setDisable(true);
         }
     }
 
@@ -499,6 +529,7 @@ public class SignUpController {
     @FXML
     void handleUserNameTB() {
 
+        userDetailsErrorLabel.setVisible(false);
         String text = UsernameTB.getText();
         String regularExpressionPattern = "^(?=.{8,24}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
         Pattern pattern = Pattern.compile(regularExpressionPattern);

@@ -19,6 +19,15 @@
    <children>
       <AnchorPane layoutX="75.0" layoutY="85.0" prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: linear-gradient(to right, #8a2387, #e94057, #f27121); -fx-background-radius: 50;">
          <children>
+            <HBox alignment="CENTER" layoutY="134.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label fx:id="userDetailsErrorLabel" style="-fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="This username is already taken" visible="false">
+                     <font>
+                        <Font name="Cambria" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <MFXTextField fx:id="UsernameTB" floatingText="Username" layoutX="50.0" layoutY="170.0" onKeyReleased="#handleUserNameTB" prefHeight="50.0" prefWidth="250.0" promptText="violaovary" textLimit="24" />
             <MFXTextField fx:id="EmailTB" floatingText="E-mail" layoutX="50.0" layoutY="235.0" onKeyReleased="#handleEmailTB" prefHeight="50.0" prefWidth="250.0" promptText="example@hotmail.com" textLimit="64" />
             <MFXComboBox fx:id="phoneCodeList" floatingText="Phone Code" layoutX="50.0" layoutY="300.0" onAction="#handlePhoneCodeListSelected" onMouseClicked="#handlePhoneCodeList" prefHeight="50.0" prefWidth="120.0" promptText="050">

@@ -27,7 +27,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("Catalog", "/Image/catalogIcon.png", "Catalogue");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -36,7 +36,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -45,7 +45,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("contactUs", "/Image/contactUsIcon.png", "Contact Us");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -54,7 +54,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("specialOrdersCustomerService", "/Image/specialOrderIcon.png", "Special Order");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -63,7 +63,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("SignIn", "/Image/loginIcon.png", "Sign In");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -72,7 +72,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("SignUp", "/Image/signUpIcon.png", "Sign Up");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -81,7 +81,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("SignUpAccountType", "/Image/signUpIcon.png", "Sign Up");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -90,7 +90,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("cartUser", "/Image/cartIcon.png", "Cart");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -99,7 +99,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("catalogueUser", "/Image/catalogIcon.png", "Catalogue");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -108,7 +108,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("complainUser", "/Image/complaintIcon.png", "Complain");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -117,7 +117,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("myOrdersUser", "/Image/myOrdersIcon.png", "My Orders");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -126,7 +126,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("specialOrderUser", "/Image/specialOrderIcon.png", "Special Order");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -135,7 +135,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("primaryUser", "/Image/mainPageIcon.png", "Lilac");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -144,7 +144,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("primarySystemWorker", "/Image/mainPageIcon.png", "Lilac");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -153,7 +153,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("primaryCustomerService", "/Image/mainPageIcon.png", "Lilac");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -162,7 +162,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("notificationsUser", "/Image/notificationIcon.png", "Notifications");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -171,7 +171,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("primaryManager", "/Image/mainPageIcon.png", "Lilac");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -180,7 +180,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("compareHist", "/Image/mainPageIcon.png", "Lilac");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -189,7 +189,7 @@ public class SimpleClient extends AbstractClient {
                     try {
                         App.setRoot("Histograms", "/Image/mainPageIcon.png", "Lilac");
                     } catch (IOException e) {
-                        // TODO Auto-generated catch block
+                        
                         e.printStackTrace();
                     }
                 });
@@ -198,7 +198,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("primarySingleShopManager", "/Image/mainPageIcon.png", "Lilac");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -207,7 +207,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("catalogueSystemWorker", "/Image/catalogIcon.png", "Catalogue");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });
@@ -216,7 +216,7 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("complaintsCustomerService", "/Image/complaintIcon.png", "Complaints");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             });

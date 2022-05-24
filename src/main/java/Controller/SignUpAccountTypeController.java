@@ -59,6 +59,8 @@ public class SignUpAccountTypeController {
     @FXML
     private VBox goldVB;
 
+    public static String globalAccountType;
+
     @FXML
     void handleBasicMemberShip() {
 
@@ -136,9 +138,10 @@ public class SignUpAccountTypeController {
         } else {
             if (basicVB.getStyle().equals(style)) {
                 shop = chooseShopCB.getSelectedItem();
-                getClient().sendToServer(new MsgObject("signUp",accountType + shop)); //we need to change an item in the msg object that means I need an object not a list of a specific type
-            }
-            else{
+                globalAccountType = accountType + shop;
+                getClient().sendToServer(new MsgObject("signUp", accountType + shop)); //we need to change an item in the msg object that means I need an object not a list of a specific type
+            } else {
+                globalAccountType = accountType;
                 getClient().sendToServer(new MsgObject("signUp", accountType));
             }
         }
