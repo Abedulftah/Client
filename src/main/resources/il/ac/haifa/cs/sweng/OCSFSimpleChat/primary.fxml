@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -41,7 +42,7 @@
                         <Bloom />
                      </effect>
                   </Label>
-                  <Button fx:id="buttonSignIn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#signInHandle" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../../Styles/newStyles.css" text="Sign In" textFill="#e7e5e5">
+                  <Button fx:id="buttonSignIn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../../Styles/newStyles.css" text="Sign In" textFill="#e7e5e5">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -55,17 +56,17 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
                      <effect>
                         <Bloom />
                      </effect>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
                   </Button>
-                  <Button fx:id="buttonCatalog" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#catalogHandle" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../../Styles/newStyles.css" text="Catalogue">
+                  <Button fx:id="buttonCatalog" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../../Styles/newStyles.css" text="Catalogue">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -83,7 +84,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="buttonContactUs" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#contactUsHandle" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../../Styles/newStyles.css" text="Contact Us">
+                  <Button fx:id="buttonContactUs" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../../Styles/newStyles.css" text="Contact Us">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -101,7 +102,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="buttonSignUp" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#SignUpHandle" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../../Styles/newStyles.css" text="Sign Up">
+                  <Button fx:id="buttonSignUp" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../../Styles/newStyles.css" text="Sign Up">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -257,6 +258,31 @@
                   </Pane>
                </children>
             </StackPane>
+            <VBox prefHeight="200.0" prefWidth="256.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Pane prefHeight="142.0" prefWidth="257.0" />
+                  <JFXButton onAction="#signInHandle" prefHeight="42.0" prefWidth="256.0" style="-fx-text-fill: linear-gradient(to right, #ed213a, #93291e);">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton onAction="#catalogHandle" prefHeight="42.0" prefWidth="256.0" style="-fx-text-fill: linear-gradient(to right, #ed213a, #93291e);">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton onAction="#contactUsHandle" prefHeight="42.0" prefWidth="256.0" style="-fx-text-fill: linear-gradient(to right, #ed213a, #93291e);">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton onAction="#SignUpHandle" prefHeight="42.0" prefWidth="256.0" style="-fx-text-fill: linear-gradient(to right, #ed213a, #93291e);">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </VBox>
          </children>
          <effect>
             <DropShadow color="#1b1eeb" />

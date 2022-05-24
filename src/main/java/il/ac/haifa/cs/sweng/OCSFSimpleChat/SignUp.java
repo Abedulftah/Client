@@ -33,6 +33,18 @@ public class SignUp implements Serializable{
     @Column(name = "address")
     private String address;
 
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "zip")
+    private String zip;
+
+    @Column(name = "pob")
+    private String pob;
+
     @Column(name = "credit_card")
     private String creditCard;
 
@@ -68,6 +80,38 @@ public class SignUp implements Serializable{
         this.holderOfCard = holderOfCard;
         this.date = date;
         this.cvv = cvv;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getPob() {
+        return pob;
+    }
+
+    public void setPob(String pob) {
+        this.pob = pob;
     }
 
     public void setSignedIn(boolean signedIn) {

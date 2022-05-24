@@ -83,6 +83,11 @@ public class CartUserController {
     }
 
     @FXML
+    void handleCheckDetails() throws IOException {
+        App.setRoot("userDetailsUser", "/Image/userDetailsIcon.png", "User Details");
+    }
+
+    @FXML
     void handleHome() throws IOException {
         App.setRoot("primaryUser", "/Image/mainPageIcon.png", "Lilac");
     }
