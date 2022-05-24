@@ -42,7 +42,7 @@
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></MFXTextField>
-                  <Label layoutX="65.0" layoutY="10.0" prefHeight="50.0" text="Payment Details" textFill="GOLD">
+                  <Label layoutX="50.0" layoutY="14.0" prefHeight="50.0" text="Payment Details" textFill="GOLD">
                      <font>
                         <Font name="Cambria" size="36.0" />
                      </font>

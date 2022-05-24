@@ -2,9 +2,13 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.MotionBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -104,14 +108,38 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
                             <children>
-                                <JFXButton onAction="#handleBuyAllButton" style="-fx-background-color: linear-gradient(to right, #00c6ff, #0072ff); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="BUY ALL">
-                                    <cursor>
-                                        <Cursor fx:constant="HAND" />
-                                    </cursor>
-                                    <font>
-                                        <Font name="Cambria Bold" size="18.0" />
-                                    </font>
-                                </JFXButton>
+                        <VBox alignment="TOP_CENTER" prefWidth="214.0">
+                           <children>
+                                      <JFXButton onAction="#handleBuyAllButton" style="-fx-background-color: linear-gradient(to right, #00c6ff, #0072ff); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="BUY ALL">
+                                          <cursor>
+                                              <Cursor fx:constant="HAND" />
+                                          </cursor>
+                                          <font>
+                                              <Font name="Cambria Bold" size="18.0" />
+                                          </font>
+                                      </JFXButton>
+                              <Separator maxWidth="1.7976931348623157E308" style="-fx-background-color: linear-gradient(to right, #000000, #434343); -fx-border-color: linear-gradient(to right, #000000, #434343);">
+                                 <effect>
+                                    <MotionBlur>
+                                       <input>
+                                          <InnerShadow />
+                                       </input>
+                                    </MotionBlur>
+                                 </effect>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Separator>
+                              <JFXButton onAction="#handleBuySpecifiedButton" style="-fx-background-color: linear-gradient(to right, #11998e, #38ef7d); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="BUY SPECIFIED">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <font>
+                                    <Font name="Cambria Bold" size="18.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </VBox>
                             </children>
                         </HBox>
                     </children>

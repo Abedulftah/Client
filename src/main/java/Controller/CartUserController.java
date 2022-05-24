@@ -31,6 +31,9 @@ public class CartUserController {
 
     private List<Catalog> catalogList = new ArrayList<>();
 
+    public static List<Catalog> specifiedItemsList = new ArrayList<>();
+    // See handleBuySpecifiedButton and buy the items in specifiedItemsList
+
     @FXML
     void handleBuyAllButton() {
         //we need to make a list of new instances of shop to take care of all orders
@@ -81,6 +84,11 @@ public class CartUserController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    void handleBuySpecifiedButton() {
+
     }
 
     @FXML
