@@ -17,9 +17,9 @@
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="1284.0" style="-fx-background-color: transparent;">
          <children>
-            <HBox>
+            <HBox fx:id="hbox">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
+                  <HBox alignment="CENTER" onMouseClicked="#handleBoxClicked" prefHeight="100.0" prefWidth="214.0">
                      <children>
                         <Label fx:id="nameLabel" style="-fx-text-fill: linear-gradient(to right, #d3cce3, #e9e4f0);" text="Pop Israel Flowers" wrapText="true">
                            <font>
@@ -31,7 +31,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
+                  <HBox alignment="CENTER" onMouseClicked="#handleBoxClicked" prefHeight="100.0" prefWidth="214.0">
                      <children>
                         <Label fx:id="priceLabel" style="-fx-text-fill: linear-gradient(to right, #d3cce3, #e9e4f0);" text="\$130.99" wrapText="true">
                            <font>
@@ -43,7 +43,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
+                  <HBox alignment="CENTER" onMouseClicked="#handleBoxClicked" prefHeight="100.0" prefWidth="214.0">
                      <children>
                         <Label fx:id="sizeLabel" style="-fx-text-fill: linear-gradient(to right, #d3cce3, #e9e4f0);" text="Approximately 10.5&quot; W x 11&quot; H" wrapText="true">
                            <font>
@@ -55,7 +55,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Pane prefHeight="100.0" prefWidth="214.0">
+                  <Pane onMouseClicked="#handleBoxClicked" prefHeight="100.0" prefWidth="214.0">
                      <children>
                         <MFXScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutY="5.0" prefHeight="90.0" prefWidth="214.0" style="-fx-background-color: transparent;">
                            <content>
@@ -75,7 +75,7 @@
                         </MFXScrollPane>
                      </children>
                   </Pane>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
+                  <HBox alignment="CENTER" onMouseClicked="#handleBoxClicked" prefHeight="100.0" prefWidth="214.0">
                      <children>
                         <Label fx:id="quantityLabel" style="-fx-text-fill: linear-gradient(to right, #d3cce3, #e9e4f0);" text="10" wrapText="true">
                            <font>
@@ -87,7 +87,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
+                  <HBox alignment="CENTER" onMouseClicked="#handleBoxClicked" prefHeight="100.0" prefWidth="214.0">
                      <children>
                         <JFXButton onAction="#handleBuyButton" prefHeight="28.0" prefWidth="71.0" style="-fx-background-color: linear-gradient(to right, #00c6ff, #0072ff); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="Buy">
                            <cursor>

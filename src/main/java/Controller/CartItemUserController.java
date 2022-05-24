@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class CartItemUserController {
     private Label descriptionLabel;
 
     @FXML
+    private HBox hbox;
+
+    @FXML
     private Label nameLabel;
 
     @FXML
@@ -36,6 +40,10 @@ public class CartItemUserController {
 
     @FXML
     private Label sizeLabel;
+
+    private String style;
+
+    private int counter = 0;
 
     @FXML
     void handleBuyButton() {
@@ -86,6 +94,22 @@ public class CartItemUserController {
     }
 
     @FXML
+    void handleBoxClicked() {
+
+        // If (counter % 2 == 0) then the item is chosen so insert it to a list of items you need to buy
+        // See the list 'specifiedItemsList' I created at CartUserController and add to it
+
+        if (counter % 2 == 0) {
+            hbox.setStyle("-fx-background-color: #80b380");
+            // Insert to a list of items that you wanna buy
+        } else {
+            hbox.setStyle(style);
+            // Remove from the list of items that you wanna buy
+        }
+        counter++;
+    }
+
+    @FXML
     void handleRemoveButton() {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -117,5 +141,10 @@ public class CartItemUserController {
             this.priceLabel.setText(App.CURRENCY + catalog.getPrice());
             this.sizeLabel.setText(catalog.getSize());
             this.quantityLabel.setText("" + catalog.getLeft());
+    }
+
+    @FXML
+    void initialize() {
+        style = hbox.getStyle();
     }
 }
