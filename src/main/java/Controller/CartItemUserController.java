@@ -8,7 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class CartItemUserController {
     private Label descriptionLabel;
 
     @FXML
-    private HBox hbox;
+    private AnchorPane anchorPane;
 
     @FXML
     private Label nameLabel;
@@ -100,10 +100,10 @@ public class CartItemUserController {
         // See the list 'specifiedItemsList' I created at CartUserController and add to it
 
         if (counter % 2 == 0) {
-            hbox.setStyle("-fx-background-color: #80b380");
+            anchorPane.setStyle("-fx-background-color: #80b380");
             // Insert to a list of items that you wanna buy
         } else {
-            hbox.setStyle(style);
+            anchorPane.setStyle(style);
             // Remove from the list of items that you wanna buy
         }
         counter++;
@@ -145,6 +145,6 @@ public class CartItemUserController {
 
     @FXML
     void initialize() {
-        style = hbox.getStyle();
+        style = anchorPane.getStyle();
     }
 }
