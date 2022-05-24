@@ -17,7 +17,6 @@ public class PrimaryCustomerServiceController {
     void handleLogoutButton() throws IOException {
         user.setSignedIn(false);
         getClient().sendToServer(new MsgObject("Home", user));
-        //App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
     }
 
     @FXML

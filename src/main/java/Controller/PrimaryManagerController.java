@@ -89,18 +89,20 @@ public class PrimaryManagerController {
     }
 
     @FXML
-    void handleShowComplaints() {
-
+    void handleShowComplaints() throws IOException {
+        getClient().sendToServer(new MsgObject("complaintsCustomerService"));
     }
 
     @FXML
-    void handleShowSpecialOrders() {
+    void handleShowSpecialOrders() throws IOException {
+        getClient().sendToServer(new MsgObject("specialOrdersCustomerService"));
 
     }
 
     @FXML
     void handleShowUsers() {
-
+        //getUsersInformation
+        //will enable the manager to edit the details
     }
 
     @FXML
