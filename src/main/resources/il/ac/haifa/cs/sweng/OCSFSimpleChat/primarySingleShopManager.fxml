@@ -44,24 +44,40 @@
                               <Font name="Cambria Bold" size="36.0" />
                            </font>
                         </Label>
-                        <HBox alignment="CENTER">
+                        <VBox alignment="CENTER">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
                            <children>
-                              <JFXButton buttonType="RAISED" onAction="#handleShowHistogram" style="-fx-background-color: linear-gradient(to right, #00c6ff, #0072ff); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="SHOW HISTOGRAM">
+                              <JFXButton buttonType="RAISED" onAction="#handleComplaintHistogram" style="-fx-background-color: linear-gradient(to right, #00c6ff, #0072ff); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="COMPLAINT HISTOGRAM">
                                  <font>
                                     <Font name="Cambria Bold" size="24.0" />
                                  </font>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton buttonType="RAISED" onAction="#handleProfitHistogram" prefWidth="308.0" style="-fx-background-color: linear-gradient(to right, #e52d27, #b31217); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="PROFIT HISTOGRAM">
+                                 <font>
+                                    <Font name="Cambria Bold" size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </JFXButton>
+                              <JFXButton buttonType="RAISED" onAction="#handleOrdersHistogram" prefWidth="308.0" style="-fx-background-color: linear-gradient(to right, #bc4e9c, #f80759); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="ORDERS HISTOGRAM">
+                                 <font>
+                                    <Font name="Cambria Bold" size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </JFXButton>
                            </children>
-                        </HBox>
+                        </VBox>
                      </children>
                   </VBox>
                </children>

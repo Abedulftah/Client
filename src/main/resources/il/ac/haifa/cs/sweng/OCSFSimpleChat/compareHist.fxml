@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="557.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CompareHist">
+   <children>
+      <BarChart fx:id="hist" layoutX="38.0" layoutY="35.0" prefHeight="492.0" prefWidth="641.0">
+        <xAxis>
+          <CategoryAxis fx:id="histX" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="histY" side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>

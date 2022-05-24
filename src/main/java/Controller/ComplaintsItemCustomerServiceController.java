@@ -8,7 +8,6 @@ import java.io.IOException;
 
 import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
-
 public class ComplaintsItemCustomerServiceController {
 
     @FXML

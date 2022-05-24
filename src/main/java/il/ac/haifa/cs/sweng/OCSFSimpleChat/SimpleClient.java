@@ -166,7 +166,43 @@ public class SimpleClient extends AbstractClient {
                     e.printStackTrace();
                 }
             });
-        } else if (msgObject.getMsg().equals("catalogueSystemWorker")) {
+        }else if (msgObject.getMsg().equals("primaryManager")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("primaryManager", "/Image/mainPageIcon.png", "Lilac");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
+        }else if (msgObject.getMsg().startsWith("compareHist")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("compareHist", "/Image/mainPageIcon.png", "Lilac");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
+        }else if (msgObject.getMsg().startsWith("Histogram")) {
+                Platform.runLater(() -> {
+                    try {
+                        App.setRoot("Histograms", "/Image/mainPageIcon.png", "Lilac");
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                });
+        }else if (msgObject.getMsg().equals("primarySingleShopManager")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("primarySingleShopManager", "/Image/mainPageIcon.png", "Lilac");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
+        }else if (msgObject.getMsg().equals("catalogueSystemWorker")) {
             Platform.runLater(() -> {
                 try {
                     App.setRoot("catalogueSystemWorker", "/Image/catalogIcon.png", "Catalogue");
@@ -175,7 +211,7 @@ public class SimpleClient extends AbstractClient {
                     e.printStackTrace();
                 }
             });
-        } else if (msgObject.getMsg().equals("complaintsCustomerService")) {
+        }else if (msgObject.getMsg().equals("complaintsCustomerService")) {
             Platform.runLater(() -> {
                 try {
                     App.setRoot("complaintsCustomerService", "/Image/complaintIcon.png", "Complaints");

@@ -36,6 +36,8 @@ public class CartItemUserController {
 
     @FXML
     void handleBuyButton() {
+        //we need to make a new instance of shop that will count the order and the value of it0
+
         // User will be redirected to pay for this specific item, when he pays move the item from
         // cart database to orders database for the current user
         Random random = new Random();

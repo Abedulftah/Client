@@ -33,6 +33,8 @@ public class CartUserController {
 
     @FXML
     void handleBuyAllButton() {
+        //we need to make a list of new instances of shop to take care of all orders
+
         // User will be redirected to a page to confirm his details, when he pays move all items
         // From the Cart database to orders database of the current user
         //we need to check if there is the same item in the order, so we can just update the price/quantity
@@ -65,7 +67,7 @@ public class CartUserController {
             for (Catalog catalog : msgObject.getCatalogList()) {
                 if (catalog.getPrivilege() == 1 && catalog.getUser() != null && catalog.getUser().getEmail().equals(user.getEmail())) {
                     catalog.setPrivilege(2);
-                    catalog.setDate(String.valueOf(java.time.LocalDate.of(2022,5,21 + random.nextInt(7))));
+                    catalog.setDate(String.valueOf(java.time.LocalDate.of(2022,5,23 + random.nextInt(7))) + " " + (date.getHours() + random.nextInt(3)) + ":00");
                     catalogList.add(catalog);
                 }
             }

@@ -26,14 +26,36 @@ public class Complain implements Serializable{
     @Column(name = "message")
     private String message;
 
+    @Column(name = "shop_id")
+    private String shopId;
 
+    @Column(name = "date")
+    private String date;
 
     public Complain(){}
-    public Complain(String name, String email, String phone, String message){
+    public Complain(String name, String email, String phone, String message, String shopId, String date){
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.message = message;
+        this.shopId = shopId;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(String shopId) {
+        this.shopId = shopId;
     }
 
     public void setEmail(String email) {

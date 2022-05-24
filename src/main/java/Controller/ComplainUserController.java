@@ -17,6 +17,8 @@ import java.io.IOException;
 
 import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
+//when a client send a complaint we need to make a new instance of shop that count that complaint for the specific shop
+//if the client is not normal we will make a new instance of the shop 100 that mean global shop
 
 // See what's written at the very beginning of void initialize()
 // See what's written at the end of handleSendMessageButton
@@ -83,7 +85,7 @@ public class ComplainUserController {
             pause.setOnFinished(e -> messageErrorLabel.setVisible(false));
             pause.play();
 
-            Complain complain = new Complain(user.getUsername(), user.getEmail(), user.getPhone(), messageTB.getText());
+            Complain complain = new Complain(user.getUsername(), user.getEmail(), user.getPhone(), messageTB.getText(), user.getAccountType(), String.valueOf(java.time.LocalDate.now()));
             try {
                 getClient().sendToServer(new MsgObject("complainList", complain));
             } catch (IOException e) {

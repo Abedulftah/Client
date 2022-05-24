@@ -66,7 +66,7 @@ public class SignUpAccountTypeController {
         errorLabel2.setVisible(false);
         chooseShopCB.setVisible(true);
         basicXImage.setVisible(false);
-        accountType = "basic";
+        accountType = "shop ";
         basicVB.setStyle(style);
         goldVB.setStyle("");
         eliteVB.setStyle("");

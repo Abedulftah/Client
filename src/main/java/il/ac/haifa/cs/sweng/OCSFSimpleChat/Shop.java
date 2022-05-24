@@ -23,7 +23,7 @@ public class Shop implements Serializable {
     private int id;
 
     @Column(name = "shop_id")
-    private int shopId;
+    private String shopId;
 
     @Column(name = "number_of_complaints")
     private int numberOfComplaints;
@@ -35,10 +35,10 @@ public class Shop implements Serializable {
     private int numberOfOrders;
 
     @Column(name = "date")
-    private int date;
+    private String date;
 
     public Shop(){}
-    public Shop(int shopId, int numberOfComplaints, double profit, int numberOfOrders, int date){
+    public Shop(String shopId, int numberOfComplaints, double profit, int numberOfOrders, String date){
         this.shopId = shopId;
         this.numberOfComplaints = numberOfComplaints;
         this.profit = profit;
@@ -55,7 +55,7 @@ public class Shop implements Serializable {
         return profit;
     }
 
-    public int getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -67,7 +67,7 @@ public class Shop implements Serializable {
         return numberOfOrders;
     }
 
-    public int getShopId() {
+    public String getShopId() {
         return shopId;
     }
 
@@ -75,7 +75,7 @@ public class Shop implements Serializable {
         this.id = id;
     }
 
-    public void setDate(int date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -91,7 +91,7 @@ public class Shop implements Serializable {
         this.profit = profit;
     }
 
-    public void setShopId(int shopId) {
+    public void setShopId(String shopId) {
         this.shopId = shopId;
     }
 }
