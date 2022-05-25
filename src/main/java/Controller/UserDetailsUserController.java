@@ -3,6 +3,7 @@ package Controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Order;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
@@ -121,6 +122,7 @@ public class UserDetailsUserController {
             pickupFromBranch.setDisable(false);
             finalPriceLabel.setText(String.valueOf(originalPrice));
         } else {
+
             pickupFromBranch.setDisable(true);
             finalPriceLabel.setText(String.valueOf(originalPrice + 10));
         }
@@ -164,7 +166,12 @@ public class UserDetailsUserController {
             hourPicker.getItems().add(i + ":00");
         }
         originalPrice = Double.parseDouble(finalPriceLabel.getText());
-
+        double a = 0;
+        for(Catalog catalog : msgObject.getCatalogList()){
+            a += Double.parseDouble(catalog.getPrice()) + Double.parseDouble(catalog.getPrice());
+        }
+        finalPriceLabel.setText("" + a);
+        originalPrice = a;
     }
 }
 
