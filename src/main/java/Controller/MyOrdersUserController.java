@@ -2,6 +2,7 @@ package Controller;
 
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.Order;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -25,7 +26,7 @@ public class MyOrdersUserController {
     @FXML
     private VBox vbox;
 
-    private List<Catalog> catalogList = new ArrayList<>();
+    private List<Order> orderList = new ArrayList<>();
 
     @FXML
     void handleHome() throws IOException {
@@ -35,36 +36,28 @@ public class MyOrdersUserController {
     @FXML
     void initialize() throws IOException {
 
-        //Node[] nodes = new Node[catalogList.size()];
-        /*for (int i = 0; i < nodes.length; i++) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(App.class.getResource("orderItemUser.fxml"));
-            nodes[i] = fxmlLoader.load();
-            OrderItemUserController orderItemUserController = fxmlLoader.getController();
-            String item = "item" + i;
-            orderItemUserController.setData(item, item, item, item);
-            vbox.getChildren().add(nodes[i]);
-        }*/
 
         // You must replace what appears down below with the real orders from the orders database
         // You've created
 
-        for(Catalog catalog : msgObject.getCatalogList()){
-            if(catalog.getPrivilege() == 2 && catalog.getUser().getEmail().equals(user.getEmail())){
-                catalogList.add(catalog);
+        List<Order> orders = (List<Order>) msgObject.getObject();
+
+        for(Order order : orders){
+            if(order .getUser().getEmail().equals(user.getEmail())){
+                orderList.add(order);
             }
         }
-
-        if(!catalogList.isEmpty()) {
-            for (Catalog catalog : catalogList) {
+        //we need to take out the catalog and place order
+        if(!orderList.isEmpty()) {
+            for (Order order : orderList) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(App.class.getResource("orderItemUser.fxml"));
                 Node node = fxmlLoader.load();
                 OrderItemUserController orderItemUserController = fxmlLoader.getController();
-                orderItemUserController.setData(catalog);
+                orderItemUserController.setData(order);
                 vbox.getChildren().add(node);
             }
-            totalOrdersLabel.setText("Total Orders: " + catalogList.size());
+            totalOrdersLabel.setText("Total Orders: " + orderList.size());
         }
     }
 }

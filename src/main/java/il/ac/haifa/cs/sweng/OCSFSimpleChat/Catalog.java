@@ -30,13 +30,13 @@ public class Catalog implements Serializable {
     @Column(name = "imgUrl")
     private String imgUrl;
 
-    //we do not need it anymore because of order
-    @Column(name = "date")
-    private String date;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private SignUp user;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Order order;
 
     private int privilege = 0;
 
@@ -58,12 +58,13 @@ public class Catalog implements Serializable {
         this.size = "";
     }
 
-    public void setDate(String date) {
-        this.date = date;
+
+    public Order getOrder() {
+        return order;
     }
 
-    public String getDate() {
-        return date;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public SignUp getUser() {

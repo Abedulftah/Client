@@ -184,7 +184,16 @@ public class SimpleClient extends AbstractClient {
                     e.printStackTrace();
                 }
             });
-        }else if (msgObject.getMsg().startsWith("Histogram")) {
+        }else if (msgObject.getMsg().startsWith("userDetailsUser")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("userDetailsUser", "/Image/userDetailsIcon.png", "User Details");
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+                }
+            });
+        } else if (msgObject.getMsg().startsWith("Histogram")) {
                 Platform.runLater(() -> {
                     try {
                         App.setRoot("Histograms", "/Image/mainPageIcon.png", "Lilac");

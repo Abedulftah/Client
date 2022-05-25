@@ -11,9 +11,9 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
-import java.util.Random;
+
 
 import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
@@ -21,6 +21,7 @@ import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 // See what's written in handleBuyAllButton and initialize
 
+//for every button buy we need to send the client to have his confirmation and asks him if he wants shipping or no
 public class CartUserController {
 
     @FXML
@@ -29,7 +30,7 @@ public class CartUserController {
     @FXML
     private VBox vbox;
 
-    private List<Catalog> catalogList = new ArrayList<>();
+    private final List<Catalog> catalogList = new ArrayList<>();
 
     public static List<Catalog> specifiedItemsList = new ArrayList<>();
     // See handleBuySpecifiedButton and buy the items in specifiedItemsList
@@ -39,47 +40,41 @@ public class CartUserController {
         //we need to make a list of new instances of shop to take care of all orders
 
         // User will be redirected to a page to confirm his details, when he pays move all items
-        // will pop an alert to say if he confirmation the detials of the account if pop another alert to say to change his details in the main page
+        // will pop an alert to say if he confirmation the details of the account if pop another alert to say to change his details in the main page
         // From the Cart database to orders database of the current user
         //we need to check if there is the same item in the order, so we can just update the price/quantity
 
-        Random random = new Random();
-        Date date = new Date();
 
-        List<Catalog> catalogs = new ArrayList<>();
-
-        for(Catalog catalog : msgObject.getCatalogList()){
-            for(Catalog catalog1 : msgObject.getCatalogList()){
-                if(catalog.getPrivilege() == 1 && catalog1.getPrivilege() == 2
-                && catalog.getName().equals(catalog1.getName())
-                && catalog.getUser() != null && catalog1.getUser() != null
-                && catalog.getUser().getEmail().equals(catalog1.getUser().getEmail())){
-                    double a = Double.parseDouble(catalog.getPrice()) + Double.parseDouble(catalog.getPrice());
-                    catalog1.setDate(String.valueOf(java.time.LocalDate.of(2022,5,23 + random.nextInt(7))) + " " + (date.getHours() + random.nextInt(3)) + ":00");
-                    catalog1.setPrice("" + a);
-                    catalogList.add(catalog1);
-                    catalogs.add(catalog);
-                }
-            }
-        }
-
-        for(Catalog catalog : catalogs){
-            msgObject.getCatalogList().remove(catalog);
-        }
+//       List<Catalog> catalogs = new ArrayList<>();
+//        for(Catalog catalog : msgObject.getCatalogList()){
+//            for(Catalog catalog1 : msgObject.getCatalogList()){
+//                if(catalog.getPrivilege() == 1 && catalog1.getPrivilege() == 2
+//                && catalog.getName().equals(catalog1.getName())
+//                && catalog.getUser() != null && catalog1.getUser() != null
+//                && catalog.getUser().getEmail().equals(catalog1.getUser().getEmail())){
+//                    double a = Double.parseDouble(catalog.getPrice()) + Double.parseDouble(catalog.getPrice());
+//                    catalog1.setPrice("" + a);
+//                    catalogList.add(catalog1);
+//                    catalogs.add(catalog);
+//                }
+//            }
+//        }
+//
+//        for(Catalog catalog : catalogs){
+//            msgObject.getCatalogList().remove(catalog);
+//        }
 
         if(!msgObject.getCatalogList().isEmpty()) {
             for (Catalog catalog : msgObject.getCatalogList()) {
                 if (catalog.getPrivilege() == 1 && catalog.getUser() != null && catalog.getUser().getEmail().equals(user.getEmail())) {
                     catalog.setPrivilege(2);
-                    catalog.setDate(String.valueOf(java.time.LocalDate.of(2022,5,23 + random.nextInt(7))) + " " + (date.getHours() + random.nextInt(3)) + ":00");
                     catalogList.add(catalog);
                 }
             }
         }
         try {
-            MsgObject msgObject1 = new MsgObject("cartToOrder");
-            msgObject1.setCatalogList(catalogList);
-            msgObject1.setObject(catalogs);
+            MsgObject msgObject1 = new MsgObject("cartToOrder");//"detailsConfirmation"/"userDetailsUser" from there we will send the catalogList
+            msgObject1.setCatalogList(catalogList);//if the client confirm everything
             getClient().sendToServer(msgObject1);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -88,7 +83,16 @@ public class CartUserController {
 
     @FXML
     void handleBuySpecifiedButton() {
-
+        for(Catalog catalog : specifiedItemsList){
+            catalog.setPrivilege(2);
+        }
+        try {
+            MsgObject msgObject1 = new MsgObject("cartToOrder");//"detailsConfirmation"/"userDetailsUser" from there we will send the catalogList
+            msgObject1.setCatalogList(specifiedItemsList);//if the client confirm everything
+            getClient().sendToServer(msgObject1);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -103,7 +107,7 @@ public class CartUserController {
 
     @FXML
     void initialize() throws IOException {
-
+        specifiedItemsList.clear();
         // Add items in the Cart database you already created
 
         List<Catalog> catalogList1 = new ArrayList<>();
@@ -126,7 +130,6 @@ public class CartUserController {
 
             }
         }
-        //catalogList = catalogList1;
         totalOrdersLabel.setText("Total products: " + catalogList1.size());
     }
 }

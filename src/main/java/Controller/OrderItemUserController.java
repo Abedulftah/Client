@@ -3,6 +3,7 @@ package Controller;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.Order;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -17,7 +18,7 @@ import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
 public class OrderItemUserController extends Node {
 
-    private Catalog catalog;
+    private Order order;
 
     @FXML
     private Label dateLabel;
@@ -64,8 +65,7 @@ public class OrderItemUserController extends Node {
         alert.showAndWait().ifPresent(type -> {
             if (type == confirmButton) {
                 MsgObject msgObject =  new MsgObject("removeFromOrder");
-                msgObject.getCatalogList().add(catalog);
-                msgObject.setObject("");
+                msgObject.setObject(order);
                 //we need to set an object that saves the date, so we can send it to customer worker to check what refund the client should get
                 //and to save the object as complain or whatever
                 try {
@@ -79,12 +79,12 @@ public class OrderItemUserController extends Node {
 
     }
 
-    public void setData(Catalog catalog) {
-        this.catalog = catalog;
-        this.descriptionLabel.setText(catalog.getItemDetails());
-        this.nameLabel.setText(catalog.getName());
-        this.priceLabel.setText(App.CURRENCY + catalog.getPrice());
-        this.sizeLabel.setText(catalog.getSize());
-        this.dateLabel.setText(catalog.getDate());
+    public void setData(Order order) {
+        this.order = order;
+        this.descriptionLabel.setText(order.getUser().getAddress());//the location change the label //ok
+        this.nameLabel.setText(order.getUser().getUsername());//ok
+        this.priceLabel.setText(App.CURRENCY + order.getPrice());//ok
+        this.sizeLabel.setText("" + order.getNumberOfItems());//the number of the items // ok
+        this.dateLabel.setText(order.getDate());//ok
     }
 }

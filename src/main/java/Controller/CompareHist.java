@@ -72,18 +72,6 @@ public class CompareHist {
             }
         }
 
-//        String[] strings = shops.get(0).getDate().split("-");
-//        String[] strings1 = shops.get(shops.size()-1).getDate().split("-");
-//
-//        for(int i = Integer.parseInt(strings[1]); i <= Integer.parseInt(strings1[1]); i++){
-//            for(int j = Integer.parseInt(strings[2]); j <= Integer.parseInt(strings1[2]); j++){
-//                set.getData().addAll(new XYChart.Data("2022-" + i + "-" + j, 0));
-//                set1.getData().addAll(new XYChart.Data("2022-" + i + "-" + j, 0));
-//
-//            }
-//        }
-
-
         shopList.removeAll(shopList);
 
         for(Shop shop : shops){
@@ -212,7 +200,7 @@ public class CompareHist {
 
 
         //description for a problem when set = 1 and set1 = 4 the histogram is not sorted
-        //here we are making the histogram
+        //here we are making the histogram //fixed
         i = 0;
         j = 0;
         while (i < shops.size() && j < strSet1.size()) {

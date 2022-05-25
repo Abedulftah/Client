@@ -90,11 +90,13 @@ public class PrimaryManagerController {
 
     @FXML
     void handleShowComplaints() throws IOException {
+        //when we click on the home button it will redirect us to the main page of customer service worker
         getClient().sendToServer(new MsgObject("complaintsCustomerService"));
     }
 
     @FXML
     void handleShowSpecialOrders() throws IOException {
+        //when we click on the home button it will redirect us to the main page of customer service worker
         getClient().sendToServer(new MsgObject("specialOrdersCustomerService"));
 
     }
