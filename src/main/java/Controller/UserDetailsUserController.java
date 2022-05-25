@@ -1,12 +1,19 @@
 package Controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.controls.legacy.MFXLegacyComboBox;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 
 import static Controller.SignInController.user;
 import static Controller.SignInController.userName;
@@ -15,7 +22,16 @@ import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 public class UserDetailsUserController {
 
     @FXML
+    private JFXButton backToCartButton;
+
+    @FXML
     private MFXTextField city;
+
+    @FXML
+    private JFXButton confirmButton;
+
+    @FXML
+    private JFXCheckBox courier;
 
     @FXML
     private MFXTextField creditCardExpDate;
@@ -30,6 +46,24 @@ public class UserDetailsUserController {
     private MFXTextField cvv;
 
     @FXML
+    private MFXDatePicker datePicker;
+
+    @FXML
+    private Label deliveryErrorLabel;
+
+    @FXML
+    private JFXButton editMyAccountInformationButton;
+
+    @FXML
+    private Label finalPriceLabel;
+
+    @FXML
+    private MFXLegacyComboBox<String> hourPicker;
+
+    @FXML
+    private JFXCheckBox pickupFromBranch;
+
+    @FXML
     private MFXTextField postOfficeBox;
 
     @FXML
@@ -38,14 +72,69 @@ public class UserDetailsUserController {
     @FXML
     private MFXTextField zip;
 
+    private double originalPrice;
+
     @FXML
     void handleBackToCart() throws IOException {
         getClient().sendToServer(new MsgObject("cartUser"));
     }
 
     @FXML
+    void handleConfirm() {
+
+        // Check the notes below maybe you need to use some of them
+
+        // String date = datePicker.getText();
+        LocalDate date = datePicker.getValue();
+
+        // city.setText(hourPicker.getValue());
+        /*String.valueOf(date.getDayOfMonth());
+        String.valueOf(date.getMonthValue());
+        String.valueOf(date.getYear());*/
+
+        if (datePicker.getText().equals("") || hourPicker.getValue().equals("") ||
+                (!courier.isSelected() && !pickupFromBranch.isSelected())) {
+            deliveryErrorLabel.setVisible(true);
+            return;
+        } else {
+            // confirm the order
+        }
+        confirmButton.setDisable(true);
+        backToCartButton.setDisable(true);
+        editMyAccountInformationButton.setDisable(true);
+    }
+
+    @FXML
+    void handleCourier() {
+
+        if (!courier.isSelected()) {
+            pickupFromBranch.setDisable(false);
+            finalPriceLabel.setText(String.valueOf(originalPrice));
+        } else {
+            pickupFromBranch.setDisable(true);
+            finalPriceLabel.setText(String.valueOf(originalPrice + 10));
+        }
+    }
+
+    @FXML
+    void handleEditMyAccountInformation() {
+        // Leave it for now, I'll make a page later
+    }
+
+    @FXML
     void handleHome() throws IOException {
         App.setRoot("primaryUser", "/Image/mainPageIcon.png", "Lilac");
+    }
+
+    @FXML
+    void handlePickUpFromBranch() {
+
+        if (!pickupFromBranch.isSelected()) {
+            courier.setDisable(false);
+        } else {
+            courier.setDisable(true);
+        }
+        finalPriceLabel.setText(String.valueOf(originalPrice));
     }
 
     @FXML
@@ -61,5 +150,9 @@ public class UserDetailsUserController {
         street.setText(user.getStreet());
         zip.setText(user.getZip());
         postOfficeBox.setText(user.getPob());
+        for (int i = 9; i <= 19; i++) {
+            hourPicker.getItems().add(i + ":00");
+        }
+        originalPrice = Double.parseDouble(finalPriceLabel.getText());
     }
 }

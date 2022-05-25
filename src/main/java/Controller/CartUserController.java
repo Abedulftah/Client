@@ -1,5 +1,6 @@
 package Controller;
 
+import com.jfoenix.controls.JFXButton;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
@@ -93,11 +94,6 @@ public class CartUserController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @FXML
-    void handleCheckDetails() throws IOException {
-        App.setRoot("userDetailsUser", "/Image/userDetailsIcon.png", "User Details");
     }
 
     @FXML
