@@ -37,33 +37,13 @@ public class CartUserController {
     // See handleBuySpecifiedButton and buy the items in specifiedItemsList
 
     @FXML
-    void handleBuyAllButton() {
+    void handleBuyAllButton() throws IOException {
         //we need to make a list of new instances of shop to take care of all orders
 
         // User will be redirected to a page to confirm his details, when he pays move all items
         // will pop an alert to say if he confirmation the details of the account if pop another alert to say to change his details in the main page
         // From the Cart database to orders database of the current user
         //we need to check if there is the same item in the order, so we can just update the price/quantity
-
-
-//       List<Catalog> catalogs = new ArrayList<>();
-//        for(Catalog catalog : msgObject.getCatalogList()){
-//            for(Catalog catalog1 : msgObject.getCatalogList()){
-//                if(catalog.getPrivilege() == 1 && catalog1.getPrivilege() == 2
-//                && catalog.getName().equals(catalog1.getName())
-//                && catalog.getUser() != null && catalog1.getUser() != null
-//                && catalog.getUser().getEmail().equals(catalog1.getUser().getEmail())){
-//                    double a = Double.parseDouble(catalog.getPrice()) + Double.parseDouble(catalog.getPrice());
-//                    catalog1.setPrice("" + a);
-//                    catalogList.add(catalog1);
-//                    catalogs.add(catalog);
-//                }
-//            }
-//        }
-//
-//        for(Catalog catalog : catalogs){
-//            msgObject.getCatalogList().remove(catalog);
-//        }
 
         if(!msgObject.getCatalogList().isEmpty()) {
             for (Catalog catalog : msgObject.getCatalogList()) {
@@ -73,27 +53,19 @@ public class CartUserController {
                 }
             }
         }
-        try {
-            MsgObject msgObject1 = new MsgObject("cartToOrder");//"detailsConfirmation"/"userDetailsUser" from there we will send the catalogList
-            msgObject1.setCatalogList(catalogList);//if the client confirm everything
-            getClient().sendToServer(msgObject1);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        msgObject.setMsg("cartToOrder");//"detailsConfirmation"/"userDetailsUser" from there we will send the catalogList
+        msgObject.setCatalogList(catalogList);//if the client confirm everything
+        App.setRoot("userDetailsUser", "/Image/datePicker.png", "Details confirmation");
     }
 
     @FXML
-    void handleBuySpecifiedButton() {
+    void handleBuySpecifiedButton() throws IOException {
         for(Catalog catalog : specifiedItemsList){
             catalog.setPrivilege(2);
         }
-        try {
-            MsgObject msgObject1 = new MsgObject("cartToOrder");//"detailsConfirmation"/"userDetailsUser" from there we will send the catalogList
-            msgObject1.setCatalogList(specifiedItemsList);//if the client confirm everything
-            getClient().sendToServer(msgObject1);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        msgObject.setMsg("cartToOrder");//"detailsConfirmation"/"userDetailsUser" from there we will send the catalogList
+        msgObject.setCatalogList(specifiedItemsList);//if the client confirm everything
+        App.setRoot("userDetailsUser", "/Image/datePicker.png", "Details confirmation");
     }
 
     @FXML

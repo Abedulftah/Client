@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.Order;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyComboBox;
@@ -18,6 +19,7 @@ import java.util.Date;
 import static Controller.SignInController.user;
 import static Controller.SignInController.userName;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 public class UserDetailsUserController {
 
@@ -97,7 +99,15 @@ public class UserDetailsUserController {
             deliveryErrorLabel.setVisible(true);
             return;
         } else {
-            // confirm the order
+            Order order = new Order();
+            order.setDate(date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth() + " " + hourPicker.getValue());
+            order.setShipping(courier.isSelected());
+            msgObject.setObject(order);
+            try {
+                getClient().sendToServer(msgObject);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         confirmButton.setDisable(true);
         backToCartButton.setDisable(true);
@@ -154,5 +164,7 @@ public class UserDetailsUserController {
             hourPicker.getItems().add(i + ":00");
         }
         originalPrice = Double.parseDouble(finalPriceLabel.getText());
+
     }
 }
+
