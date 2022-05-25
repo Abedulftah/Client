@@ -1,6 +1,7 @@
 package Controller;
 
 import com.jfoenix.controls.JFXButton;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.SignUp;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -10,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -19,22 +19,13 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static Controller.SignInController.user;
 import static Controller.SignUpAccountTypeController.globalAccountType;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
-// In handleUserNameTB check if the username exists in the database
-// In handleEmailTB check if the email exists in the database
-// In handlePhoneTB check if the phone number exists in the database
-// If the credit card number entered already found in the database we'll check later what to do
-// In handleSignUpButton you can get account type and shop chosen (if there is) by using the commands
-// (SignUpAccountTypeController.accountType) and (SignUpAccountTypeController.shop)
+public class ChangeUserDetailsUserController {
 
-public class SignUpController {
-
-    private String firstLabel;
-    private String secondLabel;
-    private String thirdLabel;
     private boolean flag1;
     private boolean flag2;
     private boolean flag3;
@@ -116,9 +107,6 @@ public class SignUpController {
     private MFXTextField PhoneTB;
 
     @FXML
-    private JFXButton SignUpButton;
-
-    @FXML
     private ImageView StreetImage;
 
     @FXML
@@ -137,7 +125,13 @@ public class SignUpController {
     private ImageView ZIPImage;
 
     @FXML
+    private JFXButton cancelButton;
+
+    @FXML
     private MFXComboBox<String> phoneCodeList;
+
+    @FXML
+    private JFXButton saveButton;
 
     @FXML
     private Label showLabelCVV;
@@ -149,16 +143,10 @@ public class SignUpController {
     private Label showLabelUserName;
 
     @FXML
-    private Label successLabel1;
-
-    @FXML
-    private Label successLabel2;
-
-    @FXML
-    private Label successLabel3;
-
-    @FXML
     private Label userDetailsErrorLabel;
+
+    @FXML
+    private Label successLabel;
 
     @FXML
     void CVVQuestionMarkEnter() {
@@ -184,6 +172,11 @@ public class SignUpController {
             flag13 = true;
             CVVImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
         }
+    }
+
+    @FXML
+    void handleCancelButton() throws IOException {
+        App.setRoot("primaryUser", "/Image/mainPageIcon.png", "Lilac");
     }
 
     @FXML
@@ -302,13 +295,8 @@ public class SignUpController {
     @FXML
     void handleExpDateMonthCBSelected() {
 
-        if (ExpDateYearCB.getSelectedItem() == null) {
-            flag12 = false;
-            ExpDateImage.setImage(new Image(getClass().getResourceAsStream("/Image/remove.png")));
-        } else {
-            flag12 = true;
-            ExpDateImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
-        }
+        flag12 = true;
+        ExpDateImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
     }
 
     @FXML
@@ -319,18 +307,13 @@ public class SignUpController {
     @FXML
     void handleExpDateYearCBSelected() {
 
-        if (ExpDateMonthCB.getSelectedItem() == null) {
-            flag12 = false;
-            ExpDateImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Image/remove.png"))));
-        } else {
-            flag12 = true;
-            ExpDateImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
-        }
+        flag12 = true;
+        ExpDateImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
     }
 
     @FXML
     void handleHomeSignUp() throws IOException {
-        App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
+        App.setRoot("primaryUser", "/Image/mainPageIcon.png", "Lilac");
     }
 
     @FXML
@@ -382,19 +365,12 @@ public class SignUpController {
 
     @FXML
     void handlePhoneCodeListSelected() {
-        PhoneTB.setDisable(false);
     }
 
     @FXML
     void handlePhoneTB() {
 
         // To get the selected item of the drop down list use phoneCodeList.getSelectedItem()
-        if (phoneCodeList.getSelectedItem() == null) {
-            flag3 = false;
-            PhoneImage.setImage(new Image(getClass().getResourceAsStream("/Image/remove.png")));
-            PhoneTB.setDisable(true);
-            return;
-        }
         String text = PhoneTB.getText();
         String regularExpressionPattern = "^[0-9]([.\\s\\-]?\\d){6}$";
         Pattern pattern = Pattern.compile(regularExpressionPattern);
@@ -409,7 +385,7 @@ public class SignUpController {
     }
 
     @FXML
-    void handleSignUpButton() throws IOException {
+    void handleSaveButton() {
 
         handleUserNameTB();
         handleEmailTB();
@@ -430,14 +406,14 @@ public class SignUpController {
         List<SignUp> signUpList = (List<SignUp>) msgObject.getObject();
         if (!signUpList.isEmpty()) {
             for (SignUp signUp : signUpList) {
-                if (signUp.getUsername().equals(UsernameTB.getText())) {
+                if (signUp.getUsername().equals(UsernameTB.getText()) && !signUp.getUsername().equals(user.getUsername())) {
                     userDetailsErrorLabel.setText("This username is already taken");
                     userDetailsErrorLabel.setVisible(true);
                     flag1 = false;
                     UserNameImage.setImage(new Image(getClass().getResourceAsStream("/Image/remove.png")));
                     return;
                 }
-                if (signUp.getEmail().equals(EmailTB.getText())) {
+                if (signUp.getEmail().equals(EmailTB.getText()) && !signUp.getEmail().equals(user.getEmail())) {
                     userDetailsErrorLabel.setText("This email is already taken");
                     userDetailsErrorLabel.setVisible(true);
                     flag2 = false;
@@ -449,13 +425,6 @@ public class SignUpController {
 
         if (flag1 && flag2 && flag3 && flag4 && flag5 && flag6 && flag7 && flag8 && flag9 &&
                 flag10 && flag11 && flag12 && flag13) {
-            successLabel1.setText(firstLabel);
-            successLabel2.setText(secondLabel);
-            successLabel3.setText(thirdLabel);
-
-            successLabel1.setVisible(true);
-            successLabel2.setVisible(true);
-            successLabel3.setVisible(true);
 
             UsernameTB.setDisable(true);
             EmailTB.setDisable(true);
@@ -477,6 +446,9 @@ public class SignUpController {
                     , PasswordTB.getText(), CityTB.getText() + " " + StreetTB.getText() + " " + ZIPCTB.getText() + " " + POBoxTB.getText(),
                     CreditCardNumberTB.getText(), CreditCardHolderTB.getText(), ExpDateYearCB.getText() + "/" + ExpDateMonthCB.getText(),
                     Integer.parseInt(CVVTB.getText()));
+            signup.setAccountType(user.getAccountType());
+            signup.setId(user.getId());
+            signup.setSignedIn(user.isSignedIn());
             signup.setCity(CityTB.getText());
             signup.setStreet(StreetTB.getText());
             signup.setZip(ZIPCTB.getText());
@@ -491,7 +463,10 @@ public class SignUpController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            SignUpButton.setDisable(true);
+            cancelButton.setDisable(true);
+            saveButton.setDisable(true);
+            successLabel.setVisible(true);
+            user = signup;
         }
     }
 
@@ -509,11 +484,6 @@ public class SignUpController {
             flag7 = true;
             StreetImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
         }
-    }
-
-    @FXML
-    void handleSuccessLabel2() throws IOException {
-        App.setRoot("SignIn", "/Image/loginIcon.png", "Sign In");
     }
 
     @FXML
@@ -578,32 +548,40 @@ public class SignUpController {
             ExpDateYearCB.getItems().add(String.valueOf(currentYear + i));
         }
 
-        firstLabel = successLabel1.getText();
-        secondLabel = successLabel2.getText();
-        thirdLabel = successLabel3.getText();
+        UserNameImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        EmailImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        PhoneImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        PasswordImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        ConfirmPasswordImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        CityImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        StreetImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        ZIPImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        POBoxImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        CreditCardNumberImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        CreditCardHolderImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        ExpDateImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        CVVImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+        flag1 = flag2 = flag3 = flag4 = flag5 = flag6 = flag7 = flag8 = flag9 = flag10 = flag11 = flag12 = flag13 = true;
 
-        successLabel1.setText("");
-        successLabel2.setText("");
-        successLabel3.setText("");
+        UsernameTB.setText(user.getUsername());
+        EmailTB.setText(user.getEmail());
+        phoneCodeList.setText(user.getPhone().substring(0, 3));
+        PhoneTB.setText(user.getPhone().substring(3));
+        PasswordTB.setText(user.getPassword());
+        ConfirmPasswordTB.setText(user.getPassword());
+        CityTB.setText(user.getCity());
+        StreetTB.setText(user.getStreet());
+        ZIPCTB.setText(user.getZip());
+        POBoxTB.setText(user.getPob());
+        CreditCardNumberTB.setText(user.getCreditCard());
+        CreditCardHolderTB.setText(user.getHolderOfCard());
+        ExpDateMonthCB.setText(user.getDate().substring(5));
+        ExpDateYearCB.setText(user.getDate().substring(0, 4));
+        CVVTB.setText(String.valueOf(user.getCvv()));
 
-        UserNameImage.setImage(null);
-        EmailImage.setImage(null);
-        PhoneImage.setImage(null);
-        PasswordImage.setImage(null);
-        ConfirmPasswordImage.setImage(null);
-        CityImage.setImage(null);
-        StreetImage.setImage(null);
-        ZIPImage.setImage(null);
-        POBoxImage.setImage(null);
-        CreditCardNumberImage.setImage(null);
-        CreditCardHolderImage.setImage(null);
-        ExpDateImage.setImage(null);
-        CVVImage.setImage(null);
 
         showLabelUserName.setVisible(false);
         showLabelPassword.setVisible(false);
         showLabelCVV.setVisible(false);
-
-        PhoneTB.setDisable(true);
     }
 }

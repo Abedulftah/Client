@@ -36,6 +36,11 @@ public class PrimaryUserController {
     }
 
     @FXML
+    void handleEditAccount() throws IOException {
+        getClient().sendToServer(new MsgObject("editAccountInformation"));
+    }
+
+    @FXML
     void handleLogoutButton() throws IOException {
         user.setSignedIn(false);
         getClient().sendToServer(new MsgObject("Home", user));
@@ -59,7 +64,7 @@ public class PrimaryUserController {
 
     @FXML
     void initialize() {
-        nameLabel.setText(SignInController.userName);
+        nameLabel.setText(user.getUsername());
         switch (SignInController.rank) {
 
             case "elite":
