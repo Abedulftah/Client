@@ -101,14 +101,19 @@ public class UserDetailsUserController {
             return;
         } else {
             Order order = new Order();
-            order.setDate(date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth() + " " + hourPicker.getValue());
+            if(date.getMonthValue() < 10)
+                order.setDate(date.getYear() + "-0" + date.getMonthValue() + "-" + date.getDayOfMonth() + " " + hourPicker.getValue());
+            else
+                order.setDate(date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth() + " " + hourPicker.getValue());
+
             order.setShipping(courier.isSelected());
-            msgObject.setObject(order);
+            msgObject.setObject(order);System.out.println(order.getDate());
             try {
                 getClient().sendToServer(msgObject);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
         }
         confirmButton.setDisable(true);
         backToCartButton.setDisable(true);
