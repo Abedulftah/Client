@@ -118,8 +118,6 @@ public class SignUp implements Serializable{
         this.signedIn = signedIn;
     }
 
-
-
     public boolean isSignedIn() {
         return signedIn;
     }
