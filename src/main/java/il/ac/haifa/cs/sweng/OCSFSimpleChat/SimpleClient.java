@@ -121,7 +121,16 @@ public class SimpleClient extends AbstractClient {
                     e.printStackTrace();
                 }
             });
-        } else if (msgObject.getMsg().equals("specialOrderUser")) {
+        } else if (msgObject.getMsg().equals("detailedOrderUser")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("detailedOrderUser", "/Image/myOrdersIcon.png", "Item of the order");
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+                }
+            });
+        }else if (msgObject.getMsg().equals("specialOrderUser")) {
             Platform.runLater(() -> {
                 try {
                     App.setRoot("specialOrderUser", "/Image/specialOrderIcon.png", "Special Order");
