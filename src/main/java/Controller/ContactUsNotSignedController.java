@@ -1,5 +1,7 @@
 package Controller;
 
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.Complain;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -16,6 +18,8 @@ import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
+
 
 // In handleSendMessageButton create a table in the data base which saves the sent message
 
@@ -141,7 +145,7 @@ public class ContactUsNotSignedController {
     }
 
     @FXML
-    void handleSendMessageButton() {
+    void handleSendMessageButton() throws IOException {
 
         handleNameTBKeyPressed();
         handleEmailTBKeyPressed();
@@ -170,6 +174,9 @@ public class ContactUsNotSignedController {
             messageErrorLabel.setVisible(true);
             messageTB.setStyle("-fx-border-color: red");
         }
+        Complain complain = new Complain(nameTB.getText(), emailTB.getText(), phoneTB.getText(), messageTB.getText(),"shop 100", String.valueOf(java.time.LocalDate.now()));
+        getClient().sendToServer(new MsgObject("complainList",complain));
+
     }
 
     public static void setTextLimit(TextField textField, int length) {

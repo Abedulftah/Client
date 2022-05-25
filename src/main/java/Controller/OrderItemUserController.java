@@ -35,10 +35,12 @@ public class OrderItemUserController extends Node {
     @FXML
     private Label sizeLabel;
 
-    public static int numberOfItems = 0; //////////////////////////// Remove the initialization
+    public static int numberOfItems; //////////////////////////// Remove the initialization
 
     @FXML
-    void handleBoxClicked() {
+    void handleBoxClicked() throws IOException {
+
+        getClient().sendToServer(new MsgObject("detailedOrderUser", order));
 
         // sizeLabel and descriptionLabel named as this to refrain from having errors
         // sizeLabel represents 'Number of items in this order'
@@ -86,5 +88,6 @@ public class OrderItemUserController extends Node {
         this.priceLabel.setText(App.CURRENCY + order.getPrice());//ok
         this.sizeLabel.setText("" + order.getNumberOfItems());//the number of the items // ok
         this.dateLabel.setText(order.getDate());//ok
+        numberOfItems = order.getNumberOfItems();
     }
 }
