@@ -34,6 +34,9 @@ public class CustomerWorkerRespond implements Serializable{
     @Column(name = "date")
     private String date;
 
+    @Column(name = "refunds")
+    private String refund;
+
     public CustomerWorkerRespond(){}
     public CustomerWorkerRespond(String nameWorker, String name, String email, String phone, String message, String respondMessage){
         this.nameWorker = nameWorker;
@@ -47,6 +50,14 @@ public class CustomerWorkerRespond implements Serializable{
 
     public void setNameWorker(String nameWorker) {
         this.nameWorker = nameWorker;
+    }
+
+    public String getRefund() {
+        return refund;
+    }
+
+    public void setRefund(String refund) {
+        this.refund = refund;
     }
 
     public String getNameWorker() {

@@ -39,8 +39,8 @@ public class DetailedOrderItemUserController {
         // Don't forget that if the last item was removed then you have to remove the whole order
         // I didn't add a remove all button in DetailedOrderUserController in purpose since if the user tend
         // To remove everything he must remove the order from the main page
+        // refunding the price of the specific item
         --numberOfItems;
-        System.out.println(numberOfItems);
         if(numberOfItems == 0)
             getClient().sendToServer(new MsgObject("removeItemAndOrder", catalog));
         else

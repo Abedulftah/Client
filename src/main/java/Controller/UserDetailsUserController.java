@@ -101,6 +101,7 @@ public class UserDetailsUserController {
             return;
         } else {
             Order order = new Order();
+            //checked for digit for month what about day?
             if(date.getMonthValue() < 10)
                 order.setDate(date.getYear() + "-0" + date.getMonthValue() + "-" + date.getDayOfMonth() + " " + hourPicker.getValue());
             else
