@@ -5,10 +5,14 @@ import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Order;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
 
+import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
 
@@ -39,10 +43,28 @@ public class DetailedOrderItemUserController {
         // Don't forget that if the last item was removed then you have to remove the whole order
         // I didn't add a remove all button in DetailedOrderUserController in purpose since if the user tend
         // To remove everything he must remove the order from the main page
-        // refunding the price of the specific item
         --numberOfItems;
-        if(numberOfItems == 0)
-            getClient().sendToServer(new MsgObject("removeItemAndOrder", catalog));
+        System.out.println(numberOfItems);
+        if(numberOfItems == 0) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Remove Confirmation");
+            alert.setHeaderText("Remove product?");
+            ButtonType confirmButton = new ButtonType("Confirm", ButtonBar.ButtonData.YES);
+            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(confirmButton, cancelButton);
+
+            alert.showAndWait().ifPresent(type -> {
+                if (type == confirmButton) {
+                    user.setSignedIn(false);
+                    try {
+                        getClient().sendToServer(new MsgObject("removeItemAndOrder", catalog));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
+                }
+            });
+        }
         else
             getClient().sendToServer(new MsgObject("removeItem", catalog));
 

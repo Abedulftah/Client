@@ -1,9 +1,7 @@
 package Controller;
 
-import com.jfoenix.controls.JFXButton;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,12 +10,9 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import java.util.List;
 
-
 import static Controller.SignInController.user;
-import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 // See what's written in handleBuyAllButton and initialize
@@ -55,17 +50,18 @@ public class CartUserController {
         }
         msgObject.setMsg("cartToOrder");//"detailsConfirmation"/"userDetailsUser" from there we will send the catalogList
         msgObject.setCatalogList(catalogList);//if the client confirm everything
-        App.setRoot("userDetailsUser", "/Image/datePicker.png", "Details confirmation");
+        App.setRoot("userDetailsUser", "/Image/userDetailsIcon.png", "Details confirmation");
     }
 
     @FXML
     void handleBuySpecifiedButton() throws IOException {
+        if (specifiedItemsList.size() == 0) return;
         for(Catalog catalog : specifiedItemsList){
             catalog.setPrivilege(2);
         }
         msgObject.setMsg("cartToOrder");//"detailsConfirmation"/"userDetailsUser" from there we will send the catalogList
         msgObject.setCatalogList(specifiedItemsList);//if the client confirm everything
-        App.setRoot("userDetailsUser", "/Image/datePicker.png", "Details confirmation");
+        App.setRoot("userDetailsUser", "/Image/userDetailsIcon.png", "Details confirmation");
     }
 
     @FXML

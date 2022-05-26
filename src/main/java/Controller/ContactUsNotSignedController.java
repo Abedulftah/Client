@@ -1,5 +1,6 @@
 package Controller;
 
+import com.jfoenix.controls.JFXButton;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Complain;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import javafx.animation.PauseTransition;
@@ -56,6 +57,9 @@ public class ContactUsNotSignedController {
 
     @FXML
     private TextField phoneTB;
+
+    @FXML
+    private JFXButton sendMessageButton;
 
     @FXML
     void handleEmailTBKeyPressed() {
@@ -176,7 +180,7 @@ public class ContactUsNotSignedController {
         }
         Complain complain = new Complain(nameTB.getText(), emailTB.getText(), phoneTB.getText(), messageTB.getText(),"shop 100", String.valueOf(java.time.LocalDate.now()));
         getClient().sendToServer(new MsgObject("complainList",complain));
-
+        sendMessageButton.setDisable(true);
     }
 
     public static void setTextLimit(TextField textField, int length) {

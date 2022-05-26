@@ -8,12 +8,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 import static Controller.ComplaintsItemCustomerServiceController.*;
@@ -43,10 +46,17 @@ public class RespondToComplaintCustomerServiceController {
     private TextArea notificationTB;
 
     @FXML
+    private TextField refundTB;
+
+    @FXML
     private TextArea respondTB;
 
     @FXML
     private JFXButton sendButton;
+
+    private String refundStyle;
+
+    private boolean flag;
 
     @FXML
     void handleCancelButton() throws IOException {
@@ -54,9 +64,31 @@ public class RespondToComplaintCustomerServiceController {
         getClient().sendToServer(new MsgObject("complaintsCustomerService", user));
 
     }
+
     @FXML
     void handleHome() throws IOException {
         handleCancelButton();
+    }
+
+    @FXML
+    void handleRefundTBPressed() {
+
+        String text = refundTB.getText();
+        String regularExpressionPattern = "^[0-9]*$";
+        Pattern pattern = Pattern.compile(regularExpressionPattern);
+        Matcher matcher = pattern.matcher(text);
+        if (matcher.matches() && !text.isBlank()) {
+            flag = true;
+            refundTB.setStyle(refundStyle);
+        } else {
+            flag = false;
+            refundTB.setStyle("-fx-border-color: red; -fx-border-width: 2;");
+        }
+    }
+
+    @FXML
+    void handleRefundTBReleased() {
+        handleRefundTBPressed();
     }
 
     @FXML
@@ -79,9 +111,13 @@ public class RespondToComplaintCustomerServiceController {
     @FXML
     void handleSendRespondButton() {
 
+        handleRefundTBPressed();
+
         if (respondTB.getText().replaceAll("\\n", "").length() < 30) {
             messageErrorLabel.setVisible(true);
             respondTB.setStyle("-fx-border-color: red");
+        } else if (!flag) {
+            return;
         } else {
             respondTB.setEditable(false);
             respondTB.setStyle("-fx-text-fill: #9b9d9e");
@@ -110,6 +146,7 @@ public class RespondToComplaintCustomerServiceController {
     void initialize() {
 
         style = respondTB.getStyle();
+        refundStyle = refundTB.getStyle();
         messageErrorLabel.setVisible(false);
 
         emailTB.setText(email);

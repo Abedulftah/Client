@@ -54,7 +54,7 @@ public class CartItemUserController {
         catalog.setPrivilege(2);
         msgObject.setMsg("cartToOrder");//"detailsConfirmation"/"userDetailsUser" from there we will send the catalogList
         msgObject.getCatalogList().add(catalog);//if the client confirm everything else we'll not do an update
-        App.setRoot("userDetailsUser", "/Image/datePicker.png", "Details confirmation");
+        App.setRoot("userDetailsUser", "/Image/userDetailsIcon.png", "Details confirmation");
     }
 
     @FXML

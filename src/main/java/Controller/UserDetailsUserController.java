@@ -11,14 +11,12 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyComboBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.Calendar;
 
 import static Controller.SignInController.user;
-import static Controller.SignInController.userName;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
@@ -55,6 +53,12 @@ public class UserDetailsUserController {
     private Label deliveryErrorLabel;
 
     @FXML
+    private MFXTextField deliveryReceiverName;
+
+    @FXML
+    private MFXTextField deliveryReceiverPhone;
+
+    @FXML
     private JFXButton editMyAccountInformationButton;
 
     @FXML
@@ -89,26 +93,45 @@ public class UserDetailsUserController {
 
         // String date = datePicker.getText();
         LocalDate date = datePicker.getValue();
+        LocalDate localDate = LocalDate.now();
+        Calendar calendar = Calendar.getInstance();
 
         // city.setText(hourPicker.getValue());
         /*String.valueOf(date.getDayOfMonth());
         String.valueOf(date.getMonthValue());
         String.valueOf(date.getYear());*/
 
+        String hour = hourPicker.getValue().substring(0, 2);
+        int currentHour = calendar.get(Calendar.HOUR_OF_DAY) + 1;
+
         if (datePicker.getText().equals("") || hourPicker.getValue().equals("") ||
-                (!courier.isSelected() && !pickupFromBranch.isSelected())) {
+                (!courier.isSelected() && !pickupFromBranch.isSelected()) ||
+                deliveryReceiverName.getText().equals("") || deliveryReceiverPhone.getText().equals("")) {
+            deliveryErrorLabel.setText("Please fill the requested fields");
+            deliveryErrorLabel.setVisible(true);
+            return;
+        } else if (date.getYear() < localDate.getYear() ||
+                date.getMonthValue() < localDate.getMonthValue() ||
+                (date.getMonthValue() == localDate.getMonthValue() && date.getDayOfMonth() < localDate.getDayOfMonth())) {
+            deliveryErrorLabel.setText("Please select valid values for each field");
+            deliveryErrorLabel.setVisible(true);
+            return;
+        } else if (Integer.parseInt(hour) < currentHour
+                && date.getYear() == localDate.getYear() && date.getMonthValue() == localDate.getMonthValue()
+                && date.getDayOfMonth() == localDate.getDayOfMonth()) {
+            deliveryErrorLabel.setText("Please select valid hour");
             deliveryErrorLabel.setVisible(true);
             return;
         } else {
             Order order = new Order();
-            //checked for digit for month what about day?
-            if(date.getMonthValue() < 10)
+            if (date.getMonthValue() < 10)
                 order.setDate(date.getYear() + "-0" + date.getMonthValue() + "-" + date.getDayOfMonth() + " " + hourPicker.getValue());
             else
                 order.setDate(date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth() + " " + hourPicker.getValue());
 
             order.setShipping(courier.isSelected());
-            msgObject.setObject(order);System.out.println(order.getDate());
+            msgObject.setObject(order);
+            System.out.println(order.getDate());
             try {
                 getClient().sendToServer(msgObject);
             } catch (IOException e) {
@@ -147,11 +170,7 @@ public class UserDetailsUserController {
     @FXML
     void handlePickUpFromBranch() {
 
-        if (!pickupFromBranch.isSelected()) {
-            courier.setDisable(false);
-        } else {
-            courier.setDisable(true);
-        }
+        courier.setDisable(pickupFromBranch.isSelected());
         finalPriceLabel.setText(String.valueOf(originalPrice));
     }
 
@@ -168,12 +187,12 @@ public class UserDetailsUserController {
         street.setText(user.getStreet());
         zip.setText(user.getZip());
         postOfficeBox.setText(user.getPob());
-        for (int i = 9; i <= 19; i++) {
+        for (int i = 10; i <= 19; i++) {
             hourPicker.getItems().add(i + ":00");
         }
         originalPrice = Double.parseDouble(finalPriceLabel.getText());
         double a = 0;
-        for(Catalog catalog : msgObject.getCatalogList()){
+        for (Catalog catalog : msgObject.getCatalogList()) {
             a += Double.parseDouble(catalog.getPrice()) + Double.parseDouble(catalog.getPrice());
         }
         finalPriceLabel.setText("" + a);

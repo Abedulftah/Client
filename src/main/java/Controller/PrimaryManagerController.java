@@ -3,6 +3,9 @@ package Controller;
 import com.jfoenix.controls.JFXComboBox;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,6 +44,11 @@ public class PrimaryManagerController {
     private JFXComboBox<Integer> singleShopProfitCB;
 
     @FXML
+    void handleAllShopHistogram() {
+
+    }
+
+    @FXML
     void handleComplaintComparison() throws IOException {
         String numberOfShops = comparisonFirstShopComplaintCB.getValue() + " ";
         numberOfShops = numberOfShops + comparisonSecondShopComplaintCB.getValue();
@@ -60,8 +68,25 @@ public class PrimaryManagerController {
 
     @FXML
     void handleLogoutButton() throws IOException {
-        user.setSignedIn(false);
-        getClient().sendToServer(new MsgObject("Home", user));
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout Confirmation");
+        alert.setHeaderText("Confirm logout");
+        ButtonType confirmButton = new ButtonType("Confirm", ButtonBar.ButtonData.YES);
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(confirmButton, cancelButton);
+
+        alert.showAndWait().ifPresent(type -> {
+            if (type == confirmButton) {
+                user.setSignedIn(false);
+                try {
+                    getClient().sendToServer(new MsgObject("Home", user));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
+            }
+        });
     }
 
     @FXML
