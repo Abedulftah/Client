@@ -1,6 +1,8 @@
 package Controller;
 
 
+import com.jfoenix.controls.JFXButton;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 
 import javafx.fxml.FXML;
@@ -15,6 +17,15 @@ import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
 
 public class PrimaryCustomerServiceController {
+
+    @FXML
+    private JFXButton backToManager;
+
+    @FXML
+    void handleBackToManager() throws IOException {
+
+        App.setRoot("primaryManager", "/Image/mainPageIcon.png", "Lilac");
+    }
 
     @FXML
     void handleLogoutButton() {
@@ -49,4 +60,9 @@ public class PrimaryCustomerServiceController {
         getClient().sendToServer(new MsgObject("specialOrdersCustomerService"));
     }
 
+    @FXML
+    void initialize() {
+
+        backToManager.setVisible(user.getAccountType().equals("system manager"));
+    }
 }

@@ -50,24 +50,27 @@ public class PrimaryManagerController {
 
     @FXML
     void handleComplaintComparison() throws IOException {
-        String numberOfShops = comparisonFirstShopComplaintCB.getValue() + " ";
-        numberOfShops = numberOfShops + comparisonSecondShopComplaintCB.getValue();
-        getClient().sendToServer(new MsgObject("compareHist Complaints", numberOfShops));
-
+        if (comparisonFirstShopComplaintCB.getValue() != null && comparisonSecondShopComplaintCB.getValue() != null) {
+            String numberOfShops = comparisonFirstShopComplaintCB.getValue() + " ";
+            numberOfShops = numberOfShops + comparisonSecondShopComplaintCB.getValue();
+            getClient().sendToServer(new MsgObject("compareHist Complaints", numberOfShops));
+        }
     }
 
     @FXML
     void handleComplaintHistogram() throws IOException {
-        getClient().sendToServer(new MsgObject("Histogram Complaints", singleShopComplaintCB.getValue()));
+        if (singleShopComplaintCB.getValue() != null) {
+            getClient().sendToServer(new MsgObject("Histogram Complaints", singleShopComplaintCB.getValue()));
+        }
     }
 
     @FXML
-    void handleEditCatalogue() {
-
+    void handleEditCatalogue() throws IOException {
+        getClient().sendToServer(new MsgObject("catalogueSystemWorker"));
     }
 
     @FXML
-    void handleLogoutButton() throws IOException {
+    void handleLogoutButton() {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout Confirmation");
@@ -91,26 +94,35 @@ public class PrimaryManagerController {
 
     @FXML
     void handleOrdersComparison() throws IOException {
-        String numberOfShops = comparisonFirstShopOrdersCB.getValue() + " ";
-        numberOfShops = numberOfShops + comparisonSecondShopOrdersCB.getValue();
-        getClient().sendToServer(new MsgObject("compareHist Orders", numberOfShops));
+        if (comparisonFirstShopOrdersCB.getValue() != null && comparisonSecondShopOrdersCB.getValue() != null) {
+            String numberOfShops = comparisonFirstShopOrdersCB.getValue() + " ";
+            numberOfShops = numberOfShops + comparisonSecondShopOrdersCB.getValue();
+            getClient().sendToServer(new MsgObject("compareHist Orders", numberOfShops));
+        }
     }
 
     @FXML
     void handleOrdersHistogram() throws IOException {
-        getClient().sendToServer(new MsgObject("Histogram Orders", singleShopOrdersCB.getValue()));
+        if (singleShopOrdersCB.getValue() != null) {
+            getClient().sendToServer(new MsgObject("Histogram Orders", singleShopOrdersCB.getValue()));
+        }
+
     }
 
     @FXML
     void handleProfitComparison() throws IOException {
-        String numberOfShops = comparisonFirstShopProfitCB.getValue() + " ";
-        numberOfShops = numberOfShops + comparisonSecondShopProfitCB.getValue();
-        getClient().sendToServer(new MsgObject("compareHist Profit", numberOfShops));
+        if (comparisonFirstShopProfitCB.getValue() != null && comparisonSecondShopProfitCB.getValue() != null) {
+            String numberOfShops = comparisonFirstShopProfitCB.getValue() + " ";
+            numberOfShops = numberOfShops + comparisonSecondShopProfitCB.getValue();
+            getClient().sendToServer(new MsgObject("compareHist Profit", numberOfShops));
+        }
     }
 
     @FXML
     void handleProfitHistogram() throws IOException {
-        getClient().sendToServer(new MsgObject("Histogram Profit", singleShopProfitCB.getValue()));
+        if (singleShopProfitCB.getValue() != null) {
+            getClient().sendToServer(new MsgObject("Histogram Profit", singleShopProfitCB.getValue()));
+        }
     }
 
     @FXML
@@ -127,9 +139,8 @@ public class PrimaryManagerController {
     }
 
     @FXML
-    void handleShowUsers() {
-        //getUsersInformation
-        //will enable the manager to edit the details
+    void handleShowUsers() throws IOException {
+        getClient().sendToServer(new MsgObject("editUsersManager"));
     }
 
     @FXML

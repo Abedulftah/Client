@@ -60,6 +60,9 @@ public class SignUp implements Serializable{
     @Column(name = "signedIn")
     private boolean signedIn = false;
 
+    @Column(name = "isBanned")
+    private boolean isBanned = false;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "specialitem_id")
     private List<SpecialItem> specialItems;
@@ -80,6 +83,14 @@ public class SignUp implements Serializable{
         this.holderOfCard = holderOfCard;
         this.date = date;
         this.cvv = cvv;
+    }
+
+    public boolean isBanned() {
+        return isBanned;
+    }
+
+    public void setBanned(boolean banned) {
+        isBanned = banned;
     }
 
     public String getCity() {

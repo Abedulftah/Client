@@ -59,6 +59,10 @@ public class SignInController {
                 if (((usr.getEmail().equals(userName) && usr.getPassword().equals(passwordTB.getText())) ||
                 usr.getUsername().equals(userName) && usr.getPassword().equals(passwordTB.getText())) && !usr.isSignedIn()) {
                     user = usr;
+                    if (usr.isBanned()) {
+                        getClient().sendToServer(new MsgObject("signIn"));
+                        return;
+                    }
                     user.setSignedIn(true);
                     userName = usr.getUsername();
                     rank = usr.getAccountType();
@@ -122,6 +126,14 @@ public class SignInController {
     @FXML
     void initialize() {
         errorMessageLabel.setVisible(false);
+        if (user != null) {
+            if (user.isBanned()) {
+                errorMessageLabel.setText("You are banned. Contact us for more information.");
+                errorMessageLabel.setVisible(true);
+                user = null;
+                return;
+            }
+        }
         if(msgObject.isIn() == 2) {
             errorMessageLabel.setText("Your email is signed in, please make sure to logout from other clients.");
             errorMessageLabel.setVisible(true);

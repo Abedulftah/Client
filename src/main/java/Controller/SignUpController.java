@@ -409,7 +409,7 @@ public class SignUpController {
     }
 
     @FXML
-    void handleSignUpButton() throws IOException {
+    void handleSignUpButton() {
 
         handleUserNameTB();
         handleEmailTB();

@@ -247,6 +247,24 @@ public class SimpleClient extends AbstractClient {
                     e.printStackTrace();
                 }
             });
+        } else if (msgObject.getMsg().equals("editUsersManager")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("editUsersManager", "/Image/usersIcon.png", "Edit Users");
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+                }
+            });
+        } else if (msgObject.getMsg().equals("editUserManager")) {
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("editSpecificUserManager", "/Image/usersIcon.png", "Edit User");
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+                }
+            });
         }
     }
 

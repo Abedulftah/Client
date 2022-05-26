@@ -1,5 +1,6 @@
 package Controller;
 
+import com.jfoenix.controls.JFXButton;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.SignUp;
@@ -15,6 +16,15 @@ import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 public class PrimarySystemWorkerController {
+
+    @FXML
+    private JFXButton backToManager;
+
+    @FXML
+    void handleBackToManager() throws IOException {
+
+        App.setRoot("primaryManager", "/Image/mainPageIcon.png", "Lilac");
+    }
 
     @FXML
     void handleEditCatalogueButton() throws IOException {
@@ -41,5 +51,11 @@ public class PrimarySystemWorkerController {
                 //App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
             }
         });
+    }
+
+    @FXML
+    void initialize() {
+
+        backToManager.setVisible(user.getAccountType().equals("system manager"));
     }
 }

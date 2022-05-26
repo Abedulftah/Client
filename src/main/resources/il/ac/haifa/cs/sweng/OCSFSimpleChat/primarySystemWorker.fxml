@@ -75,5 +75,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
+      <JFXButton fx:id="backToManager" buttonType="RAISED" layoutX="525.0" layoutY="21.0" onAction="#handleBackToManager" style="-fx-background-color: linear-gradient(to right, #000000, #434343); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="BACK TO MANAGER">
+         <font>
+            <Font name="Cambria Bold" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>
