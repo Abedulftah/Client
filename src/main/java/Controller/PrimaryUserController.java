@@ -21,6 +21,9 @@ public class PrimaryUserController {
     private Label nameLabel;
 
     @FXML
+    private Label totalRefundLabel;
+
+    @FXML
     private ImageView userImage;
 
     @FXML
