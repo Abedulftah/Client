@@ -11,6 +11,8 @@ public class MsgObject implements Serializable {
     int isIn = 0;
     Object object;
 
+    SignUp user;
+
     List<Catalog> catalogList = new ArrayList<>();
     public MsgObject() {
     }
@@ -25,6 +27,14 @@ public class MsgObject implements Serializable {
         this.object = null;
     }
 
+
+    public SignUp getUser() {
+        return user;
+    }
+
+    public void setUser(SignUp user) {
+        this.user = user;
+    }
 
     public void setIn(int in) {
         isIn = in;

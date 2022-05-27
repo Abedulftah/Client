@@ -40,6 +40,9 @@ public class MyOrdersUserController {
         // You must replace what appears down below with the real orders from the orders database
         // You've created
 
+        if(msgObject.getUser() != null)
+            user = msgObject.getUser();
+
         List<Order> orders = (List<Order>) msgObject.getObject();
 
         for(Order order : orders){

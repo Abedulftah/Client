@@ -73,7 +73,9 @@ public class PrimaryUserController {
 
     @FXML
     void handleMyOrdersButton() throws IOException {
-        getClient().sendToServer(new MsgObject("myOrdersUser"));
+        MsgObject msgObject1 = new MsgObject("myOrdersUser");
+        msgObject1.setUser(user);
+        getClient().sendToServer(msgObject1);
     }
 
     @FXML
@@ -103,5 +105,6 @@ public class PrimaryUserController {
                 userImage.setImage(new Image(getClass().getResourceAsStream("/Image/basicPlan.png")));
                 break;
         }
+        totalRefundLabel.setText(user.getMoneyInTheBank());
     }
 }

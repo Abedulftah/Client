@@ -39,6 +39,10 @@ public class DetailedOrderUserController {
 
     @FXML
     void initialize() throws IOException {
+
+        if(msgObject.getUser() != null)
+            user = msgObject.getUser();
+
         totalOrdersLabel.setText("Total items: " + numberOfItems);
         List<Catalog> catalogs = msgObject.getCatalogList();
         Order order = (Order) msgObject.getObject();
