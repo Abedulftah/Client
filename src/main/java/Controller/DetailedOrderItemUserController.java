@@ -43,9 +43,7 @@ public class DetailedOrderItemUserController {
         // Don't forget that if the last item was removed then you have to remove the whole order
         // I didn't add a remove all button in DetailedOrderUserController in purpose since if the user tend
         // To remove everything he must remove the order from the main page
-        --numberOfItems;
-        System.out.println(numberOfItems);
-        if(numberOfItems == 0) {
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Remove Confirmation");
             alert.setHeaderText("Remove product?");
@@ -57,16 +55,13 @@ public class DetailedOrderItemUserController {
                 if (type == confirmButton) {
                     user.setSignedIn(false);
                     try {
-                        getClient().sendToServer(new MsgObject("removeItemAndOrder", catalog));
+                        getClient().sendToServer(new MsgObject("removeItem", catalog));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    //App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
                 }
             });
-        }
-        else
-            getClient().sendToServer(new MsgObject("removeItem", catalog));
+
 
 
     }

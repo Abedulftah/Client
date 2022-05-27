@@ -81,6 +81,7 @@ public class PrimaryUserController {
     @FXML
     void handleNotificationsButton() throws IOException {
         getClient().sendToServer(new MsgObject("notificationsUser"));
+
     }
 
     @FXML

@@ -43,10 +43,11 @@ public class DetailedOrderUserController {
         if(msgObject.getUser() != null)
             user = msgObject.getUser();
 
-        totalOrdersLabel.setText("Total items: " + numberOfItems);
+
         List<Catalog> catalogs = msgObject.getCatalogList();
         Order order = (Order) msgObject.getObject();
         List<Catalog> catalogList = new ArrayList<>();
+        totalOrdersLabel.setText("Total items: " + order.getNumberOfItems());
 
         for(Catalog catalog : catalogs){
             if(catalog.getOrder() != null && catalog.getOrder().getId() == order.getId())

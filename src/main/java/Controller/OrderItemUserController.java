@@ -68,12 +68,11 @@ public class OrderItemUserController extends Node {
 
         alert.showAndWait().ifPresent(type -> {
             if (type == confirmButton) {
-                MsgObject msgObject =  new MsgObject("removeFromOrder");
-                msgObject.setObject(order);
+                MsgObject msgObject1 =  new MsgObject("removeFromOrder", order);
                 //we need to set an object that saves the date, so we can send it to customer worker to check what refund the client should get
                 //and to save the object as complain or whatever
                 try {
-                    getClient().sendToServer(msgObject);
+                    getClient().sendToServer(msgObject1);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -90,6 +89,5 @@ public class OrderItemUserController extends Node {
         this.priceLabel.setText(App.CURRENCY + order.getPrice());//ok
         this.sizeLabel.setText("" + order.getNumberOfItems());//the number of the items // ok
         this.dateLabel.setText(order.getDate());//ok
-        numberOfItems = order.getNumberOfItems();
     }
 }
