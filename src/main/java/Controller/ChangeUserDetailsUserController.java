@@ -167,10 +167,10 @@ public class ChangeUserDetailsUserController {
         Matcher matcher = pattern.matcher(text);
         if (!matcher.matches()) {
             flag13 = false;
-            CVVImage.setImage(new Image(getClass().getResourceAsStream("/Image/remove.png")));
+            CVVImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Image/remove.png"))));
         } else {
             flag13 = true;
-            CVVImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+            CVVImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Image/accept.png"))));
         }
     }
 
@@ -188,10 +188,10 @@ public class ChangeUserDetailsUserController {
         Matcher matcher = pattern.matcher(text);
         if (!matcher.matches()) {
             flag6 = false;
-            CityImage.setImage(new Image(getClass().getResourceAsStream("/Image/remove.png")));
+            CityImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Image/remove.png"))));
         } else {
             flag6 = true;
-            CityImage.setImage(new Image(getClass().getResourceAsStream("/Image/accept.png")));
+            CityImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Image/accept.png"))));
         }
     }
 

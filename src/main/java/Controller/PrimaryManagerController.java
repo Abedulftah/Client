@@ -17,7 +17,7 @@ import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 public class PrimaryManagerController {
 
     @FXML
-    private JFXComboBox<Integer> allShopsHistogramTypeCB;
+    private JFXComboBox<String> allShopsHistogramTypeCB;
 
     @FXML
     private JFXComboBox<Integer> comparisonFirstShopComplaintCB;
@@ -48,17 +48,15 @@ public class PrimaryManagerController {
 
     @FXML
     void handleAllShopHistogram() throws IOException {
-        //we need to choose what histogram the manager what wants, so we need a new field that the manager must choose from it
-//        if(chooseBox.getValue().equals("Profit"))
-//            getClient().sendToServer(new MsgObject("Histogram Profit ALL"));
-//        else if(chooseBox.getValue().equals("Orders"))
-//            getClient().sendToServer(new MsgObject("Histogram Orders ALL"));
-//        else if(chooseBox.getValue().equals("Complaints"))
-//            getClient().sendToServer(new MsgObject("Histogram Complaints ALL"));
-        //to the normal histogram and when we go to the server we need to get all the shops
-        if (allShopsHistogramTypeCB.getValue() != null) {
-            // write your code here
-        }
+//        we need to choose what histogram the manager what wants, so we need a new field that the manager must choose from it
+        if(allShopsHistogramTypeCB.getValue() != null && allShopsHistogramTypeCB.getValue().equals("Profit"))
+            getClient().sendToServer(new MsgObject("Histogram Profit ALL"));
+        else if(allShopsHistogramTypeCB.getValue() != null && allShopsHistogramTypeCB.getValue().equals("Orders"))
+            getClient().sendToServer(new MsgObject("Histogram Orders ALL"));
+        else if(allShopsHistogramTypeCB.getValue() != null && allShopsHistogramTypeCB.getValue().equals("Complaints"))
+            getClient().sendToServer(new MsgObject("Histogram Complaints ALL"));
+//        to the normal histogram and when we go to the server we need to get all the shops
+
     }
 
     @FXML
@@ -161,6 +159,12 @@ public class PrimaryManagerController {
 
     @FXML
     void initialize() {
+
+        allShopsHistogramTypeCB.getItems().add("Profit");
+        allShopsHistogramTypeCB.getItems().add("Complaints");
+        allShopsHistogramTypeCB.getItems().add("Orders");
+
+
 
         List<Integer> shopList = new ArrayList<>();
         for (int i = 1; i <= 11; i++) shopList.add(i);
