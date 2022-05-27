@@ -47,7 +47,7 @@ public class EditUsersItemManagerController {
                 sign.setBanned(!sign.isBanned());
                 try {
                     getClient().sendToServer(new MsgObject("addUser", sign));
-                    getClient().sendToServer(new MsgObject("editUsersManager", sign));
+                    //getClient().sendToServer(new MsgObject("editUsersManager", sign));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

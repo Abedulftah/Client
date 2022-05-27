@@ -27,7 +27,10 @@ public class ComplaintsCustomerServiceController {
 
     @FXML
     void handleHome() throws IOException {
-        getClient().sendToServer(new MsgObject("primaryCustomerService", user));
+        if(user.getAccountType().equals("system manager"))
+            getClient().sendToServer(new MsgObject("primaryManager", user));
+        else
+            getClient().sendToServer(new MsgObject("primaryCustomerService", user));
         //App.setRoot("primaryCustomerService", "/Image/mainPageIcon.png", "Lilac");
     }
 

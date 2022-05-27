@@ -16,6 +16,8 @@ import java.io.IOException;
 
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
+//we need a new field phone
+
 public class OrderItemUserController extends Node {
 
     private Order order;
@@ -84,7 +86,7 @@ public class OrderItemUserController extends Node {
     public void setData(Order order) {
         this.order = order;
         this.descriptionLabel.setText(order.getUser().getAddress());//the location change the label //ok
-        this.nameLabel.setText(order.getUser().getUsername());//ok
+        this.nameLabel.setText(order.getName());//ok
         this.priceLabel.setText(App.CURRENCY + order.getPrice());//ok
         this.sizeLabel.setText("" + order.getNumberOfItems());//the number of the items // ok
         this.dateLabel.setText(order.getDate());//ok

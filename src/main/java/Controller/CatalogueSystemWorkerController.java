@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.List;
 
+import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
@@ -131,7 +132,10 @@ public class CatalogueSystemWorkerController {
 
     @FXML
     void handleHomeCatalog() throws IOException {
-        App.setRoot("primarySystemWorker", "/Image/mainPageIcon.png", "Lilac");
+        if(user.getAccountType().equals("system manager"))
+            App.setRoot("primaryManager", "/Image/mainPageIcon.png", "Lilac");
+        else
+            App.setRoot("primarySystemWorker", "/Image/mainPageIcon.png", "Lilac");
     }
 
     private void loadGridPane() {

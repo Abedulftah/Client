@@ -57,6 +57,10 @@ public class SignUp implements Serializable{
     @Column(name = "cvv")
     private int cvv;
 
+    //we need to make a place for money refund, a type of bank account.
+//    @Column(name = "moneyInTheBank")
+//    private String moneyInTheBank;
+
     @Column(name = "signedIn")
     private boolean signedIn = false;
 
@@ -84,6 +88,15 @@ public class SignUp implements Serializable{
         this.date = date;
         this.cvv = cvv;
     }
+
+
+//    public String getMoneyInTheBank() {
+//        return moneyInTheBank;
+//    }
+//
+//    public void setMoneyInTheBank(String moneyInTheBank) {
+//        this.moneyInTheBank = moneyInTheBank;
+//    }
 
     public boolean isBanned() {
         return isBanned;

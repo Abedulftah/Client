@@ -36,7 +36,10 @@ public class Histogram {
 
         XYChart.Series set = new XYChart.Series<>();
 
-        set.setName("shop " + stringA[stringA.length-1]);
+        if(stringA[stringA.length-1].equals("ALL"))
+            set.setName("All shops");
+        else
+            set.setName("shop " + stringA[stringA.length-1]);
 
         for(int j = 0; j < shops.size(); j++) {//bubble sort according to date
             for (int i = j + 1; i < shops.size(); i++) {

@@ -44,8 +44,15 @@ public class PrimaryManagerController {
     private JFXComboBox<Integer> singleShopProfitCB;
 
     @FXML
-    void handleAllShopHistogram() {
-
+    void handleAllShopHistogram() throws IOException {
+        //we need to choose what histogram the manager what wants, so we need a new field that the manager must choose from it
+//        if(chooseBox.getValue().equals("Profit"))
+//            getClient().sendToServer(new MsgObject("Histogram Profit ALL"));
+//        else if(chooseBox.getValue().equals("Orders"))
+//            getClient().sendToServer(new MsgObject("Histogram Orders ALL"));
+//        else if(chooseBox.getValue().equals("Complaints"))
+//            getClient().sendToServer(new MsgObject("Histogram Complaints ALL"));
+        //to the normal histogram and when we go to the server we need to get all the shops
     }
 
     @FXML
@@ -127,13 +134,13 @@ public class PrimaryManagerController {
 
     @FXML
     void handleShowComplaints() throws IOException {
-        //when we click on the home button it will redirect us to the main page of customer service worker
+        //when we click on the home button it will redirect us to the main page of customer service worker // fixed
         getClient().sendToServer(new MsgObject("complaintsCustomerService"));
     }
 
     @FXML
     void handleShowSpecialOrders() throws IOException {
-        //when we click on the home button it will redirect us to the main page of customer service worker
+        //when we click on the home button it will redirect us to the main page of customer service worker //fixed
         getClient().sendToServer(new MsgObject("specialOrdersCustomerService"));
 
     }

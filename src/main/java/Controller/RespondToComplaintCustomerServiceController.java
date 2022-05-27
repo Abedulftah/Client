@@ -132,6 +132,7 @@ public class RespondToComplaintCustomerServiceController {
             cancelButton.setDisable(true);
 
             CustomerWorkerRespond customerWorkerRespond = new CustomerWorkerRespond(user.getUsername(), name, email, phone, notification, respondTB.getText());
+            customerWorkerRespond.setRefund(refundTB.getStyle());
             try {
                 getClient().sendToServer(new MsgObject("messageRespond",customerWorkerRespond));
             } catch (IOException e) {

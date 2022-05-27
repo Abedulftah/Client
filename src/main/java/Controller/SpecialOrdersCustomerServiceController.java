@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
+import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 public class SpecialOrdersCustomerServiceController {
@@ -35,7 +36,11 @@ public class SpecialOrdersCustomerServiceController {
 
     @FXML
     void handleHome() throws IOException {
-        App.setRoot("primaryCustomerService", "/Image/mainPageIcon.png", "Lilac");
+        //we need to check from where we by msg
+        if(user.getAccountType().equals("system manager"))
+            App.setRoot("primaryManager", "/Image/mainPageIcon.png", "Lilac");
+        else
+            App.setRoot("primaryCustomerService", "/Image/mainPageIcon.png", "Lilac");
     }
 
     @FXML

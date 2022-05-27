@@ -130,8 +130,9 @@ public class UserDetailsUserController {
                 order.setDate(date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth() + " " + hourPicker.getValue());
 
             order.setShipping(courier.isSelected());
+            order.setName(deliveryReceiverName.getText());
+            order.setPhone(deliveryReceiverPhone.getText());
             msgObject.setObject(order);
-            System.out.println(order.getDate());
             try {
                 getClient().sendToServer(msgObject);
             } catch (IOException e) {
@@ -158,8 +159,9 @@ public class UserDetailsUserController {
     }
 
     @FXML
-    void handleEditMyAccountInformation() {
+    void handleEditMyAccountInformation() throws IOException {
         // Leave it for now, I'll make a page later
+        getClient().sendToServer(new MsgObject("editAccountInformation"));
     }
 
     @FXML
