@@ -151,7 +151,7 @@ public class SimpleClient extends AbstractClient {
         } else if (msgObject.getMsg().equals("primarySystemWorker")) {
             Platform.runLater(() -> {
                 try {
-                    App.setRoot("primarySystemWorker", "/Image/mainPageIcon.png", "Lilac");
+                    App.setRoot("primarySystemWorker", "/Image/systemWorkerIcon.png", "System Worker");
                 } catch (IOException e) {
                     
                     e.printStackTrace();
@@ -160,7 +160,7 @@ public class SimpleClient extends AbstractClient {
         }else if (msgObject.getMsg().equals("primaryCustomerService")) {
             Platform.runLater(() -> {
                 try {
-                    App.setRoot("primaryCustomerService", "/Image/mainPageIcon.png", "Lilac");
+                    App.setRoot("primaryCustomerService", "/Image/customerServiceIcon.png", "Customer Service");
                 } catch (IOException e) {
                     
                     e.printStackTrace();
@@ -178,7 +178,7 @@ public class SimpleClient extends AbstractClient {
         }else if (msgObject.getMsg().equals("primaryManager")) {
             Platform.runLater(() -> {
                 try {
-                    App.setRoot("primaryManager", "/Image/mainPageIcon.png", "Lilac");
+                    App.setRoot("primaryManager", "/Image/managerIcon.png", "System Manager");
                 } catch (IOException e) {
                     
                     e.printStackTrace();
@@ -187,7 +187,7 @@ public class SimpleClient extends AbstractClient {
         }else if (msgObject.getMsg().startsWith("compareHist")) {
             Platform.runLater(() -> {
                 try {
-                    App.setRoot("compareHist", "/Image/mainPageIcon.png", "Lilac");
+                    App.setRoot("compareHist", "/Image/histogramIcon.png", "Comparison Histogram");
                 } catch (IOException e) {
                     
                     e.printStackTrace();
@@ -205,7 +205,7 @@ public class SimpleClient extends AbstractClient {
         } else if (msgObject.getMsg().startsWith("Histogram")) {
                 Platform.runLater(() -> {
                     try {
-                        App.setRoot("Histograms", "/Image/mainPageIcon.png", "Lilac");
+                        App.setRoot("Histograms", "/Image/histogramIcon.png", "Single Histogram");
                     } catch (IOException e) {
                         
                         e.printStackTrace();
@@ -214,7 +214,7 @@ public class SimpleClient extends AbstractClient {
         }else if (msgObject.getMsg().equals("primarySingleShopManager")) {
             Platform.runLater(() -> {
                 try {
-                    App.setRoot("primarySingleShopManager", "/Image/mainPageIcon.png", "Lilac");
+                    App.setRoot("primarySingleShopManager", "/Image/singleShopManagerIcon.png", "Shop Manager");
                 } catch (IOException e) {
                     
                     e.printStackTrace();

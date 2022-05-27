@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Complain;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.SpecialItem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,15 +17,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import static Controller.SignInController.user;
+import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 public class SpecialOrdersCustomerServiceController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Label totalOrdersLabel;
@@ -38,9 +34,9 @@ public class SpecialOrdersCustomerServiceController {
     void handleHome() throws IOException {
         //we need to check from where we by msg
         if(user.getAccountType().equals("system manager"))
-            App.setRoot("primaryManager", "/Image/mainPageIcon.png", "Lilac");
+            App.setRoot("primaryManager", "/Image/managerIcon.png", "System Manager");
         else
-            App.setRoot("primaryCustomerService", "/Image/mainPageIcon.png", "Lilac");
+            App.setRoot("primaryCustomerService", "/Image/customerServiceIcon.png", "Customer Service");
     }
 
     @FXML

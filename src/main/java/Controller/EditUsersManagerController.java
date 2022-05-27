@@ -35,7 +35,7 @@ public class EditUsersManagerController {
 
     @FXML
     void handleHome() throws IOException {
-        App.setRoot("primaryManager", "/Image/mainPageIcon.png", "Lilac");
+        App.setRoot("primaryManager", "/Image/managerIcon.png", "System Manager");
     }
 
     @FXML

@@ -1,5 +1,6 @@
 package Controller;
 
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Shop;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
@@ -8,6 +9,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +17,19 @@ import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 public class Histogram {
 
-    @FXML // fx:id="Profit"
-    private BarChart<?, ?> Profit; // Value injected by FXMLLoader
+    @FXML
+    private BarChart<?, ?> Profit;
 
-    @FXML // fx:id="x"
-    private CategoryAxis x; // Value injected by FXMLLoader
+    @FXML
+    private CategoryAxis x;
 
-    @FXML // fx:id="y"
-    private NumberAxis y; // Value injected by FXMLLoader
+    @FXML
+    private NumberAxis y;
+
+    @FXML
+    void handleHome() throws IOException {
+        App.setRoot("primaryManager", "/Image/managerIcon.png", "System Manager");
+    }
 
     public void initialize() {
         //we need to change the name of the column and the title according to the wanted histogram

@@ -133,9 +133,9 @@ public class CatalogueSystemWorkerController {
     @FXML
     void handleHomeCatalog() throws IOException {
         if(user.getAccountType().equals("system manager"))
-            App.setRoot("primaryManager", "/Image/mainPageIcon.png", "Lilac");
+            App.setRoot("primaryManager", "/Image/managerIcon.png", "System Manager");
         else
-            App.setRoot("primarySystemWorker", "/Image/mainPageIcon.png", "Lilac");
+            App.setRoot("primarySystemWorker", "/Image/systemWorkerIcon.png", "System Worker");
     }
 
     private void loadGridPane() {

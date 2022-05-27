@@ -17,6 +17,9 @@ import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 public class PrimaryManagerController {
 
     @FXML
+    private JFXComboBox<Integer> allShopsHistogramTypeCB;
+
+    @FXML
     private JFXComboBox<Integer> comparisonFirstShopComplaintCB;
 
     @FXML
@@ -53,11 +56,15 @@ public class PrimaryManagerController {
 //        else if(chooseBox.getValue().equals("Complaints"))
 //            getClient().sendToServer(new MsgObject("Histogram Complaints ALL"));
         //to the normal histogram and when we go to the server we need to get all the shops
+        if (allShopsHistogramTypeCB.getValue() != null) {
+            // write your code here
+        }
     }
 
     @FXML
     void handleComplaintComparison() throws IOException {
-        if (comparisonFirstShopComplaintCB.getValue() != null && comparisonSecondShopComplaintCB.getValue() != null) {
+        if ((comparisonFirstShopComplaintCB.getValue() != null && comparisonSecondShopComplaintCB.getValue() != null)
+        && (comparisonFirstShopComplaintCB.getValue() != comparisonSecondShopComplaintCB.getValue())) {
             String numberOfShops = comparisonFirstShopComplaintCB.getValue() + " ";
             numberOfShops = numberOfShops + comparisonSecondShopComplaintCB.getValue();
             getClient().sendToServer(new MsgObject("compareHist Complaints", numberOfShops));
@@ -101,7 +108,8 @@ public class PrimaryManagerController {
 
     @FXML
     void handleOrdersComparison() throws IOException {
-        if (comparisonFirstShopOrdersCB.getValue() != null && comparisonSecondShopOrdersCB.getValue() != null) {
+        if ((comparisonFirstShopOrdersCB.getValue() != null && comparisonSecondShopOrdersCB.getValue() != null)
+        && (comparisonFirstShopOrdersCB.getValue() != comparisonSecondShopOrdersCB.getValue())) {
             String numberOfShops = comparisonFirstShopOrdersCB.getValue() + " ";
             numberOfShops = numberOfShops + comparisonSecondShopOrdersCB.getValue();
             getClient().sendToServer(new MsgObject("compareHist Orders", numberOfShops));
@@ -118,7 +126,8 @@ public class PrimaryManagerController {
 
     @FXML
     void handleProfitComparison() throws IOException {
-        if (comparisonFirstShopProfitCB.getValue() != null && comparisonSecondShopProfitCB.getValue() != null) {
+        if ((comparisonFirstShopProfitCB.getValue() != null && comparisonSecondShopProfitCB.getValue() != null)
+        && (comparisonFirstShopProfitCB.getValue() != comparisonSecondShopProfitCB.getValue())) {
             String numberOfShops = comparisonFirstShopProfitCB.getValue() + " ";
             numberOfShops = numberOfShops + comparisonSecondShopProfitCB.getValue();
             getClient().sendToServer(new MsgObject("compareHist Profit", numberOfShops));
