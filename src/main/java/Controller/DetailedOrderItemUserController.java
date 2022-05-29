@@ -16,8 +16,7 @@ import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
 
-import static Controller.OrderItemUserController.numberOfItems;
-
+//we need to check if there is a discount and to show it
 public class DetailedOrderItemUserController {
 
     @FXML
@@ -69,7 +68,10 @@ public class DetailedOrderItemUserController {
         this.catalog = catalog;
         this.descriptionLabel.setText(catalog.getItemDetails());
         this.nameLabel.setText(catalog.getName());
-        this.priceLabel.setText(App.CURRENCY + catalog.getPrice());
+        if(catalog.getDiscount() == 0)
+            this.priceLabel.setText(App.CURRENCY + catalog.getPrice());
+        else
+            this.priceLabel.setText(App.CURRENCY + catalog.getDiscount());
         this.sizeLabel.setText(catalog.getSize());
         this.quantityLabel.setText("" + catalog.getLeft());
     }

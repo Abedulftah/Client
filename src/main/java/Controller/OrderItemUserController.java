@@ -17,7 +17,7 @@ import java.io.IOException;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
 //we need a new field phone
-
+//we need to check if there is a discount to show it
 public class OrderItemUserController extends Node {
 
     private Order order;

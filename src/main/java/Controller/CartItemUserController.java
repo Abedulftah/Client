@@ -16,6 +16,8 @@ import static Controller.CartUserController.specifiedItemsList;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
+//we need to check if there is a discount and to show it
+
 public class CartItemUserController {
 
     private Catalog catalog;
@@ -101,12 +103,15 @@ public class CartItemUserController {
     }
 
     public void setData(Catalog catalog) {
-            this.catalog = catalog;
-            this.descriptionLabel.setText(catalog.getItemDetails());
-            this.nameLabel.setText(catalog.getName());
+        this.catalog = catalog;
+        this.descriptionLabel.setText(catalog.getItemDetails());
+        this.nameLabel.setText(catalog.getName());
+        if(catalog.getDiscount() == 0)
             this.priceLabel.setText(App.CURRENCY + catalog.getPrice());
-            this.sizeLabel.setText(catalog.getSize());
-            this.quantityLabel.setText("" + catalog.getLeft());
+        else
+            this.priceLabel.setText(App.CURRENCY + catalog.getDiscount());
+        this.sizeLabel.setText(catalog.getSize());
+        this.quantityLabel.setText("" + catalog.getLeft());
     }
 
     @FXML

@@ -23,7 +23,7 @@ import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 // Check if you need to add anything in handleAddItemButton and handleEditButton
-
+//we need to check if there is a discount
 public class CatalogueSystemWorkerController {
 
     public static String itemImage;
