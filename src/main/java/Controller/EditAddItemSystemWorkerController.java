@@ -15,6 +15,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -106,7 +107,15 @@ public class EditAddItemSystemWorkerController {
         if (!nameFlag || !priceFlag || !discountFlag || !sizeFlag || !descriptionFlag || !imageFlag) {
             return;
         }
-        double a = Double.parseDouble(productPriceTB.getText()) + Double.parseDouble(productDiscountTB.getText()) * (Double.parseDouble(productPriceTB.getText()) / 100);
+        double a;
+        if (productDiscountTB.getText().equals("0")) {
+            a = -1;
+        } else {
+            a = ((100 - Double.parseDouble(productDiscountTB.getText())) / 100) * Double.parseDouble(productPriceTB.getText());
+        }
+        DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setMaximumFractionDigits(2);
+        a = Double.parseDouble(decimalFormat.format(a));
         if (CatalogueSystemWorkerController.editFlag) {
             // Edit existing item
             // new attributes:
