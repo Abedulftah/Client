@@ -15,7 +15,7 @@ import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
 public class App extends Application {
-    public static final String CURRENCY = "$";
+    public static final String CURRENCY = "₪";
     private static Scene scene;
     private static SimpleClient client;
     private static Stage mainStage;

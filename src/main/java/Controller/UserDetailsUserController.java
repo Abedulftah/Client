@@ -11,8 +11,11 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyComboBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 
+import java.awt.font.TextAttribute;
 import java.io.IOException;
+import java.text.AttributedString;
 import java.time.LocalDate;
 import java.util.Calendar;
 
@@ -197,6 +200,7 @@ public class UserDetailsUserController {
         for (Catalog catalog : msgObject.getCatalogList()) {
             a += Double.parseDouble(catalog.getPrice()) + Double.parseDouble(catalog.getPrice());
         }
+
         finalPriceLabel.setText("" + a);
         originalPrice = a;
     }

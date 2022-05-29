@@ -30,6 +30,8 @@ public class Catalog implements Serializable {
     @Column(name = "imgUrl")
     private String imgUrl;
 
+    @Column(name = "dicount")
+    private double discount;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
@@ -58,6 +60,14 @@ public class Catalog implements Serializable {
         this.size = "";
     }
 
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
 
     public Order getOrder() {
         return order;

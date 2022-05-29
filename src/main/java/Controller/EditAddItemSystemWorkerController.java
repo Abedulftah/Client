@@ -1,7 +1,7 @@
 package Controller;
 
 import com.jfoenix.controls.JFXButton;
-import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
+
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -15,8 +15,6 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Blob;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -119,7 +117,7 @@ public class EditAddItemSystemWorkerController {
                     catalog.setItemDetails(productDescriptionTB.getText());
                     catalog.setSize(productSizeTB.getText());
                     catalog.setImgUrl(productImage.getImage().getUrl());
-                    catalog.setPrice("" + a);
+                    catalog.setDiscount(a);
                     catalog.setColor(String.valueOf(productColor.getValue()).substring(2, 8));
                 }
             }
