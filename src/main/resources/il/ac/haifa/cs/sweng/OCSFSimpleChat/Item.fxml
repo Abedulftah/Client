@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="anItem" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#click" prefHeight="215.0" prefWidth="225.0" stylesheets="@../../../../../../Styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ItemController">
    <children>
@@ -24,12 +25,27 @@
                      <font>
                         <Font name="Cambria Bold" size="14.0" />
                      </font>
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding>
                   </Label>
-                  <Label fx:id="priceLabel" prefHeight="100.0" prefWidth="127.0" styleClass="shadow" stylesheets="@../../../../../../Styles/style.css" text="\$100.99" textFill="#878787">
-                     <font>
-                        <Font name="Cambria Bold" size="14.0" />
-                     </font>
-                  </Label>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <Text fx:id="priceLabel" fill="#878787" strokeType="OUTSIDE" strokeWidth="0.0" text="\$100.99">
+                           <font>
+                              <Font name="Cambria Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <Text fx:id="discountedPriceLabel" fill="#878787" strokeType="OUTSIDE" strokeWidth="0.0" text="\$100.99" visible="false">
+                           <font>
+                              <Font name="Cambria Bold" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
                </children>
                <VBox.margin>
                   <Insets />

@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.List;
@@ -48,7 +49,7 @@ public class CatalogueSystemWorkerController {
     private Label chosenItemName;
 
     @FXML
-    private Label chosenItemPrice;
+    private Text chosenItemPrice;
 
     @FXML
     private Label chosenItemSize;
@@ -59,6 +60,9 @@ public class CatalogueSystemWorkerController {
     @FXML
     private TextField searchItemTB;
 
+    @FXML
+    private Text discountedItemPrice;
+
     private final List<Catalog> flowerList = msgObject.getCatalogList();
 
     private MyListener myListener;
@@ -66,7 +70,7 @@ public class CatalogueSystemWorkerController {
     private void setChosenItem(Catalog catalog) {
         if (catalog.getPrivilege() == 0) {
             chosenItemName.setText(catalog.getName());
-            chosenItemPrice.setText("Price: " + App.CURRENCY + catalog.getPrice());
+            chosenItemPrice.setText(App.CURRENCY + catalog.getPrice());
             chosenItemDetails.setText(catalog.getItemDetails());
             chosenItemSize.setText(catalog.getSize());
             Image image = new Image(catalog.getImgUrl());

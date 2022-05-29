@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1250.0" style="-fx-background-color: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CatalogueSystemWorkerController">
    <children>
@@ -95,9 +95,9 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox prefHeight="57.0" prefWidth="335.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="335.0">
                            <children>
-                              <Label fx:id="chosenItemPrice" prefHeight="60.0" prefWidth="336.0" text="Price: $100.99" textFill="WHITE">
+                              <Label prefHeight="60.0" text="Price: " textFill="WHITE">
                                  <font>
                                     <Font name="Cambria" size="24.0" />
                                  </font>
@@ -108,6 +108,28 @@
                                     <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </HBox.margin>
                               </Label>
+                              <Text fx:id="chosenItemPrice" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="\$100.99" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Cambria" size="24.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <Text fx:id="discountedItemPrice" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="\$100.99" textAlignment="CENTER" visible="false">
+                                 <font>
+                                    <Font name="Cambria" size="24.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="10.0" top="5.0" />
+                                 </HBox.margin>
+                              </Text>
                            </children>
                         </HBox>
                         <HBox prefHeight="60.0" prefWidth="335.0">

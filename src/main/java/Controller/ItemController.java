@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MyListener;
+import javafx.scene.text.Text;
 
 import java.util.Objects;
 
@@ -24,14 +25,17 @@ public class ItemController {
     private Label nameLabel;
 
     @FXML
-    private Label priceLabel;
+    private Text priceLabel;
+
+    @FXML
+    private Text discountedPriceLabel;
 
     private Catalog catalog;
 
     private MyListener myListener;
 
     @FXML
-    private void click(MouseEvent mouseEvent) {
+    private void click() {
         myListener.onClickListener(catalog);
     }
 

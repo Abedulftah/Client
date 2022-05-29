@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class CatalogueUserController {
     private Label chosenItemName;
 
     @FXML
-    private Label chosenItemPrice;
+    private Text chosenItemPrice;
 
     @FXML
     private Label chosenItemSize;
@@ -60,6 +61,9 @@ public class CatalogueUserController {
 
     @FXML
     private MFXTextField quantityTB;
+
+    @FXML
+    private Text discountedItemPrice;
 
     private final List<Catalog> flowerList = msgObject.getCatalogList();
 
@@ -145,7 +149,7 @@ public class CatalogueUserController {
     private void setChosenItem(Catalog catalog) {
         if(catalog.getPrivilege() == 0) {
             chosenItemName.setText(catalog.getName());
-            chosenItemPrice.setText("Price: " + App.CURRENCY + catalog.getPrice());
+            chosenItemPrice.setText(App.CURRENCY + catalog.getPrice());
             chosenItemDetails.setText(catalog.getItemDetails());
             chosenItemSize.setText(catalog.getSize());
             Image image = new Image(catalog.getImgUrl());
