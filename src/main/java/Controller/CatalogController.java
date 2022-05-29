@@ -58,7 +58,13 @@ public class CatalogController {
     private void setChosenItem(Catalog catalog) {
         if(catalog.getPrivilege() == 0) {
             chosenItemName.setText(catalog.getName());
-            chosenItemPrice.setText(App.CURRENCY + catalog.getPrice());
+            if(catalog.getDiscount() == 0)
+                chosenItemPrice.setText(App.CURRENCY + catalog.getPrice());
+            else{
+                discountedItemPrice.setText(App.CURRENCY + catalog.getDiscount());
+                chosenItemPrice.setStrikethrough(true);
+                discountedItemPrice.setVisible(true);
+            }
             chosenItemDetails.setText(catalog.getItemDetails());
             chosenItemSize.setText(catalog.getSize());
             Image image = new Image(catalog.getImgUrl());

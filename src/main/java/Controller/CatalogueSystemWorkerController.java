@@ -70,7 +70,13 @@ public class CatalogueSystemWorkerController {
     private void setChosenItem(Catalog catalog) {
         if (catalog.getPrivilege() == 0) {
             chosenItemName.setText(catalog.getName());
-            chosenItemPrice.setText(App.CURRENCY + catalog.getPrice());
+            if(catalog.getDiscount() == 0)
+                chosenItemPrice.setText(App.CURRENCY + catalog.getPrice());
+            else{
+                discountedItemPrice.setText(App.CURRENCY + catalog.getDiscount());
+                chosenItemPrice.setStrikethrough(true);
+                discountedItemPrice.setVisible(true);
+            }
             chosenItemDetails.setText(catalog.getItemDetails());
             chosenItemSize.setText(catalog.getSize());
             Image image = new Image(catalog.getImgUrl());
@@ -230,7 +236,7 @@ public class CatalogueSystemWorkerController {
         addFlag = false;
         editFlag = true;
         itemName = chosenItemName.getText();
-        itemPrice = Double.parseDouble(chosenItemPrice.getText().substring(8));
+        itemPrice = Double.parseDouble(chosenItemPrice.getText().substring(1));
         itemSize = chosenItemSize.getText();
         itemDescription = chosenItemDetails.getText();
         App.setRoot("editAddItemSystemWorker", "/Image/mainPageIcon.png", "Lilac");

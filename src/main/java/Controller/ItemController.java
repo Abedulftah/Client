@@ -47,7 +47,13 @@ public class ItemController {
             this.catalog = catalog;
             this.myListener = myListener;
             nameLabel.setText(catalog.getName());
-            priceLabel.setText(App.CURRENCY + catalog.getPrice());
+            if(catalog.getDiscount() == 0)
+                priceLabel.setText(App.CURRENCY + catalog.getPrice());
+            else {
+                priceLabel.setStrikethrough(true);
+                discountedPriceLabel.setText(App.CURRENCY + catalog.getDiscount());
+                discountedPriceLabel.setVisible(true);
+            }
             Image image = new Image(catalog.getImgUrl());
             imageLabel.setImage(image);
             anItem.setStyle("-fx-background-color: #" + catalog.getColor() + ";\n" +
