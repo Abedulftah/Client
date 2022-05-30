@@ -106,7 +106,7 @@ public class CartItemUserController {
         this.catalog = catalog;
         this.descriptionLabel.setText(catalog.getItemDetails());
         this.nameLabel.setText(catalog.getName());
-        if(catalog.getDiscount() == -1)
+        if(catalog.getDiscount() == 0)
             this.priceLabel.setText(App.CURRENCY + catalog.getPrice());
         else
             this.priceLabel.setText(App.CURRENCY + catalog.getDiscount());

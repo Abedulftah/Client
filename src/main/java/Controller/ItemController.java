@@ -47,13 +47,12 @@ public class ItemController {
             this.catalog = catalog;
             this.myListener = myListener;
             nameLabel.setText(catalog.getName());
-            if(catalog.getDiscount() == -1) {
+            if(catalog.getDiscount() == 0) {
                 priceLabel.setText(App.CURRENCY + catalog.getPrice());
                 priceLabel.setStrikethrough(false);
                 discountedPriceLabel.setVisible(false);
             }
             else {
-                priceLabel.setText(App.CURRENCY + catalog.getPrice());
                 priceLabel.setStrikethrough(true);
                 discountedPriceLabel.setText(App.CURRENCY + catalog.getDiscount());
                 discountedPriceLabel.setVisible(true);
