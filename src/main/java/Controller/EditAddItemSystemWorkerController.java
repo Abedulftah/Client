@@ -126,6 +126,7 @@ public class EditAddItemSystemWorkerController {
                     catalog.setItemDetails(productDescriptionTB.getText());
                     catalog.setSize(productSizeTB.getText());
                     catalog.setImgUrl(productImage.getImage().getUrl());
+                    catalog.setPrice(productPriceTB.getText());
                     catalog.setDiscount(a);
                     catalog.setColor(String.valueOf(productColor.getValue()).substring(2, 8));
                 }
@@ -144,6 +145,7 @@ public class EditAddItemSystemWorkerController {
             // Add new item
             // attributes:
             Catalog catalog = new Catalog(productImage.getImage().getUrl(), productNameTB.getText(), "" + a, productDescriptionTB.getText(), productSizeTB.getText(), String.valueOf(productColor.getValue()).substring(2, 8));
+            catalog.setPrice(productPriceTB.getText());
             try {
                 getClient().sendToServer(new MsgObject("addItem", catalog));
             } catch (IOException e) {

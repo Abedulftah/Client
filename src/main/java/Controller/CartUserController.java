@@ -50,7 +50,7 @@ public class CartUserController {
         }
         msgObject.setMsg("cartToOrder");//"detailsConfirmation"/"userDetailsUser" from there we will send the catalogList
         msgObject.setCatalogList(catalogList);//if the client confirm everything
-        App.setRoot("userDetailsUser", "/Image/userDetailsIcon.png", "Details confirmation");
+        App.setRoot("userDetailsUser", "/Image/userDetailsIcon.png", "Details Confirmation");
     }
 
     @FXML
@@ -61,7 +61,7 @@ public class CartUserController {
         }
         msgObject.setMsg("cartToOrder");//"detailsConfirmation"/"userDetailsUser" from there we will send the catalogList
         msgObject.setCatalogList(specifiedItemsList);//if the client confirm everything
-        App.setRoot("userDetailsUser", "/Image/userDetailsIcon.png", "Details confirmation");
+        App.setRoot("userDetailsUser", "/Image/userDetailsIcon.png", "Details Confirmation");
     }
 
     @FXML

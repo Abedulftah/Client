@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
 
@@ -237,6 +238,9 @@ public class UserDetailsUserController {
         for (Catalog catalog : msgObject.getCatalogList()) {
             a += Double.parseDouble(catalog.getPrice()) * catalog.getLeft();
         }
+        DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setMaximumFractionDigits(2);
+        a = Double.parseDouble(decimalFormat.format(a));
         finalPriceLabel.setText("" + a);
         originalPrice = a;
         setTextAreaLimit(blessingText, 300);

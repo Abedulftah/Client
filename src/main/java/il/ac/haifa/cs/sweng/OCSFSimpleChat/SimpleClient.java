@@ -124,7 +124,7 @@ public class SimpleClient extends AbstractClient {
         } else if (msgObject.getMsg().equals("detailedOrderUser")) {
             Platform.runLater(() -> {
                 try {
-                    App.setRoot("detailedOrderUser", "/Image/myOrdersIcon.png", "Item of the order");
+                    App.setRoot("detailedOrderUser", "/Image/myOrdersIcon.png", "Item Of The Order");
                 } catch (IOException e) {
 
                     e.printStackTrace();

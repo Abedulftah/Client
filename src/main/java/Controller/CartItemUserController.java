@@ -49,14 +49,14 @@ public class CartItemUserController {
         //we need to make a new instance of shop that will count the order and the value of it0
 
         // User will be redirected to pay for this specific item, when he pays move the item from
-        // will pop an alert to say to confirmable the detials of the account if not then will pop another alert to say to change his details in the main page
+        // will pop an alert to say to confirmable the details of the account if not then will pop another alert to say to change his details in the main page
         // cart database to orders database for the current user
         msgObject.getCatalogList().clear();
 
         catalog.setPrivilege(2);
         msgObject.setMsg("cartToOrder");//"detailsConfirmation"/"userDetailsUser" from there we will send the catalogList
         msgObject.getCatalogList().add(catalog);//if the client confirm everything else we'll not do an update
-        App.setRoot("userDetailsUser", "/Image/userDetailsIcon.png", "Details confirmation");
+        App.setRoot("userDetailsUser", "/Image/userDetailsIcon.png", "Details Confirmation");
     }
 
     @FXML
