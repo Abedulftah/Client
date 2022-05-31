@@ -58,12 +58,13 @@ public class CatalogController {
     private void setChosenItem(Catalog catalog) {
         if(catalog.getPrivilege() == 0) {
             chosenItemName.setText(catalog.getName());
-            if(catalog.getDiscount() == 0) {
+            if(catalog.getDiscount() == -1) {
                 chosenItemPrice.setText(App.CURRENCY + catalog.getPrice());
                 chosenItemPrice.setStrikethrough(false);
                 discountedItemPrice.setVisible(false);
             }
             else{
+                chosenItemPrice.setText(App.CURRENCY + catalog.getPrice());
                 discountedItemPrice.setText((App.CURRENCY + catalog.getDiscount()));
                 chosenItemPrice.setStrikethrough(true);
                 discountedItemPrice.setVisible(true);

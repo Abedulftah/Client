@@ -31,7 +31,7 @@ public class Catalog implements Serializable {
     private String imgUrl;
 
     @Column(name = "dicount")
-    private double discount = 0;
+    private double discount = -1;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

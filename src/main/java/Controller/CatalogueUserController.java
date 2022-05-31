@@ -79,12 +79,12 @@ public class CatalogueUserController {
         for(Catalog catalog : msgObject.getCatalogList()){
             if(catalog.getPrivilege() == 1 && catalog.getUser() != null && catalog.getName().equals(chosenItemName.getText()) && catalog.getUser().getEmail().equals(user.getEmail())){
                 double a;
-                if (catalog.getDiscount() == 0) {
-                    a = Double.parseDouble(chosenItemPrice.getText().substring(1)) * (Double.parseDouble(quantityTB.getText()) + catalog.getLeft());
+                if (!chosenItemPrice.isStrikethrough()) {
+                    a = Double.parseDouble(chosenItemPrice.getText().substring(1)) * Double.parseDouble(quantityTB.getText());
                 } else {
                     a = Double.parseDouble(discountedItemPrice.getText().substring(1)) * Double.parseDouble(quantityTB.getText());
                 }
-                catalog.setPrice("" + a);
+                catalog.setPrice("" + (a + Double.parseDouble(catalog.getPrice())));
                 catalog.setLeft(Integer.parseInt(quantityTB.getText()) + catalog.getLeft());
                 try {
                     getClient().sendToServer(new MsgObject("updateCart", catalog));
@@ -99,7 +99,7 @@ public class CatalogueUserController {
         catalog.setLeft(Integer.parseInt(quantityTB.getText()));
         catalog.setName(chosenItemName.getText());
         catalog.setSize(chosenItemSize.getText());
-        double a = 0;
+        double a;
         if (!chosenItemPrice.isStrikethrough()) {
             a = Double.parseDouble(chosenItemPrice.getText().substring(1)) * Double.parseDouble(quantityTB.getText());
         } else {
@@ -158,12 +158,13 @@ public class CatalogueUserController {
     private void setChosenItem(Catalog catalog) {
         if(catalog.getPrivilege() == 0) {
             chosenItemName.setText(catalog.getName());
-            if(catalog.getDiscount() == 0) {
+            if(catalog.getDiscount() == -1) {
                 chosenItemPrice.setText(App.CURRENCY + catalog.getPrice());
                 chosenItemPrice.setStrikethrough(false);
                 discountedItemPrice.setVisible(false);
             }
             else{
+                chosenItemPrice.setText(App.CURRENCY + catalog.getPrice());
                 discountedItemPrice.setText(App.CURRENCY + catalog.getDiscount());
                 chosenItemPrice.setStrikethrough(true);
                 discountedItemPrice.setVisible(true);
