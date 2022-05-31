@@ -11,14 +11,15 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyComboBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-import java.awt.font.TextAttribute;
 import java.io.IOException;
-import java.text.AttributedString;
 import java.time.LocalDate;
 import java.util.Calendar;
 
+import static Controller.ContactUsNotSignedController.setTextAreaLimit;
 import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
@@ -27,6 +28,16 @@ public class UserDetailsUserController {
 
     @FXML
     private JFXButton backToCartButton;
+
+    @FXML
+    private JFXCheckBox blessing;
+
+    @FXML
+    private Pane blessingPane;
+
+    @FXML
+    private TextArea blessingText;
+
 
     @FXML
     private MFXTextField city;
@@ -91,11 +102,18 @@ public class UserDetailsUserController {
     @FXML
     private Text discountedPriceText; // This is the discounted price text, it's numeric so just enter numbers, setVisible(true) when needed
 
+    private String blessingMessage;
+
     private double originalPrice;
 
     @FXML
     void handleBackToCart() throws IOException {
         getClient().sendToServer(new MsgObject("cartUser"));
+    }
+
+    @FXML
+    void handleBlessing() {
+        blessingPane.setVisible(blessing.isSelected());
     }
 
     @FXML
@@ -144,6 +162,9 @@ public class UserDetailsUserController {
             order.setShipping(courier.isSelected());
             order.setName(deliveryReceiverName.getText());
             order.setPhone(deliveryReceiverPhone.getText());
+            if (blessing.isSelected()) {
+                // Insert blessingMessage to the database, else don't do so.
+            }
             msgObject.setObject(order);
             try {
                 getClient().sendToServer(msgObject);
@@ -168,6 +189,13 @@ public class UserDetailsUserController {
             pickupFromBranch.setDisable(true);
             finalPriceLabel.setText(String.valueOf(originalPrice + 10));
         }
+    }
+
+    @FXML
+    void handleDone() {
+        blessingMessage = blessingText.getText();
+        // Don't insert this message to database unless the user clicks confirm and the Blessing checkbox is checked
+        blessingPane.setVisible(false);
     }
 
     @FXML
@@ -211,6 +239,7 @@ public class UserDetailsUserController {
         }
         finalPriceLabel.setText("" + a);
         originalPrice = a;
+        setTextAreaLimit(blessingText, 300);
     }
 }
 
