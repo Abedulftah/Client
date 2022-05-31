@@ -68,7 +68,7 @@ public class DetailedOrderItemUserController {
         this.catalog = catalog;
         this.descriptionLabel.setText(catalog.getItemDetails());
         this.nameLabel.setText(catalog.getName());
-        if(catalog.getDiscount() == 0)
+        if(catalog.getDiscount() == -1)
             this.priceLabel.setText(App.CURRENCY + catalog.getPrice());
         else
             this.priceLabel.setText(App.CURRENCY + catalog.getDiscount());
