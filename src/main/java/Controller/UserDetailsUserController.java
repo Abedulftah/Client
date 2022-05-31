@@ -16,11 +16,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
 
-import static Controller.ContactUsNotSignedController.setTextAreaLimit;
 import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
@@ -38,8 +36,6 @@ public class UserDetailsUserController {
 
     @FXML
     private TextArea blessingText;
-
-
     @FXML
     private MFXTextField city;
 
@@ -104,17 +100,11 @@ public class UserDetailsUserController {
     private Text discountedPriceText; // This is the discounted price text, it's numeric so just enter numbers, setVisible(true) when needed
 
     private String blessingMessage;
-
     private double originalPrice;
 
     @FXML
     void handleBackToCart() throws IOException {
         getClient().sendToServer(new MsgObject("cartUser"));
-    }
-
-    @FXML
-    void handleBlessing() {
-        blessingPane.setVisible(blessing.isSelected());
     }
 
     @FXML
@@ -163,9 +153,10 @@ public class UserDetailsUserController {
             order.setShipping(courier.isSelected());
             order.setName(deliveryReceiverName.getText());
             order.setPhone(deliveryReceiverPhone.getText());
-            if (blessing.isSelected()) {
-                // Insert blessingMessage to the database, else don't do so.
-            }
+            if(finalPriceLabel.isStrikethrough())
+                order.setPrice(discountedPriceText.getText());
+            else
+                order.setPrice(finalPriceLabel.getText());
             msgObject.setObject(order);
             try {
                 getClient().sendToServer(msgObject);
@@ -184,19 +175,17 @@ public class UserDetailsUserController {
 
         if (!courier.isSelected()) {
             pickupFromBranch.setDisable(false);
-            finalPriceLabel.setText(String.valueOf(originalPrice));
+            if(finalPriceLabel.isStrikethrough())
+                discountedPriceText.setText(String.valueOf(originalPrice));
+            else
+                finalPriceLabel.setText(String.valueOf(originalPrice));
         } else {
-
             pickupFromBranch.setDisable(true);
-            finalPriceLabel.setText(String.valueOf(originalPrice + 10));
+            if(finalPriceLabel.isStrikethrough())
+                discountedPriceText.setText(String.valueOf(originalPrice + 10));
+            else
+                finalPriceLabel.setText(String.valueOf(originalPrice + 10));
         }
-    }
-
-    @FXML
-    void handleDone() {
-        blessingMessage = blessingText.getText();
-        // Don't insert this message to database unless the user clicks confirm and the Blessing checkbox is checked
-        blessingPane.setVisible(false);
     }
 
     @FXML
@@ -214,9 +203,22 @@ public class UserDetailsUserController {
     void handlePickUpFromBranch() {
 
         courier.setDisable(pickupFromBranch.isSelected());
-        finalPriceLabel.setText(String.valueOf(originalPrice));
+        if(finalPriceLabel.isStrikethrough())
+            discountedPriceText.setText(String.valueOf(originalPrice));
+        else
+            finalPriceLabel.setText(String.valueOf(originalPrice));
     }
 
+    @FXML
+    void handleBlessing() {
+        blessingPane.setVisible(blessing.isSelected());
+    }
+    @FXML
+    void handleDone() {
+        blessingMessage = blessingText.getText();
+        // Don't insert this message to database unless the user clicks confirm and the Blessing checkbox is checked
+        blessingPane.setVisible(false);
+    }
     @FXML
     void initialize() {
 
@@ -238,12 +240,18 @@ public class UserDetailsUserController {
         for (Catalog catalog : msgObject.getCatalogList()) {
             a += Double.parseDouble(catalog.getPrice()) * catalog.getLeft();
         }
-        DecimalFormat decimalFormat = new DecimalFormat();
-        decimalFormat.setMaximumFractionDigits(2);
-        a = Double.parseDouble(decimalFormat.format(a));
         finalPriceLabel.setText("" + a);
+
+        if(user.getAccountType().equals("elite") && a > 50){
+            finalPriceLabel.setStrikethrough(true);
+            a *= 0.9;
+
+            discountedPriceText.setText("" + a);
+            discountedPriceText.setVisible(true);
+            finalPriceDiscountedLabel.setVisible(true);
+        }
+
         originalPrice = a;
-        setTextAreaLimit(blessingText, 300);
     }
 }
 
