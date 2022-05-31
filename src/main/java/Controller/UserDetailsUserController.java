@@ -65,9 +65,6 @@ public class UserDetailsUserController {
     private JFXButton editMyAccountInformationButton;
 
     @FXML
-    private Label finalPriceLabel;
-
-    @FXML
     private MFXLegacyComboBox<String> hourPicker;
 
     @FXML
@@ -81,6 +78,18 @@ public class UserDetailsUserController {
 
     @FXML
     private MFXTextField zip;
+
+    @FXML
+    private Text finalPriceLabel; // This is a numeric label so just enter numbers here, original price
+
+    @FXML
+    private Text finalPriceOriginalLabel; // This is just the ₪ symbol so strikethrough when you need
+
+    @FXML
+    private Text finalPriceDiscountedLabel; // This is the ₪ symbol for the discounted price so setVisible(true) when needed
+
+    @FXML
+    private Text discountedPriceText; // This is the discounted price text, it's numeric so just enter numbers, setVisible(true) when needed
 
     private double originalPrice;
 
