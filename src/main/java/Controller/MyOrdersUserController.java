@@ -45,6 +45,8 @@ public class MyOrdersUserController {
 
         List<Order> orders = (List<Order>) msgObject.getObject();
 
+        if(orders == null)
+            return;
         for(Order order : orders){
             if(order.getUser().getId() == user.getId()){
                 orderList.add(order);
