@@ -31,12 +31,13 @@ public class Histogram {
     void handleHome() throws IOException {
 
             switch (user.getAccountType()) {
-                case "shop manager 1": case "shop manager 2": case "shop manager 3": case "shop manager 4": case "shop manager 5": case "shop manager 6": case "shop manager 7": case "shop manager 8": case "shop manager 9": case "shop manager 10":
-                    App.setRoot("primarySingleShopManager", "/Image/singleShopManagerIcon.png", "Shop Manager");
-                break;
-                case "primaryManager" :
+
+                case "system manager" :
                     App.setRoot("primaryManager", "/Image/managerIcon.png", "System Manager");
-                break;
+                    break;
+
+                default:
+                    App.setRoot("primarySingleShopManager", "/Image/singleShopManagerIcon.png", "Shop Manager");
             }
     }
 

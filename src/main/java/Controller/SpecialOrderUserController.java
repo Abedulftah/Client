@@ -207,12 +207,12 @@ public class SpecialOrderUserController {
     void initialize() {
 
         chooseContainer.getItems().addAll("Glass Bowl", "Basket", "Wicker Basket", "Glass Vase", "Vase");
-        for (int i = 10; i <= 30; i++) {
+        for (int i = 1; i <= 30; i++) {
             numberOfFlowers.getItems().add(i);
         }
         boxOfChocolate.getItems().addAll("Yes", "No");
         teddyBear.getItems().addAll("Yes", "No");
         blessingMessage.getItems().addAll("Yes", "No");
-        desiredPrice.getItems().addAll("$30 - $40", "$40 - $50", "$50 - $60", "$60 - $70", "$70 - $80", "$80 - $90", "$90 - $100", "$100 - $110", "$110 - $120");
+        desiredPrice.getItems().addAll("₪30 - ₪40", "₪40 - ₪50", "₪50 - ₪60", "₪60 - ₪70", "₪70 - ₪80", "₪80 - ₪90", "₪90 - ₪100", "₪100 - ₪110", "₪110 - ₪120");
     }
 }

@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
 
@@ -86,7 +87,10 @@ public class OrderItemUserController extends Node {
         this.order = order;
         this.descriptionLabel.setText(order.getUser().getAddress());//the location change the label //ok
         this.nameLabel.setText(order.getName());//ok
-        this.priceLabel.setText(App.CURRENCY + order.getPrice());//ok
+        DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setMaximumFractionDigits(2);
+        double orderPrice = Double.parseDouble(decimalFormat.format(Double.parseDouble(order.getPrice())));
+        this.priceLabel.setText(App.CURRENCY + orderPrice);//ok
         this.sizeLabel.setText("" + order.getNumberOfItems());//the number of the items // ok
         this.dateLabel.setText(order.getDate());//ok
     }

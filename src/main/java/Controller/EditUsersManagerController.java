@@ -42,6 +42,23 @@ public class EditUsersManagerController {
     void initialize() throws IOException {
 
         if (!signUpList.isEmpty()) {
+            int counter = 0;
+            for (SignUp signUp : signUpList) {
+                if (signUp.getAccountType().equals("system manager")) {
+                    counter++;
+                }
+            }
+            if (counter == 1) {
+                for (SignUp signUp : signUpList) {
+                    if (signUp.getAccountType().equals("system manager")) {
+                        signUpList.remove(signUp);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (!signUpList.isEmpty()) {
             for (SignUp signUp : signUpList) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(App.class.getResource("editUsersItemManager.fxml"));

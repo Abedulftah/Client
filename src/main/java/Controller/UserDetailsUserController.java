@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
 
@@ -193,6 +194,9 @@ public class UserDetailsUserController {
     @FXML
     void handleCourier() {
         //we need to update the final price too, and to make it strikethrough we need to take care that we need to take the order from the shop so there we need to update.
+        DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setMaximumFractionDigits(2);
+        originalPrice = Double.parseDouble(decimalFormat.format(originalPrice));
         if (!courier.isSelected()) {
             pickupFromBranch.setDisable(false);
             finalPriceLabel.setText(String.valueOf(originalPrice));
@@ -228,6 +232,9 @@ public class UserDetailsUserController {
     @FXML
     void handlePickUpFromBranch() {
 
+        DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setMaximumFractionDigits(2);
+        originalPrice = Double.parseDouble(decimalFormat.format(originalPrice));
         courier.setDisable(pickupFromBranch.isSelected());
         finalPriceLabel.setText(String.valueOf(originalPrice));
         if(finalPriceLabel.isStrikethrough()) {
@@ -238,11 +245,11 @@ public class UserDetailsUserController {
 
     }
 
-
     @FXML
     void handleBlessing() {
         blessingPane.setVisible(blessing.isSelected());
     }
+
     //we need to take care of these both functions.
     @FXML
     void handleDone() {
@@ -250,9 +257,12 @@ public class UserDetailsUserController {
         // Don't insert this message to database unless the user clicks confirm and the Blessing checkbox is checked
         blessingPane.setVisible(false);
     }
+
     @FXML
     void initialize() {
 
+        DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setMaximumFractionDigits(2);
         String number = "** **** **** ";
         number = user.getCreditCard().substring(0, 2) + number + user.getCreditCard().substring(user.getCreditCard().length() - 4);
         creditCardNumber.setText(number);
@@ -272,12 +282,13 @@ public class UserDetailsUserController {
             a += Double.parseDouble(catalog.getPrice());
         }
         originalPrice = a;
+        a = Double.parseDouble(decimalFormat.format(a));
         finalPriceLabel.setText("" + a);
 
         if(user.getAccountType().equals("elite") && a > 50){
             finalPriceLabel.setStrikethrough(true);
             a *= 0.9;
-
+            a = Double.parseDouble(decimalFormat.format(a));
             discountedPriceText.setText("" + a);
             discountedPriceText.setVisible(true);
             finalPriceDiscountedLabel.setVisible(true);

@@ -35,24 +35,49 @@ public class EditUsersItemManagerController {
 
     @FXML
     void handleBannedButton() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Ban Confirmation");
-        alert.setHeaderText("Are you sure you want to ban this user?");
-        ButtonType confirmButton = new ButtonType("Confirm", ButtonBar.ButtonData.YES);
-        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-        alert.getButtonTypes().setAll(confirmButton, cancelButton);
+        if (!sign.isBanned()) {
 
-        alert.showAndWait().ifPresent(type -> {
-            if (type == confirmButton) {
-                sign.setBanned(!sign.isBanned());
-                try {
-                    getClient().sendToServer(new MsgObject("addUser", sign));
-                    //getClient().sendToServer(new MsgObject("editUsersManager", sign));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Ban Confirmation");
+            alert.setHeaderText("Are you sure you want to ban this user?");
+            ButtonType confirmButton = new ButtonType("Confirm", ButtonBar.ButtonData.YES);
+            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(confirmButton, cancelButton);
+
+            alert.showAndWait().ifPresent(type -> {
+                if (type == confirmButton) {
+                    bannedButton.setText("Unban");
+                    sign.setBanned(!sign.isBanned());
+                    try {
+                        getClient().sendToServer(new MsgObject("addUser", sign));
+                        //getClient().sendToServer(new MsgObject("editUsersManager", sign));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
-            }
-        });
+            });
+            return;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Unban Confirmation");
+            alert.setHeaderText("Are you sure you want to unban this user?");
+            ButtonType confirmButton = new ButtonType("Confirm", ButtonBar.ButtonData.YES);
+            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(confirmButton, cancelButton);
+
+            alert.showAndWait().ifPresent(type -> {
+                if (type == confirmButton) {
+                    bannedButton.setText("Ban");
+                    sign.setBanned(!sign.isBanned());
+                    try {
+                        getClient().sendToServer(new MsgObject("addUser", sign));
+                        //getClient().sendToServer(new MsgObject("editUsersManager", sign));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        }
     }
 
     @FXML

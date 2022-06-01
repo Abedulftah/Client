@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import static Controller.CartUserController.specifiedItemsList;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
@@ -106,10 +107,14 @@ public class CartItemUserController {
         this.catalog = catalog;
         this.descriptionLabel.setText(catalog.getItemDetails());
         this.nameLabel.setText(catalog.getName());
+        DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setMaximumFractionDigits(2);
+        double catalogPrice = Double.parseDouble(decimalFormat.format(Double.parseDouble(catalog.getPrice())));
+        double catalogDiscount = Double.parseDouble(decimalFormat.format(catalog.getDiscount()));
         if(catalog.getDiscount() == -1)
-            this.priceLabel.setText(App.CURRENCY + catalog.getPrice());
+            this.priceLabel.setText(App.CURRENCY + catalogPrice);
         else
-            this.priceLabel.setText(App.CURRENCY + catalog.getDiscount());
+            this.priceLabel.setText(App.CURRENCY + catalogDiscount);
         this.sizeLabel.setText(catalog.getSize());
         this.quantityLabel.setText("" + catalog.getLeft());
     }
