@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.msgObject;
 
 public class Histogram {
@@ -28,7 +29,15 @@ public class Histogram {
 
     @FXML
     void handleHome() throws IOException {
-        App.setRoot("primaryManager", "/Image/managerIcon.png", "System Manager");
+
+            switch (user.getAccountType()) {
+                case "shop manager 1": case "shop manager 2": case "shop manager 3": case "shop manager 4": case "shop manager 5": case "shop manager 6": case "shop manager 7": case "shop manager 8": case "shop manager 9": case "shop manager 10":
+                    App.setRoot("primarySingleShopManager", "/Image/singleShopManagerIcon.png", "Shop Manager");
+                break;
+                case "primaryManager" :
+                    App.setRoot("primaryManager", "/Image/managerIcon.png", "System Manager");
+                break;
+            }
     }
 
     public void initialize() {
