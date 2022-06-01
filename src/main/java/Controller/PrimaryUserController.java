@@ -38,7 +38,8 @@ public class PrimaryUserController {
 
     @FXML
     void handleComplainButton() throws IOException {
-        getClient().sendToServer(new MsgObject("complainUser"));
+        MsgObject msgObject1 = new MsgObject("complainUser");
+        getClient().sendToServer(msgObject1);
     }
 
     @FXML
@@ -80,7 +81,9 @@ public class PrimaryUserController {
 
     @FXML
     void handleNotificationsButton() throws IOException {
-        getClient().sendToServer(new MsgObject("notificationsUser"));
+        MsgObject msgObject1 = new MsgObject("notificationsUser");
+        msgObject1.setUser(user);
+        getClient().sendToServer(msgObject1);
 
     }
 

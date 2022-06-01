@@ -14,6 +14,7 @@ import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Date;
 
 import static Controller.SignInController.user;
 import static il.ac.haifa.cs.sweng.OCSFSimpleChat.SimpleClient.getClient;
@@ -85,7 +86,20 @@ public class ComplainUserController {
             pause.setOnFinished(e -> messageErrorLabel.setVisible(false));
             pause.play();
 
-            Complain complain = new Complain(user.getUsername(), user.getEmail(), user.getPhone(), messageTB.getText(), user.getAccountType(), String.valueOf(java.time.LocalDate.now()));
+            Date date = new Date();
+            String newDate = String.valueOf(java.time.LocalDate.now());
+
+            if(date.getHours() < 10)
+                newDate = newDate + " 0" + date.getHours();
+            else
+                newDate = newDate + " " + date.getHours();
+
+            if(date.getMinutes() < 10)
+                newDate = newDate + ":0" + date.getMinutes();
+            else
+                newDate = newDate + ":" + date.getMinutes();
+
+            Complain complain = new Complain(user.getUsername(), user.getEmail(), user.getPhone(), messageTB.getText(), user.getAccountType(), newDate);
             try {
                 getClient().sendToServer(new MsgObject("complainList", complain));
             } catch (IOException e) {

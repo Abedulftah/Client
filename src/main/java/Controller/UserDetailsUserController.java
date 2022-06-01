@@ -101,6 +101,7 @@ public class UserDetailsUserController {
 
     private String blessingMessage;
     private double originalPrice;
+    private double originalDiscount;
 
     @FXML
     void handleBackToCart() throws IOException {
@@ -150,6 +151,7 @@ public class UserDetailsUserController {
             else
                 order.setDate(date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth() + " " + hourPicker.getValue());
 
+            order.setBlessing(blessingText.getText());
             order.setShipping(courier.isSelected());
             order.setName(deliveryReceiverName.getText());
             order.setPhone(deliveryReceiverPhone.getText());
@@ -172,19 +174,25 @@ public class UserDetailsUserController {
 
     @FXML
     void handleCourier() {
-
+        //we need to update the final price too, and to make it strikethrough we need to take care that we need to take the order from the shop so there we need to update.
         if (!courier.isSelected()) {
             pickupFromBranch.setDisable(false);
-            if(finalPriceLabel.isStrikethrough())
-                discountedPriceText.setText(String.valueOf(originalPrice));
-            else
-                finalPriceLabel.setText(String.valueOf(originalPrice));
+            finalPriceLabel.setText(String.valueOf(originalPrice));
+            if(finalPriceLabel.isStrikethrough()) {
+                discountedPriceText.setText(String.valueOf(originalDiscount));
+                finalPriceLabel.setStrikethrough(true);
+            }
+            if(discountedPriceText.isVisible())
+                finalPriceLabel.setStrikethrough(true);
         } else {
             pickupFromBranch.setDisable(true);
-            if(finalPriceLabel.isStrikethrough())
-                discountedPriceText.setText(String.valueOf(originalPrice + 10));
-            else
-                finalPriceLabel.setText(String.valueOf(originalPrice + 10));
+            finalPriceLabel.setText(String.valueOf(originalPrice + 10));
+            if(finalPriceLabel.isStrikethrough()) {
+                finalPriceLabel.setStrikethrough(true);
+                discountedPriceText.setText(String.valueOf(originalDiscount + 10));
+            }
+            if(discountedPriceText.isVisible())
+                finalPriceLabel.setStrikethrough(true);
         }
     }
 
@@ -203,16 +211,21 @@ public class UserDetailsUserController {
     void handlePickUpFromBranch() {
 
         courier.setDisable(pickupFromBranch.isSelected());
-        if(finalPriceLabel.isStrikethrough())
-            discountedPriceText.setText(String.valueOf(originalPrice));
-        else
-            finalPriceLabel.setText(String.valueOf(originalPrice));
+        finalPriceLabel.setText(String.valueOf(originalPrice));
+        if(finalPriceLabel.isStrikethrough()) {
+            discountedPriceText.setText(String.valueOf(originalDiscount));
+        }
+        if(discountedPriceText.isVisible())
+            finalPriceLabel.setStrikethrough(true);
+
     }
+
 
     @FXML
     void handleBlessing() {
         blessingPane.setVisible(blessing.isSelected());
     }
+    //we need to take care of these both functions.
     @FXML
     void handleDone() {
         blessingMessage = blessingText.getText();
@@ -240,6 +253,7 @@ public class UserDetailsUserController {
         for (Catalog catalog : msgObject.getCatalogList()) {
             a += Double.parseDouble(catalog.getPrice()) * catalog.getLeft();
         }
+        originalPrice = a;
         finalPriceLabel.setText("" + a);
 
         if(user.getAccountType().equals("elite") && a > 50){
@@ -251,7 +265,7 @@ public class UserDetailsUserController {
             finalPriceDiscountedLabel.setVisible(true);
         }
 
-        originalPrice = a;
+        originalDiscount = a;
     }
 }
 

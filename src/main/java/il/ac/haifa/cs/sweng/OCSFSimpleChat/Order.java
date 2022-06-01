@@ -35,6 +35,9 @@ public class Order implements Serializable {
     private boolean shipping;
     @Column(name = "date")
     private String date;
+
+    @Column(name = "blessingMsg", length = 2000)
+    private String blessing;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userId")
     private SignUp user;
@@ -55,6 +58,15 @@ public class Order implements Serializable {
 
     public void setUser(SignUp user) {
         this.user = user;
+    }
+
+
+    public void setBlessing(String blessing) {
+        this.blessing = blessing;
+    }
+
+    public String getBlessing() {
+        return blessing;
     }
 
     public void setName(String name) {

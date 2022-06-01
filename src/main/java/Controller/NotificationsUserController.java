@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static Controller.SignInController.user;
@@ -61,16 +62,18 @@ public class NotificationsUserController {
         List<CustomerWorkerRespond> complainResponds = (List<CustomerWorkerRespond>) msgObject.getObject();
 
         int counter = 0;
-        for (CustomerWorkerRespond complainRespond : complainResponds) {
-            if(complainRespond.getEmail().equals(user.getEmail())) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(App.class.getResource("notificationsItemUser.fxml"));
-                Node node = fxmlLoader.load();
-                NotificationsItemUserController notificationsItemUserController = fxmlLoader.getController();
-                notificationsItemUserController.setData(complainRespond, "New Notification " + counter++, complainRespond.getRespondMessage(), complainRespond.getDate());
-                vbox.getChildren().add(node);
+        if (complainResponds != null) {
+            for (CustomerWorkerRespond complainRespond : complainResponds) {
+                if (complainRespond.getEmail().equals(user.getEmail())) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(App.class.getResource("notificationsItemUser.fxml"));
+                    Node node = fxmlLoader.load();
+                    NotificationsItemUserController notificationsItemUserController = fxmlLoader.getController();
+                    notificationsItemUserController.setData(complainRespond, "New Notification " + counter++, complainRespond.getRespondMessage(), complainRespond.getDate());
+                    vbox.getChildren().add(node);
+                }
             }
+            totalOrdersLabel.setText("Total notifications: " + counter);
         }
-        totalOrdersLabel.setText("Total notifications: " + counter);
     }
 }

@@ -60,7 +60,6 @@ public class Catalog implements Serializable {
         this.size = "";
     }
 
-
     public void setDiscount(double discount) {
         this.discount = discount;
     }
