@@ -29,7 +29,7 @@ public class DetailedOrderUserController {
 
     @FXML
     void handleBackToOrders() throws IOException {
-        MsgObject msgObject1 = new MsgObject("myOrderUser");
+        MsgObject msgObject1 = new MsgObject("myOrdersUser");
         msgObject1.setUser(user);
         getClient().sendToServer(msgObject1);
     }

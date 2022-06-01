@@ -117,7 +117,6 @@ public class SimpleClient extends AbstractClient {
                 try {
                     App.setRoot("myOrdersUser", "/Image/myOrdersIcon.png", "My Orders");
                 } catch (IOException e) {
-                    
                     e.printStackTrace();
                 }
             });
