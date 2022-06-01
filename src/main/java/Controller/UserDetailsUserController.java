@@ -269,7 +269,7 @@ public class UserDetailsUserController {
         originalPrice = Double.parseDouble(finalPriceLabel.getText());
         double a = 0;
         for (Catalog catalog : msgObject.getCatalogList()) {
-            a += Double.parseDouble(catalog.getPrice()) * catalog.getLeft();
+            a += Double.parseDouble(catalog.getPrice());
         }
         originalPrice = a;
         finalPriceLabel.setText("" + a);
