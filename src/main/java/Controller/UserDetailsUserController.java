@@ -122,8 +122,15 @@ public class UserDetailsUserController {
         /*String.valueOf(date.getDayOfMonth());
         String.valueOf(date.getMonthValue());
         String.valueOf(date.getYear());*/
-
-        String hour = hourPicker.getValue().substring(0, 2);
+        String hour;
+        if(hourPicker.getValue() != null) {
+            hour = hourPicker.getValue().substring(0, 2);
+        }
+        else{
+            //errorLabel.setText("Please fill the requested fields")
+            //errorLabel.setVisiable(true);
+            return;
+        }
         int currentHour = calendar.get(Calendar.HOUR_OF_DAY) + 1;
 
         if (datePicker.getText().equals("") || hourPicker.getValue().equals("") ||
@@ -144,12 +151,23 @@ public class UserDetailsUserController {
             deliveryErrorLabel.setText("Please select valid hour");
             deliveryErrorLabel.setVisible(true);
             return;
-        } else {
+        }  else if (Integer.parseInt(hour) == currentHour
+                && date.getYear() == localDate.getYear() && date.getMonthValue() == localDate.getMonthValue()
+                && date.getDayOfMonth() == localDate.getDayOfMonth() && calendar.get(Calendar.MINUTE) != 0 ) {
+            deliveryErrorLabel.setText("Please select valid hour");
+            deliveryErrorLabel.setVisible(true);
+            return;
+        }else {
             Order order = new Order();
             if (date.getMonthValue() < 10)
-                order.setDate(date.getYear() + "-0" + date.getMonthValue() + "-" + date.getDayOfMonth() + " " + hourPicker.getValue());
+                order.setDate(date.getYear() + "-0" + date.getMonthValue() + "-");
             else
-                order.setDate(date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth() + " " + hourPicker.getValue());
+                order.setDate(date.getYear() + "-" + date.getMonthValue() + "-");
+
+            if(date.getDayOfMonth() < 10)
+                order.setDate(order.getDate() + "0" + date.getDayOfMonth() + " " + hourPicker.getValue());
+            else
+                order.setDate(order.getDate() + date.getDayOfMonth() + " " + hourPicker.getValue());
 
             order.setBlessing(blessingText.getText());
             order.setShipping(courier.isSelected());
