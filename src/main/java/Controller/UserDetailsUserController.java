@@ -127,8 +127,8 @@ public class UserDetailsUserController {
             hour = hourPicker.getValue().substring(0, 2);
         }
         else{
-            //errorLabel.setText("Please fill the requested fields")
-            //errorLabel.setVisiable(true);
+            deliveryErrorLabel.setText("Please fill the requested fields");
+            deliveryErrorLabel.setVisible(true);
             return;
         }
         int currentHour = calendar.get(Calendar.HOUR_OF_DAY) + 1;
