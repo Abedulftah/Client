@@ -28,7 +28,7 @@ public class Histogram {
     private NumberAxis y;
 
     @FXML
-    void handleHome() throws IOException {
+    void handleHome() throws IOException { // For commit
 
             switch (user.getAccountType()) {
 
