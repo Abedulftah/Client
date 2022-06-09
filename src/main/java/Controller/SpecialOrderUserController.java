@@ -1,5 +1,6 @@
 package Controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
@@ -93,6 +94,9 @@ public class SpecialOrderUserController {
     private JFXComboBox<String> teddyBear;
 
     @FXML
+    private JFXButton placeOrderRequestButton;
+
+    @FXML
     void handleHome() throws IOException {
         App.setRoot("primaryUser", "/Image/mainPageIcon.png", "Lilac");
     }
@@ -171,7 +175,7 @@ public class SpecialOrderUserController {
         String suggestedPrice = desiredPrice.getValue();
         String dominantColor = String.valueOf(colorPicker.getValue());
         dominantColor = "#" + dominantColor.substring(2, dominantColor.length() - 2);
-
+        placeOrderRequestButton.setDisable(true);
 
         // Save order, flowersNumber, anotherSuggestedFlowers, suggestedPrice and dominantColor to
         // the special order database

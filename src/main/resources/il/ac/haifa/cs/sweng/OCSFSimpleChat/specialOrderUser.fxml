@@ -213,7 +213,7 @@
                      </cursor></ColorPicker>
                </children>
             </Pane>
-            <JFXButton layoutX="525.0" layoutY="545.0" onAction="#handlePlaceOrderButton" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: linear-gradient(to right, #cb2d3e, #ef473a); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="PLACE ORDER REQUEST" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton fx:id="placeOrderRequestButton" layoutX="525.0" layoutY="545.0" onAction="#handlePlaceOrderButton" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: linear-gradient(to right, #cb2d3e, #ef473a); -fx-background-radius: 100; -fx-text-fill: linear-gradient(to right, #c9d6ff, #e2e2e2);" text="PLACE ORDER REQUEST" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Cambria Bold" size="18.0" />
                </font>
