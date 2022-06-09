@@ -70,7 +70,6 @@ public class EditUsersItemManagerController {
                     sign.setBanned(!sign.isBanned());
                     try {
                         getClient().sendToServer(new MsgObject("addUser", sign));
-                        //getClient().sendToServer(new MsgObject("editUsersManager", sign));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -83,7 +82,9 @@ public class EditUsersItemManagerController {
     void handleEditButton() throws IOException {
         addFlag = false;
         signUp = sign;
-        getClient().sendToServer(new MsgObject("editUserManager"));
+        MsgObject msgObject1 = new MsgObject("editUserManager");
+        msgObject1.setUser(sign);
+        getClient().sendToServer(msgObject1);
     }
 
     @FXML

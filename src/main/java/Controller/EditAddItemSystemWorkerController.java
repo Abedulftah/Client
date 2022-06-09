@@ -3,6 +3,7 @@ package Controller;
 import com.jfoenix.controls.JFXButton;
 
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.Catalog;
+import il.ac.haifa.cs.sweng.OCSFSimpleChat.CustomerWorkerRespond;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
@@ -116,6 +117,7 @@ public class EditAddItemSystemWorkerController {
         DecimalFormat decimalFormat = new DecimalFormat();
         decimalFormat.setMaximumFractionDigits(2);
         a = Double.parseDouble(decimalFormat.format(a));
+        CustomerWorkerRespond customerWorkerRespond = new CustomerWorkerRespond();
         if (CatalogueSystemWorkerController.editFlag) {
             // Edit existing item
             // new attributes:
