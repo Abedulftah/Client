@@ -178,7 +178,7 @@ public class ContactUsNotSignedController {
             messageErrorLabel.setVisible(true);
             messageTB.setStyle("-fx-border-color: red");
         }
-        Complain complain = new Complain(nameTB.getText(), emailTB.getText(), phoneTB.getText(), messageTB.getText(),"shop 100", String.valueOf(java.time.LocalDate.now()));
+        Complain complain = new Complain(nameTB.getText(), emailTB.getText(), phoneTB.getText(), messageTB.getText(),"shop 11", String.valueOf(java.time.LocalDate.now()));
         getClient().sendToServer(new MsgObject("complainList",complain));
         sendMessageButton.setDisable(true);
     }

@@ -160,6 +160,8 @@ public class SignUpController {
     @FXML
     private Label userDetailsErrorLabel;
 
+    private SignUp signup = new SignUp();
+
     @FXML
     void CVVQuestionMarkEnter() {
         showLabelCVV.setVisible(true);
@@ -285,6 +287,7 @@ public class SignUpController {
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         Pattern pattern = Pattern.compile(regularExpressionPattern);
         Matcher matcher = pattern.matcher(text);
+
         if (!matcher.matches()) {
             flag2 = false;
             EmailImage.setImage(new Image(getClass().getResourceAsStream("/Image/remove.png")));
@@ -410,7 +413,6 @@ public class SignUpController {
 
     @FXML
     void handleSignUpButton() {
-
         handleUserNameTB();
         handleEmailTB();
         handlePhoneCodeListSelected();
@@ -473,7 +475,7 @@ public class SignUpController {
             ExpDateYearCB.setDisable(true);
             CVVTB.setDisable(true);
 
-            SignUp signup = new SignUp(globalAccountType, UsernameTB.getText(), EmailTB.getText(), phoneCodeList.getText() + PhoneTB.getText()
+            signup = new SignUp(globalAccountType, UsernameTB.getText(), EmailTB.getText(), phoneCodeList.getText() + PhoneTB.getText()
                     , PasswordTB.getText(), CityTB.getText() + " " + StreetTB.getText() + " " + ZIPCTB.getText() + " " + POBoxTB.getText(),
                     CreditCardNumberTB.getText(), CreditCardHolderTB.getText(), ExpDateYearCB.getText() + "/" + ExpDateMonthCB.getText(),
                     Integer.parseInt(CVVTB.getText()));
@@ -513,7 +515,9 @@ public class SignUpController {
 
     @FXML
     void handleSuccessLabel2() throws IOException {
-        App.setRoot("SignIn", "/Image/loginIcon.png", "Sign In");
+        MsgObject msgObject1 = new MsgObject("signIn");
+        msgObject1.setUser(signup);
+        getClient().sendToServer(msgObject1);
     }
 
     @FXML

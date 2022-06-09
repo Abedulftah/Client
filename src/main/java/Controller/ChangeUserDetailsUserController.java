@@ -516,7 +516,7 @@ public class ChangeUserDetailsUserController {
 
     @FXML
     void handleZIPCTB() {
-
+    //there is an error when the client try to change his ZIP CODE
         String text = ZIPCTB.getText();
         String regularExpressionPattern = "^[0-9]([.\\s\\-]?\\d){6}$";
         Pattern pattern = Pattern.compile(regularExpressionPattern);

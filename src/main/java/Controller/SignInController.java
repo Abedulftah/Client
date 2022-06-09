@@ -4,7 +4,6 @@ import il.ac.haifa.cs.sweng.OCSFSimpleChat.MsgObject;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.SignUp;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import il.ac.haifa.cs.sweng.OCSFSimpleChat.App;
@@ -47,7 +46,7 @@ public class SignInController {
     @FXML
     void handleSignInButton() throws IOException {
         // I do believe we need to send the details to the server and the server should check if the user is on the line or not
-        //because here we can just in both client click at the same the then we have all the users are not in so we can sign in
+        //because here we can just in both client click at the same the then we have all the users are not in, so we can sign
         //in two clients with the same email
         //if we send to the server, we will send it when we click on sign in and in the server we will check if this user are in
         //and will check if the user is in the database then the server will redirect him to the correct page
@@ -72,40 +71,6 @@ public class SignInController {
         }
         getClient().sendToServer(new MsgObject("signInButton", userName + passwordTB.getText()));
 
-
-        //getClient().sendToServer(new MsgObject("CheckValidUser", str));
-
-        // if the user name is found in the data base and the password is matching with it then
-        // App.setRoot("primary", "/Image/mainPageIcon.png", "Lilac");
-//        if(!find)
-//            errorMessageLabel.setVisible(true);
-//        else {
-//
-//            switch (user.getAccountType()) {
-//
-//                case "system worker":
-//                    getClient().sendToServer(new MsgObject("primarySystemWorker", user));
-//                    //App.setRoot("primarySystemWorker", "/Image/mainPageIcon.png", "Lilac");
-//                    break;
-//
-//                case "customer service":
-//                    getClient().sendToServer(new MsgObject("primaryCustomerService", user));
-//                    //App.setRoot("primaryCustomerService", "/Image/mainPageIcon.png", "Lilac");
-//                    break;
-//
-//                case "system manager":
-//                    /////
-//                    break;
-//
-//                case "shop manager":
-//                    ////
-//                    break;
-//
-//                default:
-//                    getClient().sendToServer(new MsgObject("primaryUser", user));
-//
-//            }
-//        }
     }
 
     @FXML

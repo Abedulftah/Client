@@ -92,7 +92,7 @@ public class CompareHist {
         }
 
         shops.removeAll(shopList);
-        boolean found = false;
+        boolean found;
 
         List<String> strSet = new ArrayList<>();
         List<String> strSet1 = new ArrayList<>();
@@ -121,7 +121,6 @@ public class CompareHist {
             }
             if (!found)
                 strSet1.add(shop.getDate());
-            //set1.getData().addAll(new XYChart.Data(shop.getDate(), 0));
         }
 
         for (int j = 0; j < strSet1.size(); j++) {//bubble sort according to date
