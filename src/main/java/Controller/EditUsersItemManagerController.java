@@ -50,7 +50,6 @@ public class EditUsersItemManagerController {
                     sign.setBanned(!sign.isBanned());
                     try {
                         getClient().sendToServer(new MsgObject("addUser", sign));
-                        //getClient().sendToServer(new MsgObject("editUsersManager", sign));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -100,7 +99,6 @@ public class EditUsersItemManagerController {
             if (type == confirmButton) {
                 try {
                     getClient().sendToServer(new MsgObject("removeUserManager", sign));
-                    getClient().sendToServer(new MsgObject("editUsersManager", sign));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

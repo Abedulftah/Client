@@ -258,7 +258,7 @@ public class EditAddItemSystemWorkerController {
     void handleProductSizeKeyPressed() {
 
         String text = productSizeTB.getText();
-        String regularExpressionPattern = "^[a-zA-Z0-9\" ]*$";
+        String regularExpressionPattern = "^[a-zA-Z0-9.\" ]*$";
         Pattern pattern = Pattern.compile(regularExpressionPattern);
         Matcher matcher = pattern.matcher(text);
         if (!matcher.matches() || text.equals("")) {
