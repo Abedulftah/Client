@@ -83,7 +83,7 @@ public class EditUsersItemManagerController {
         addFlag = false;
         signUp = sign;
         MsgObject msgObject1 = new MsgObject("editUserManager");
-        msgObject1.setUser(sign);
+        msgObject1.setUser(sign);//we
         getClient().sendToServer(msgObject1);
     }
 
